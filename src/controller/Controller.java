@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.product.ProductDetailService;
+import dao.product.ProductListService;
+
 /**
  * Servlet implementation class Controller
  */
@@ -33,7 +36,23 @@ public class Controller extends HttpServlet {
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
 			path = "index.jsp";
+		}else if(command.equals("/productlist.do")) {
+			try {
+				new ProductListService().execute(request, response);
+				path = "/product/productlist.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productdetail.do")) {
+			try {
+				new ProductDetailService().execute(request, response);
+				path = "/product/productdetail.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request,response);
