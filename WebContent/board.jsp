@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--반응형 하는 코딩 -->
-<title>BootStrap</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-<link href="/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/mystyle.css">
-<script src="/js/jquery-3.3.1.min.js"></script>
-<!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-</head>
 
-<body>
 	<div class="container-fluid">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -154,16 +138,4 @@
 		</div>
 	</div>
 
-	<footer class="footer">
-		<div class="container-fluid">
-			<address class="address">
-				<p class="title"></p>
-				미니프로젝트
-			</address>
-			<p class="copyright">Copyright &copy JSL 인재개발원주식회사. All rights
-				reserved.</p>
-		</div>
-	</footer>
-
-</body>
-</html>
+	
