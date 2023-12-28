@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt" %>
+    
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,7 +29,9 @@
   	<div class="nav__left">
   	<a href="main.do">LOGO</a></div>
   	<div class="nav__middle">
-  		<span class="glyphicon glyphicon-search"></span><input class="search-input" type="text">
+  		<form name="searchForm" method="get" action="search.do">
+  			<span class="glyphicon glyphicon-search"></span><input name="keyword" class="search-input" type="text">
+  		</form>
   	</div>
   	<div class="nav__right">
   		<ul>

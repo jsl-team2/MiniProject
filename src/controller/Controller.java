@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.search.SearchService;
+
 /**
  * Servlet implementation class Controller
  */
@@ -33,6 +35,15 @@ public class Controller extends HttpServlet {
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
 			path = "index.jsp";
+		}
+		if(command.equals("/search.do")) {
+			try {
+				new SearchService().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path = "search.jsp";
 		}
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
