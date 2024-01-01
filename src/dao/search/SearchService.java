@@ -19,8 +19,11 @@ public class SearchService implements Action {
 		keyword = request.getParameter("keyword");
 		
 		SearchDao dao = new SearchDao();
-		List<SearchVo> list = dao.getSearchAll(keyword);
-		request.setAttribute("list",list);
+		List<SearchVo> productList = dao.getSearchProduct(keyword);
+		List<SearchVo> boardList = dao.getSearchBoard(keyword);
+		request.setAttribute("productList",productList);
+		request.setAttribute("boardList",boardList);
+		request.setAttribute("keyword", keyword);
 	}
 
 }

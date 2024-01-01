@@ -39,6 +39,7 @@ public class Controller extends HttpServlet {
 		if(command.equals("/search.do")) {
 			try {
 				new SearchService().execute(request, response);
+			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
