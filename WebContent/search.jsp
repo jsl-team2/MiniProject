@@ -22,6 +22,7 @@
 		</div>
 	</c:forEach>
 		</div>
+		</div>
 	<div class="border-line"></div>
 	<div class="board-container">
 		<div class="main__title">게시글</div>
@@ -36,7 +37,6 @@
 		</div>
 		</div>
 		</c:forEach>
-		</div>
 		</div>
  	</c:otherwise>
 </c:choose>
