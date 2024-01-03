@@ -52,12 +52,13 @@
 								<img src="${product.product_picture}" alt="...">
 								<div class="caption">
 									<h3>${product.product_name}</h3>
-									<p>${product.product_color}</p>
 									<p>${product.product_capacity}</p>
-									<p>${product.product_price}</p>
+									<p>${product.product_color}</p>
+									<fmt:formatNumber value="${product.product_price}" pattern="#,##0" var="formattedPrice" />
+									<p>${formattedPrice} 원</p>
 									<p>
 										<a href="productdetail.do?product_no=${product.product_no}"
-											class="btn btn-primary" role="button">상세보기</a>
+											class="btn btn-primary" role="button">제품보기</a>
 									</p>
 								</div>
 							</div>

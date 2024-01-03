@@ -50,7 +50,32 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/productbasket.do")) {
+			try {
+				
+				path = "/product/productbasket.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productorder.do")) {
+			try {
+				
+				path = "/product/productorder.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productordercomplete.do")) {
+			try {
+				
+				path = "/product/productordercomplete.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
+		
+		//  insert구현-제품 데이터 정리 - 기능구현           페이지 디테일 수정          발표?
 		
 		
 		if(path != null) {

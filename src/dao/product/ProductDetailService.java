@@ -15,6 +15,7 @@ public class ProductDetailService implements Action{
 		int product_no = Integer.parseInt(request.getParameter("product_no"));
 		
 		ProductDao dao = new ProductDao();
+		
 		ProductVo vo = dao.getProductSelectOne(product_no);
 		
 		request.setAttribute("vo", vo);
