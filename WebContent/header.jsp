@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt" %>
     
@@ -10,12 +11,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <title>Mini Project</title>
+
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="css/productdetail.css">
     <link rel="stylesheet" href="css/search.css">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,10 +43,10 @@
   	<div class="nav__right">
   		<ul>
   		<li>
-  		<a href="#">회사정보</a>
+  		<a href="productlist.do">제품목록</a>
   		</li>
   		<li>
-  		<a href="#">제품목록</a>
+  		<a href="#">회사정보</a>
   		</li>
   		<li>
   		<a href="#">고객센터</a>
