@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import dao.product.ProductDetailService;
 import dao.product.ProductListService;
+
+import dao.search.SearchService;
+
 
 /**
  * Servlet implementation class Controller
@@ -74,10 +78,18 @@ public class Controller extends HttpServlet {
 		}
 		
 		
-		
-		//  insert구현-제품 데이터 정리 - 기능구현           페이지 디테일 수정          발표?
-		
-		
+
+		if(command.equals("/search.do")) {
+			try {
+				new SearchService().execute(request, response);
+			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path = "search.jsp";
+		}
+
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request,response);
