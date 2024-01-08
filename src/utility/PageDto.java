@@ -2,11 +2,13 @@ package utility;
 
 public class PageDto {
 
-	private int startPage; //시작페이지
-	private int endPage; //끝페이지
-	private boolean prev, next; //아전, 다음 페이지
-	private int total; //총 레코드 개수
-	private Criteria cri; // 멤버변수로 다른 클래스 지정
+
+	private int startPage; // 시작페이지
+	private int endPage; // 끝페이지
+	private boolean prev, next; // 이전, 다음페이지
+	private int total; // 총 레코드 개수
+	private Criteria cri; // 멤버변수로 다른 클래스 지정 pageNum, amount, type, keyword 
+
 	
 	
 	public PageDto(Criteria cri, int total) {
@@ -16,9 +18,12 @@ public class PageDto {
 		this.startPage = this.endPage - 9;
 		int realEnd = (int)(Math.ceil((total * 1.0)/cri.getAmount()));
 		if(realEnd < this.endPage) this.endPage = realEnd;
-		this.prev = this.startPage >1;
+
+		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
 	}
+
+	
 
 	public int getStartPage() {
 		return startPage;
@@ -68,5 +73,5 @@ public class PageDto {
 		this.cri = cri;
 	}
 	
-	
+
 }
