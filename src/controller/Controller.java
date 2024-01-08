@@ -114,6 +114,18 @@ public class Controller extends HttpServlet {
 		// 장바구니 한번에 주문
 		
 		
+
+		if(command.equals("/search.do")) {
+			try {
+				new SearchService().execute(request, response);
+			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path = "search.jsp";
+		}
+
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request,response);

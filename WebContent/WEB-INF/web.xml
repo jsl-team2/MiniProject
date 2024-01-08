@@ -3,8 +3,6 @@
   <display-name>MiniProject</display-name>
   <welcome-file-list>
     <welcome-file>main.do</welcome-file>
-<<<<<<< HEAD
-=======
 
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
@@ -13,7 +11,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
 
->>>>>>> branch 'feature_product' of https://github.com/jsl-team2/MiniProject.git
   </welcome-file-list>
 
   <servlet-mapping>
