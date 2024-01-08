@@ -2,21 +2,23 @@ package utility;
 
 public class Criteria {
 
-	private int pageNum; // 페이지번호
-	private int amount; // 1페이지에 출력레코드 개수
-	
-	private String type; // 글, 제목
-	private String keyword; // 검색내용
+
+	private int pageNum; //페이지 번호
+	private int amount;//한 페이지 출력 래코드 개수
+	private String type; //
+	private String keyword;
 	
 	public Criteria() {
-		this(1, 5); // 현재 자기자신의 다른생성자 호출
+		this(1,10);
 	}
 	
 	
+
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
+
 
 	public int getPageNum() {
 		return pageNum;

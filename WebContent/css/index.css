@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 *{
 	list-style:none;
@@ -29,7 +30,9 @@ nav{
 	display: none;
 	
 }
+
 .drop-down__div  div{
+
 	padding: 10px;
 }
 .searchForm{
@@ -84,19 +87,23 @@ a:active{
 	text-decoration:none;
 }
 section {
-	margin-top: 50px;
+	
 	margin-bottom: 100px;
+
 }
 section img{
 	width: 100%;
 	
 }
+
 .mid{
 	margin-top:100px;
+
 	text-align: center;
 	font-size:30px;
 	font-weight: bold;
 }
+
 .mid-section{
 	display: flex;
 	justify-content: center;
@@ -116,3 +123,4 @@ section img{
 	font-size:16px;
 	font-weight:bold;
 }
+

@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
     
 <!doctype html>
 <html lang="en">
@@ -14,6 +16,7 @@
 
     <title>Mini Project</title>
 
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.12.4.min.js" ></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -24,6 +27,9 @@
 
     <link rel="stylesheet" href="css/product.css">
     <link rel="stylesheet" href="css/search.css">
+    
+    <link rel ="stylesheet" href="css/mystyle.css">
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,6 +55,7 @@
   		<a href="productlist.do">제품목록</a>
   		</li>
   		<li>
+
   		<a href="#">회사정보</a>
   		</li>
   		<li>
@@ -59,6 +66,7 @@
   		<div class="drop-down__div">
 	<div><a href="#">회원가입</a></div>
 	<div><a href="#">로그인</a></div>
+
 	</div>
   </li>
   		</ul>
