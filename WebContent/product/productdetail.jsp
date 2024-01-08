@@ -11,6 +11,7 @@
 <!-- sub contents -->
 <div class="container-fluid contents">
 	<div class="container">
+
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-lg-1"></div>
@@ -53,6 +54,7 @@
 										<p>カートに入れますか？</p>
 										<button onclick="addToCart('${vo.product_no}', true)">はい</button>
 										<button onclick="addToCart('${vo.product_no}', false)">いいえ</button>
+
 									</div>
 								</div>
 							</div>

@@ -11,6 +11,7 @@
 <!-- sub contents -->
 <div class="container contents" style="margin-top: 30px;">
 		<div class="col-lg-12">
+
 			<div class="row">
 				<c:forEach var="product" items="${list}">
 					<div class="col-md-4">
@@ -27,6 +28,7 @@
 									<a href="productdetail.do?product_no=${product.product_no}"
 										class="btn btn-default" role="button">製品詳細</a>
 								</p>
+
 							</div>
 						</div>
 					</div>
