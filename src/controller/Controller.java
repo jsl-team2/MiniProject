@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.product.ProductDetailService;
 import dao.product.ProductListService;
-
+import dao.product.ProductRecentListService;
 import dao.search.SearchService;
 
 
@@ -21,25 +22,36 @@ import dao.search.SearchService;
  */
 @WebServlet("/")
 public class Controller extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     public Controller() {
         super();
+        
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request,response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request,response);
+		
 	}
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getServletPath();
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
-			path = "index.jsp";
+			try {
+				new ProductRecentListService().execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path = "/index.jsp";
+			
 		}else if(command.equals("/productlist.do")) {
 			try {
 				new ProductListService().execute(request, response);

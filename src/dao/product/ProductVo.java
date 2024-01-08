@@ -12,6 +12,7 @@ public class ProductVo {
 	private String product_ram;
 	private String product_weight;
 	private String product_battery;
+	private String product_rdate;
 	private int product_price;
 	
 	private int basket_no;
@@ -166,6 +167,12 @@ public class ProductVo {
 	}
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
+	}
+	public String getProduct_rdate() {
+		return product_rdate;
+	}
+	public void setProduct_rdate(String product_rdate) {
+		this.product_rdate = product_rdate;
 	}
 	
 }

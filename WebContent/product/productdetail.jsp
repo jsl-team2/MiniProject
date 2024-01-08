@@ -12,7 +12,7 @@
 				<p>Galaxy</p>
 				<div class="row">
 					<div class="col-lg-7">
-						<img src="${vo.product_picture}" alt="" style="width: 100%;">
+						<img src="images/${vo.product_picture}" alt="" style="width: 100%;">
 					</div>
 					<div class="col-lg-5">
 						<div style="background: #fff; border-radius: 15px; padding: 10px; margin-top: 100px;">

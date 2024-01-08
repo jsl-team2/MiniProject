@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!doctype html>
 <html lang="en">
@@ -14,12 +14,15 @@
 
     <title>Mini Project</title>
 
-
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.12.4.min.js" ></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
 
-    <link rel="stylesheet" href="css/productdetail.css">
+    <link rel="stylesheet" href="css/product.css">
     <link rel="stylesheet" href="css/search.css">
 
 
