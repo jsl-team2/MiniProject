@@ -14,10 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
+import dao.product.ProductCartDeleteService;
+import dao.product.ProductCartService;
 import dao.product.ProductDetailService;
 import dao.product.ProductListService;
-import dao.product.ProductRecentListService;
+import dao.product.ProductOrderOneCompleteService;
+import dao.product.ProductOrderOneService;
+import dao.product.ProductOrderService;
+
 import dao.search.SearchService;
 
 import dao.board.BoardDeleteService;
@@ -79,17 +83,38 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/productbasket.do")) {
+		}else if(command.equals("/productcart.do")) {
 			try {
-				
-				path = "/product/productbasket.jsp";
+				new ProductCartService().execute(request, response);
+				path = "/product/productcart.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/productcartdelete.do")) {
+			try {
+				new ProductCartDeleteService().execute(request, response);
+				path = "/product/productcart.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}else if(command.equals("/productorder.do")) {
 			try {
-				
+				new ProductOrderService().execute(request, response);
 				path = "/product/productorder.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productorderone.do")) {
+			try {
+				new ProductOrderOneService().execute(request, response);
+				path = "/product/productorderone.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+		}else if(command.equals("/productorderonecomplete.do")) {
+			try {
+				new ProductOrderOneCompleteService().execute(request, response);
+				path = "/product/productordercomplete.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -187,6 +212,17 @@ public class Controller extends HttpServlet {
 			}
 		}
     
+		
+		// 장바구니 수량
+		// 장바구니 삭제 
+		// orderone 기능 수정 - 저장테이블 칼럼 확인.
+		// 페이징   / 발표?
+		// 메뉴 ?
+		// 제품 데이터
+		// 배송정보 자동입력 //
+		// 주문조회 
+		// 장바구니 한번에 주문
+		
 		
 
 		if(command.equals("/search.do")) {

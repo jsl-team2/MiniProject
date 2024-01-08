@@ -5,7 +5,7 @@
 
 <!-- sub visual -->
 <div class="container-fluid subvisual">
-	<h2>[카트]상품주문</h2>
+	<h2>[단일]상품주문</h2>
 </div>
 
 <!-- sub contents -->
@@ -30,26 +30,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${list}" varStatus="loopStatus">
-						<tr>
-							<td><img src="images/product/${list.cart_picture}" alt=""
-								style="width: 120px; height: auto;"></td>
-							<td><a href="productdetail.do?product_no=${list.cart_no}"
-								style="font-size: 18px;">${list.cart_product}</a></td>
-							<c:if test="${list.cart_price ne 0}">
-								<td><fmt:formatNumber value="${list.cart_price}"
-										pattern="#,##0" var="formattedPrice" /> <span
-									style="font-size: 18px;">${formattedPrice}￥</span></td>
-							</c:if>
-						</tr>
-						<c:set var="totalPrice" value="${totalPrice + list.cart_price}" />
-					</c:forEach>
+					<tr>
+						<td><img src="images/product/${vo.product_picture}" alt=""
+							style="width: 120px; height: auto;"></td>
+						<td><a href="productdetail.do?product_no=${vo.product_no}"
+							style="font-size: 18px;">${vo.product_name}</a></td>
+						<c:if test="${vo.product_price ne 0}">
+							<td><fmt:formatNumber value="${vo.product_price}"
+									pattern="#,##0" var="formattedPrice" /> <span
+								style="font-size: 18px;">${formattedPrice}￥</span></td>
+						</c:if>
+					</tr>
 					<tr>
 						<td><img src="images/product/cart.png" alt=""
 							style="width: 50px; height: auto;"></td>
 						<td
 							style="text-align: center; font-weight: bold; font-size: 20px; padding-right: 10px; margin: 10px;">合計</td>
-						<td><fmt:formatNumber value="${totalPrice}" pattern="#,##0"
+						<td><fmt:formatNumber value="${vo.product_price}" pattern="#,##0"
 								var="formattedTotalPrice" /> <span style="font-size: 20px;">${formattedTotalPrice}￥</span></td>
 					</tr>
 				</tbody>
@@ -58,6 +55,8 @@
 
 		<div>
 			<form name="order" id="order">
+				<input type="hidden" name="product_no" value="${list.product_no}">
+				<!-- 유저정보 히든인풋 -->
 				<table class="table_write02" summary="제품배송을 위한 이름, 휴대전화번호, 주소">
 					<caption style="font-weight: bold; font-size: 20px; color:#000;">配送情報</caption>
 					<colgroup>
@@ -110,7 +109,7 @@
 		// 자바스크립트로 form 태그 속성을 지정할 수 있다
 		var form = document.order;
 		form.method = "post";
-		form.action = "productordercomplete.do";
+		form.action = "productorderonecomplete.do";
 		form.submit();
 
 		var msg = "${msg}"; // 자바 속성값을 자바 변수에 저장 할 수 있다.

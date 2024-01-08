@@ -3,18 +3,16 @@
 
 <%@ include file="/header.jsp"%>
 
+<div class="container-fluid subvisual">
+	<h2>주문완료</h2>
+</div>
+
 <!-- sub contents -->
-<div class="container-fluid content" style="background: #FAFAFA;">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2>PRODUCT_DETAIL</h2>
-				<p>Galaxy</p>
-				<div>
-					<p>주문완료insert_order결제하기창에만들기</p>
-				</div>
-			</div>
-		</div>
+<div class="container contents" style="margin:0 auto;  text-align:center;">
+	<img src="images/product/ordercomplete.png" alt="" style="width: 700px; height:auto;">
+	<div style="text-align:center; margin-bottom:30px;">
+		<a href="main.do?" class="btn btn-default" role="button">ホーム</a> <a
+			href="productlist.do?" class="btn btn-default" role="button">製品リスト</a>
 	</div>
 </div>
 
