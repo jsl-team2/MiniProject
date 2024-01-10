@@ -14,12 +14,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="images/main/bg1.webp" alt="...">
+       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/main1.jpg" alt="...">
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-      <img src="images/main/bg2.webp" alt="...">
+       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/main2.jpg" alt="..."> 
       <div class="carousel-caption">
       </div>
     </div>
@@ -36,31 +36,24 @@
   </a>
 </div>
   	  	</main>
-  	  	
   	  	<div class="mid">
   	  		<p>당신에게 딱 맞는 신제품</p>
   	  	</div>
-  	  	<section class="container-fluid">
-  	  	<div class="row">
-  			<div class="col-md-4">
-  			<img src="images/main/iphone1.jpg" alt=""/></div>
-  			<div class="col-md-4">
-  			<img src="images/main/iphone1.jpg" alt=""/>
-  			</div>
-  			<div class="col-md-4">
-  			<img src="images/main/iphone1.jpg" alt=""/>
-  			</div>
+  	  	<section class="mid-section">
+  	  	<div class="mid-product-container">
+  	  		<c:forEach var="list" items="${list }" begin="0" end="5">
+  	  		<a href="productdetail.do?product_no=${list.product_no}">
+	  			<div>
+	  				<img src="images/product/${list.product_picture }" alt=""/>
+  	  			<div class="main__product__name">${list.product_name }</div>
+  	  			<fmt:formatNumber value="${list.product_price}" var="formattedPrice"/> 
+  	  			<div class="main__product__price">${formattedPrice }원</div>
+	  			</div>
+	  			</a>
+  			</c:forEach>
+  			
   		</div>
-  		<div class="row">
-  			<div class="col-md-4">
-  			<img src="images/main/iphone2.jpg" alt=""/></div>
-  			<div class="col-md-4">
-  			<img src="images/main/iphone2.jpg" alt=""/>
-  			</div>
-  			<div class="col-md-4">
-  			<img src="images/main/iphone2.jpg" alt=""/>
-  			</div>
-  		</div>
+  		
   	  	</section>
 
 <%@ include file="footer.jsp" %>

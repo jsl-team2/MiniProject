@@ -232,5 +232,11 @@ public class ProductVo {
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
+	public String getProduct_rdate() {
+		return product_rdate;
+	}
+	public void setProduct_rdate(String product_rdate) {
+		this.product_rdate = product_rdate;
+	}
 	
 }

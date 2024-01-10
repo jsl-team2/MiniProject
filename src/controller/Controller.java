@@ -1,8 +1,12 @@
+
 package controller;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+
+import javax.servlet.ServletConfig;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,31 +26,51 @@ import dao.product.ProductOrderService;
 
 import dao.search.SearchService;
 
+import dao.board.BoardDeleteService;
+import dao.board.BoardInsertService;
+import dao.board.BoardSearchService;
+import dao.board.BoardSelectAll;
+import dao.board.BoardUpdateService;
+import dao.board.BoardViewService;
+
+
 
 /**
  * Servlet implementation class Controller
  */
 @WebServlet("/")
 public class Controller extends HttpServlet {
+
+	
 	private static final long serialVersionUID = 1L;
        
     public Controller() {
         super();
+        
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request,response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request,response);
+		
 	}
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getServletPath();
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
-			path = "index.jsp";
+			try {
+				new ProductRecentListService().execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path = "/index.jsp";
+			
 		}else if(command.equals("/productlist.do")) {
 			try {
 				new ProductListService().execute(request, response);
@@ -119,32 +143,92 @@ public class Controller extends HttpServlet {
 			}
 		}
 		
+    //board
+    //1:1 문의 메인화면 
+		 if (command.equals("/board.do")) {
+			 try {
+				new BoardSelectAll().execute(request, response);
+				path="/board/board.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+				 //1:1 문의 글쓰기
+		else if (command.equals("/boardwrite.do")) {
+			path="/board/boardwrite.jsp";
+		}
 		
-//		1. 오류해결
-//		select * from tbl_order where order_id='user';
-//		주문번호 / 받는사람 / 주소 / 날짜 / 상태 / 주문상세
-//		양식에 화면구현
-//		개인주문 완성 - 버튼추가 - 
-//
-//		select * from tbl_orderdetail where orderdetail_orderno = ?;
-
+		 //1:1 문의 글쓰기 INSERT
+		else if (command.equals("/boardinsert.do")) {
+			try {
+				new BoardInsertService().execute(request, response);
+				response.sendRedirect("/board.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		
-		// 개인주문조회
-		// order select 맨위
-		// 주문번호에 해당하는 orderdeltail select
-		
-		// 관리자주문조회
-		// order select all // 주문상세 버튼 클릭하면 주문번호 넘기고 주문상세 출력
-		
-		// 로그인 연결
-		
-		// 제품 데이터 정리, db정리
+		// 해당 글 목록
+		else if(command.equals("/boardview.do")) {
+			try {
+				new BoardViewService().execute(request, response);
+				path="/board/boardview.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 
-		// 발표준비 ppt
-		// 역할 / 준비과정 / 요구사항분석 / 사용툴 / 와이어프레임  / db설계 / 1차 / 2차 / 코드합치고 오류수정 및 디자인수정
-		// 영상 / 
+		 //전체 글 list
+		else if(command.equals("/boardview.do")) {
+			try {
+				new BoardViewService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 
+		 //글 삭제
+		else if(command.equals("/boarddelete.do")) {
+			try {
+				new BoardDeleteService().execute(request, response);
+				response.sendRedirect("/board.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
+		 //수정 하고자 하는 해당 글
+		 else if (command.equals("/boardmodify.do")) {
+			try {
+				new BoardViewService().execute(request, response);
+				path = "/board/boardmodify.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 }
+		 
+		 //해당 글 수정
+		 else if (command.equals("/boardmodifypro.do")) {
+			try {
+				new BoardUpdateService().execute(request, response);
+				response.sendRedirect("/board.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 }
+		 
+		 //글 찾기
+		 else if (command.equals("/boardsearch.do")) {
+			try {
+				new BoardSearchService().execute(request, response);
+				path = "/board//board.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+    
+		
+
 		
 		if(command.equals("/search.do")) {
 			try {
@@ -159,6 +243,7 @@ public class Controller extends HttpServlet {
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request,response);
+
 		}
 	}
 }

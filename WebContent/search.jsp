@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt" %>
 <%@ include file="header.jsp" %>
 <c:set var="keyword" value="${keyword }"/>
 <c:choose >
@@ -15,11 +13,14 @@
 		<div class="main__title">상품</div>
 		<div class="row">
 	<c:forEach var="productList" items="${productList }">
+	<a href="productdetail.do?product_no=${productList.product_no}"
+											>
 		<div class="col-md-3 product">
-		<img src="images/${productList.product_picture }"/>
+		<img class="product__image" src="images/product/${productList.product_picture }"/>
 		<p class="product__title">${productList.product_name }</p>
 		<p class="product__price">${productList.product_price }</p>
 		</div>
+		</a>
 	</c:forEach>
 		</div>
 		</div>
