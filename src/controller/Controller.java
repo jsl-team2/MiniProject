@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.product.ProductDetailService;
 import dao.product.ProductListService;
 import dao.product.ProductRecentListService;
+import dao.product.ProductSelectAll;
 import dao.search.SearchService;
 import dao.user.UserSearchService;
 import dao.user.UserSelectAll;
@@ -114,10 +115,25 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			path="/admin/admin.jsp";
-		}else if(command.equals("/admin/membercheck.do")) {
-			path="/admin/membercheck.jsp";
+		}else if(command.equals("/productmanagement.do")) {
+				try {
+					new ProductSelectAll().execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productsearch.do")) {
+			try {
+				new ProductSelectAll().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productadd.do")) {
+			path= "/admin/productadd.jsp";
 		}
-		
 
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);

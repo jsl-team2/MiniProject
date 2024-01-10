@@ -2,6 +2,7 @@
 .wrap{
 	min-height: 100%;
 	display: flex;
+	padding: 0 100px;
 }
 .left-section{
 	width: 15%;
@@ -22,6 +23,7 @@
 }
 .right-section{
 	width:85%;
+	position: relative;
 }
 .admin-table{
 	margin: 100px auto 50px;
@@ -47,6 +49,18 @@
 }
 .logo{
 	width:50px;
+}
+
+.product-add {
+	position: absolute;
+	right: 100px;
+	background-color: black;
+	color: white;
+	padding: 20px;
+}
+.product-add:hover{
+	background-color: white;
+	color: black;
 }
 .paging {clear:both; padding-top:50px; text-align:center;}
 .paging a  {padding:10px; border:1px solid #e0e0e0;}

@@ -8,39 +8,46 @@
 		<div><a href="productmanagement.do">상품관리</a></div>
 	</div>
 	<div class="right-section">
-    	<h1 class="tabs-title" >회원 리스트</h1>
-    	<form name=userSearchForm class="admin-search" method="get" action="usersearch.do">
+    	<h1 class="tabs-title" >상품관리</h1>
+    	<form name=productSearchForm class="admin-search" method="get" action="productsearch.do">
     	<select name="type" style="padding:10px 20px;border-radius:30px;">
-    		<option value="user_id">아이디</option>
-    		<option value="user_name">이름</option>
-    		<option value="user_email">이메일</option>
+    		<option value="product_name">상품명</option>
+    		<option value="product_capacity">용량</option>
+    		<option value="product_ram">메모리</option>
     	</select>
     	<input name="keyword" style="padding:10px 20px; border-radius:30px;" placeholder="Search..">
     	<span style="position:relative;
 	right: 30px;"class="glyphicon glyphicon-search"></span>
     	</form>
-    	 <table class="admin-table">
+    	 <table class="admin-table" style="width:100%">
     <thead>
     	<tr style="border-bottom: 1px solid black;">
-    		<th>회원번호</th>
-    		<th>회원ID</th>
-    		<th>회원이름</th>
-    		<th>전화번호</th>
-    		<th>이메일</th>
-    		<th>주소</th>
+    		<th>상품번호</th>
+    		<th>상품사진</th>
+    		<th>상품이름</th>
+    		<th>용량</th>
+    		<th>색상</th>
+    		<th>메모리</th>
+    		<th>무게</th>
+    		<th>배터리</th>
+    		<th>가격</th>
+    		<th>출시일</th>
     	</tr>
     </thead>
     <tbody>
     <c:set var="bno" value="${tot-((page.cri.pageNum - 1 )*10) }"/>
 				<c:forEach var="list" items="${list }">
-				<tr>
-				<td>${list.user_no }</td>
-    		<td>${list.user_id }</td>
-   			<td>${list.user_name }</td>
-    		<td>${list.user_phone }</td>
-   			<td>${list.user_email }</td>
-    		<td>${list.user_address }</td>
-					
+				<tr data-no="${list.product_no }">
+					<td>${list.product_no }</td>
+					<td><img style="width:50px;"src="images/product/${list.product_picture }" alt=""/></td>
+					<td>${list.product_name }</td>
+					<td>${list.product_capacity }</td>
+					<td>${list.product_color }</td>
+		    		<td>${list.product_ram }</td>
+		   			<td>${list.product_weight }</td>
+		    		<td>${list.product_battery }</td>
+		   			<td>${list.product_price }</td>
+		    		<td>${list.product_rdate }</td>
 				</tr>
 				<c:set var="bno" value="${bno-1}"/>
 				</c:forEach>
@@ -48,6 +55,9 @@
     	</tbody>
     	</table>
     	
+    	<a href="productadd.do">
+    		<button class="product-add">상품 추가</button>
+    	</a>
     	<div class="paging">
 		<c:if test="${page.prev }">
 			<a href="$admin.do?pageNum=${page.startPage -1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -63,4 +73,10 @@
     </div>
 </body>
 </html>
+<script>
+$('table tr').click(function(e) {
+	console.log(e.target.dataset.no);
+
+});
+</script>
 <%@ include file="../footer.jsp" %>

@@ -35,7 +35,7 @@
     <![endif]-->
   </head>
   <body>
-  
+  <div style="padding:0 100px">
   	<nav>
   	<div class="nav__left">
   	<a href="main.do"><img class="logo" alt="" src="images/team_logo2.jpg"></a></div>
@@ -69,3 +69,4 @@
   	</div>
   	
   	</nav>
+  	</div>
