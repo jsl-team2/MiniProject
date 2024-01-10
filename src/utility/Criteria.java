@@ -9,7 +9,7 @@ public class Criteria {
 	private String keyword; // 검색내용
 	
 	public Criteria() {
-		this(1, 5); // 현재 자기자신의 다른생성자 호출
+		this(1, 10); // 현재 자기자신의 다른생성자 호출
 	}
 	
 	

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+.wrap{
+	min-height: 100%;
+	display: flex;
+}
+.left-section{
+	width: 15%;
+	text-align: center;
+}
+.left-section > div:first-child{
+	margin-top: 50px;
+	}
+.left-section > div :hover{
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+.left-section > div > a{
+	display: block;
+	width: 100%;
+	padding: 20px;
+}
+.right-section{
+	width:85%;
+}
+.admin-table{
+	margin: 100px auto 50px;
+	width: 70%;
+	font-size: 16px;
+	border-spacing: 30px;
+}
+.admin-table th{
+	padding-bottom: 10px;
+}
+.admin-table td{
+	padding-top: 10px;
+}
+.tabs-title{
+	margin-top : 50px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+}
+.admin-search{
+	position: absolute;
+	right: 10%;
+}
+.logo{
+	width:50px;
+}
+.paging {clear:both; padding-top:50px; text-align:center;}
+.paging a  {padding:10px; border:1px solid #e0e0e0;}
+.paging a.active {background:#007dc6; color:#fff;}
+.paging .btn_write {background:#F78181; padding:10px 16px; color:#fff; float:right;}

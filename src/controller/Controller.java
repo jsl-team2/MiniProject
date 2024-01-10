@@ -15,6 +15,9 @@ import dao.product.ProductDetailService;
 import dao.product.ProductListService;
 import dao.product.ProductRecentListService;
 import dao.search.SearchService;
+import dao.user.UserSearchService;
+import dao.user.UserSelectAll;
+import dao.user.UserSelectService;
 
 
 /**
@@ -87,11 +90,7 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		
-
-		if(command.equals("/search.do")) {
+		}else if(command.equals("/search.do")) {
 			try {
 				new SearchService().execute(request, response);
 			
@@ -100,7 +99,25 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			path = "search.jsp";
+		}else if(command.equals("/admin.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/usersearch.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/admin/membercheck.do")) {
+			path="/admin/membercheck.jsp";
 		}
+		
 
 		if(path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
