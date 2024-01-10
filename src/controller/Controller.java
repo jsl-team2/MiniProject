@@ -64,7 +64,7 @@ public class Controller extends HttpServlet {
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
 			try {
-				new ProductRecentListService().execute(request, response);
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
