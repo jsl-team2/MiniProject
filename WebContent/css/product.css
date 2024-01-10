@@ -20,7 +20,7 @@
     background: #FAFAFA; 
     text-align: center; 
     margin-top: 5px; 
-    margin-bottom: 20px; 
+    margin-bottom: 30px; 
     padding: 25px;
 }
 
@@ -34,9 +34,11 @@
 
 .specifications {
 	font-size: 15px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 50px;
+	text-align:left;
+	margin-top: 25px;
+	margin-bottom: 15px;
+	margin-left: 15px;
+	line-height: 0.95;
 }
 
 .columns {
@@ -116,3 +118,16 @@ label {
 th, td {
   padding: 10px;
 }
+
+.productrow {
+	margin:0;
+}
+
+.ordercomplete {
+	text-align:center;
+	font-weight: bold;
+	font-size: 27px;
+	margin: 25px auto;
+}
+
+
