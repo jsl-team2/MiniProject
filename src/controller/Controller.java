@@ -19,12 +19,18 @@ import dao.product.ProductCartService;
 import dao.product.ProductDetailService;
 import dao.product.ProductListMenuService;
 import dao.product.ProductListService;
+
 import dao.product.ProductOrderCompleteService;
+
 import dao.product.ProductOrderOneCompleteService;
 import dao.product.ProductOrderOneService;
 import dao.product.ProductOrderService;
 
+
 import dao.search.SearchService;
+import dao.user.UserSearchService;
+import dao.user.UserSelectAll;
+import dao.user.UserSelectService;
 
 import dao.board.BoardDeleteService;
 import dao.board.BoardInsertService;
@@ -134,6 +140,7 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}else if(command.equals("/myorder.do")) {
 			try {
 				new MyOrderService().execute(request, response);
@@ -141,6 +148,8 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+
 		}
 		
     //board
@@ -231,6 +240,7 @@ public class Controller extends HttpServlet {
 
 		
 		if(command.equals("/search.do")) {
+
 			try {
 				new SearchService().execute(request, response);
 			
@@ -238,6 +248,39 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			path = "search.jsp";
+		}else if(command.equals("/admin.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/usersearch.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/productmanagement.do")) {
+				try {
+					new ProductSelectAll().execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productsearch.do")) {
+			try {
+				new ProductSelectAll().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productadd.do")) {
+			path= "/admin/productadd.jsp";
 		}
 
 		if(path != null) {

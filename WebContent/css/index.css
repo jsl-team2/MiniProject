@@ -3,6 +3,12 @@
 *{
 	list-style:none;
 }
+html{
+	height: 100%;
+}
+body{
+	height: 100%;
+}
 nav{
 	display: flex;
 	justify-content: space-between;
@@ -40,10 +46,7 @@ nav{
 	align-items: center;
 	width: 100%;
 }
-.glyphicon-search{
-	position:relative;
-	left: 20px;
-}
+
 .drop-down:hover .drop-down__div{
 	display: block;
 }
