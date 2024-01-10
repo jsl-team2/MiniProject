@@ -12,12 +12,13 @@
 <div class="container-fluid contents">
 	<div class="container">
 		<div class="col-lg-12">
-			<div class="row">
-				<div class="col-lg-1"></div>
+			<div class="productrow">
+				
 				<div class="col-lg-5">
 					<img src="images/product/${vo.product_picture}" alt=""
 						style="width: 500px; height: auto;">
 				</div>
+				<div class="col-lg-1"></div>
 				<div class="col-lg-5" style="margin-bottom: 20px;">
 					<div
 						style="background: #FAFAFA; border-radius: 15px; padding: 10px; margin-top: 35px;">
@@ -43,10 +44,9 @@
 						<div style="border-radius: 15px; padding: 10px;">
 							<div>
 								<div style="text-align: center;">
-									<button class="btn btn-default"
+									<button class="btn btn-default btn-lg"
 										onclick="showConfirmation('${vo.product_no}')">カートに入れる</button>
-									<a href="productorderone.do?product_no=${vo.product_no}&quantity=${quantity}"
-										class="btn btn-default" role="button">購入する</a>
+									<a href="productorderone.do?product_no=${vo.product_no}&quantity=" id="purchaseLink" class="btn btn-default btn-lg" role="button">購入する</a>
 								</div>
 								<div id="confirmationModal" class="modal" style="display: none;">
 									<div class="modal-content">
@@ -96,6 +96,16 @@
 			form.submit();
 		}
 	}
+	// 'purchaseLink' 링크 요소를 가져오기
+	var purchaseLink = document.getElementById('purchaseLink');
+
+	// 링크에 클릭 이벤트 추가
+	purchaseLink.addEventListener('click', function(event) {
+	    // 클릭 시 수량 값을 가져와서 동적으로 링크에 추가
+	    var quantityValue = $(".quantity").val();
+	    purchaseLink.href = "productorderone.do?product_no=" + '${vo.product_no}' + "&quantity=" + quantityValue;
+	});
+	
 </script>
 
 <script>

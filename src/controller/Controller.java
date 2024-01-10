@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.product.MyOrderService;
 import dao.product.ProductCartDeleteService;
 import dao.product.ProductCartService;
 import dao.product.ProductDetailService;
+import dao.product.ProductListMenuService;
 import dao.product.ProductListService;
+import dao.product.ProductOrderCompleteService;
 import dao.product.ProductOrderOneCompleteService;
 import dao.product.ProductOrderOneService;
 import dao.product.ProductOrderService;
@@ -51,6 +54,13 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/productlistmenu.do")) {
+			try {
+				new ProductListMenuService().execute(request, response);
+				path = "/product/productlist.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}else if(command.equals("/productdetail.do")) {
 			try {
 				new ProductDetailService().execute(request, response);
@@ -95,32 +105,52 @@ public class Controller extends HttpServlet {
 			}
 		}else if(command.equals("/productordercomplete.do")) {
 			try {
-				
+				new ProductOrderCompleteService().execute(request, response);
 				path = "/product/productordercomplete.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/myorder.do")) {
+			try {
+				new MyOrderService().execute(request, response);
+				path = "/product/myorder.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
 		
-		// 장바구니 수량
-		// 장바구니 삭제 
-		// orderone 기능 수정 - 저장테이블 칼럼 확인.
-		// 페이징   / 발표?
-		// 메뉴 ?
-		// 제품 데이터
-		// 배송정보 자동입력 //
-		// 주문조회 
-		// 장바구니 한번에 주문
-		
-		
+//		1. 오류해결
+//		select * from tbl_order where order_id='user';
+//		주문번호 / 받는사람 / 주소 / 날짜 / 상태 / 주문상세
+//		양식에 화면구현
+//		개인주문 완성 - 버튼추가 - 
+//
+//		select * from tbl_orderdetail where orderdetail_orderno = ?;
 
+		
+		
+		// 개인주문조회
+		// order select 맨위
+		// 주문번호에 해당하는 orderdeltail select
+		
+		// 관리자주문조회
+		// order select all // 주문상세 버튼 클릭하면 주문번호 넘기고 주문상세 출력
+		
+		// 로그인 연결
+		
+		// 제품 데이터 정리, db정리
+		 
+		// 발표준비 ppt
+		// 역할 / 준비과정 / 요구사항분석 / 사용툴 / 와이어프레임  / db설계 / 1차 / 2차 / 코드합치고 오류수정 및 디자인수정
+		// 영상 / 
+		
+		
 		if(command.equals("/search.do")) {
 			try {
 				new SearchService().execute(request, response);
 			
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			path = "search.jsp";

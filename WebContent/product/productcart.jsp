@@ -67,8 +67,8 @@
 			</table>
 		</div>
 		<div style="margin: 20px; text-align: center;">
-			<a href="productorder.do" class="btn btn-default btn-lg"
-				role="button">購入する</a>
+			<a href="productlist.do" class="btn btn-default btn-lg" role="button">製品リスト</a>
+			<a href="productorder.do" class="btn btn-default btn-lg" role="button">購入する</a>
 			<!-- ?cart_user=user -->
 		</div>
 	</div>

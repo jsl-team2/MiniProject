@@ -8,25 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Action;
 
-public class ProductOrderService implements Action{
+public class MyOrderService implements Action{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String user = "user";
-//		String user = request.getParameter("cart_user");
+		String user = "user"; //
 		
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		ProductDao dao = new ProductDao();
 		
-		list = dao.getCartAll(user);
-		
-		ProductVo vo = dao.getUserInfo(); // 배송정보
+		list = dao.getMyOrder(user);
 		
 		request.setAttribute("list", list);
-		request.setAttribute("vo", vo);
 		
 	}
 	

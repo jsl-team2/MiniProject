@@ -45,8 +45,8 @@
 		</div>
 		<div class="nav__right">
 			<ul>
-				<li><a href="#">회사정보</a></li>
 				<li><a href="productlist.do">제품목록</a></li>
+				<li><a href="myorder.do">회사정보</a></li>
 				<li><a href="#">고객센터</a></li>
 				<li class="drop-down"><a href="#"
 					class="glyphicon glyphicon-user"></a>
