@@ -3,7 +3,6 @@
   
   <display-name>MiniProject</display-name>
   <welcome-file-list>
-
     <welcome-file>main.do</welcome-file>
 
     <welcome-file>index.jsp</welcome-file>
@@ -37,3 +36,4 @@
   </servlet-mapping>
   
 </web-app>
+

@@ -5,29 +5,114 @@
 	margin:0;
 }
 
-.subvisual {
-	height: 300px;
-	width:100%;
-	background: #fff;
-}
-
 .thumbnail {
 	border-radius:20px;
 }
 
-.pickup {
-	color: #58ACFA;
-	font-weight: bold;
-}
-
 .productname {
-	margin-top: 20px;
-	font-size: 40px;
+	font-size: 35px;
 	font-weight: bold;
+	text-align: center; 
+	margin: 15px 0;
 }
 
-.product-banner-image {
-	width:100%;
-	hieght:auto;
+.container-fluid.subvisual {
+    background: #FAFAFA; 
+    text-align: center; 
+    margin-top: 5px; 
+    margin-bottom: 20px; 
+    padding: 25px;
+}
 
+.container.contents {
+	background: #FFF; 
+}
+
+.caption p, h3 {
+	text-align:center;
+}
+
+.specifications {
+	font-size: 15px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 50px;
+}
+
+.columns {
+	text-align:center;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 15px 0;
+}
+
+.cart_table {
+	width:80%;
+	margin:0 auto;
+	text-align:center;
+} 
+
+.cart_table tr,th,td {
+	border: 1px solid #ddd;
+}
+
+#confirmationModal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#order {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.table_write02 {
+  margin: 20px 0; /* 간격을 위해 여백 추가 */
+}
+
+.w300 {
+  width: 100%; /* 입력 필드가 컨테이너를 채우도록 함 */
+}
+
+/* 더 나은 가독성을 위한 추가 스타일링, 필요에 따라 조정 가능 */
+label {
+  font-weight: bold;
+}
+
+th, td {
+  padding: 10px;
 }
