@@ -8,25 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="wrap">
+<div style="margin-top: 100px;"class="wrap">
 
-<div>
-<img id="image-preview" src="images/admin/noImage.jpg" />
+<div class="add-left-section">
+<img class="display-image" id="image-preview" src="images/admin/noImage4.jpg" />
 </div>
-<div>
-	<div>상품 번호: <input></div>
-	<div>상품 이름: <input></div>
-	<div>디스플레이: <input></div>
-	<div>카메라: <input></div>
-	<div>용량: <input></div>
-	<div>색상: <input></div>
-	<div>램: <input></div>
-	<div>무게: <input></div>
-	<div>배터리: <input></div>
-	<div>가격: <input></div>
-	<div>출시일: <input></div>
-	<div>사진 :<input type="file" id="image-input" />
-	</div>
+<div class="add-right-section">
+<form name="productForm" method="post" action="productaddpro.do" enctype="multipart/form-data" onsubmit="return check()">
+	<ul class="menu">
+		<li><div>상품 이름</div> <input name="product_name" type="text"/></li>
+		<li><div>디스플레이</div> <input name="product_display" type="text"/></li>
+		<li><div>카메라</div> <input name="product_camera" type="text"/></li>
+		<li><div>용량</div> <input name="product_capacity" type="text"/></li>
+		<li><div>색상</div> <input name="product_color" type="text"/></li>
+		<li><div>램</div> <input name="product_ram" type="text"/></li>
+		<li><div>무게</div> <input name="product_weight" type="text"/></li>
+		<li><div>배터리</div> <input name="product_battery" type="text"/></li>
+		<li><div>가격</div> <input name="product_price" type="text"/></li>
+		<li><div>출시일 </div><input name="product_rdate" type="text"/></li>
+		<li><div>사진</div> <input name="product_picture" type="file" id="image-input" /></li>
+	</ul>
+		<input type="submit" value="상품등록하기">
+	</form>
 </div>
 </div>
 </body>
@@ -48,6 +51,66 @@ imageInput.addEventListener("change", () => {
     reader.readAsDataURL(file);
   }
 });
-
+	function check(){
+		if(!productForm.product_name.value){
+			alert("상품 이름을 입력하세요")
+			productForm.product_name.focus()
+			return false
+		}
+		if(!productForm.product_display.value){
+			alert("디스플레이를 입력하세요")
+			productForm.product_display.focus()
+			return false
+		}
+		if(!productForm.product_camera.value){
+			alert("카메라를 입력하세요")
+			productForm.product_camera.focus
+			return false
+		}
+		if(!productForm.product_capacity.value){
+			alert("용량을 입력하세요")
+			productForm.product_capacity.focus
+			return false
+		}
+		if(!productForm.product_color.value){
+			alert("색상을 입력하세요")
+			productForm.product_color.focus
+			return false
+		}
+		if(!productForm.product_ram.value){
+			alert("램을 입력하세요")
+			productForm.product_ram.focus
+			return false
+		}
+		if(!productForm.product_weight.value){
+			alert("무게를 입력하세요")
+			productForm.product_weight.focus
+			return false
+		}
+		if(!productForm.product_battery.value){
+			alert("배터리를 입력하세요")
+			productForm.product_battery.focus
+			return false
+		}
+		if(!productForm.product_price.value){
+			alert("가격을 입력하세요")
+			productForm.product_price.focus
+			return false
+		}
+		if(!productForm.product_rdate.value){
+			alert("출시일을 입력하세요")
+			productForm.product_rdate.focus
+			return false
+		}
+		if(!productForm.product_picture.value){
+			alert("사진을 선택하세요")
+			productForm.product_picture.focus
+			return false
+		}
+		
+		alert("상품이 등록되었습니다")
+		return true;
+		
+	}
 </script>
 <%@ include file="../footer.jsp" %>

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+.add-left-section{
+	width:50%;
+	
+}
+.add-right-section{
+	width:50%;
+	padding-left:100px;
+}
+.display-image{
+	width:80%; 
+	margin-left:100px;
+}
+
+.menu input{
+	width: 70%;
+	padding: 3px;
+	margin-bottom: 20px;
+}

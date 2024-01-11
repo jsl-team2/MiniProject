@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/product.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/productadd.css">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

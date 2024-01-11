@@ -263,5 +263,35 @@ public class ProductDao {
 		}
 		return total;
 	}
-
+	
+	public void insertProduct(ProductVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into tbl_product (product_no,product_name,product_picture,"
+				+ "product_display,product_capacity,product_camera,product_color,product_ram,"
+				+ "product_weight,product_battery,product_price,product_rdate) values(product_seq.nextval,"
+				+ "?,?,?,?,?,?,?,?,?,?,?)";
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getProduct_name());
+			pstmt.setString(2,vo.getProduct_picture());
+			pstmt.setString(3,vo.getProduct_display());
+			pstmt.setString(4, vo.getProduct_capacity());
+			pstmt.setString(5, vo.getProduct_camera());
+			pstmt.setString(6, vo.getProduct_color());
+			pstmt.setString(7, vo.getProduct_ram());
+			pstmt.setString(8, vo.getProduct_weight());
+			pstmt.setString(9, vo.getProduct_battery());
+			pstmt.setInt(10, vo.getProduct_price());
+			pstmt.setString(11, vo.getProduct_rdate());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBmanager.getInstance().close(conn, pstmt);
+		}
+	}
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import dao.product.ProductAddService;
 import dao.product.ProductDetailService;
 import dao.product.ProductListService;
 import dao.product.ProductRecentListService;
@@ -133,6 +133,13 @@ public class Controller extends HttpServlet {
 			path="/admin/productmanagement.jsp";
 		}else if(command.equals("/productadd.do")) {
 			path= "/admin/productadd.jsp";
+		}else if(command.equals("/productaddpro.do")) {
+			try {
+				new ProductAddService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			};
 		}
 
 		if(path != null) {
