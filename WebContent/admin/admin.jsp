@@ -47,7 +47,7 @@
     	</tbody>
     	</table>
     	
-    	<div class="paging">
+    	<div class="paging-admin">
 		<c:if test="${page.prev }">
 			<a href="$admin.do?pageNum=${page.startPage -1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		</c:if>	

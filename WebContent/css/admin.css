@@ -83,7 +83,7 @@
 	background-color: white;
 	color: black;
 }
-.paging {clear:both; text-align:center;}
-.paging a  {padding:10px; border:1px solid #e0e0e0;}
-.paging a.active {background:#000; color:#fff;}
-.paging .btn_write {background:#F78181; padding:10px 16px; color:#fff; float:right;}
+.paging-admin {clear:both; text-align:center;}
+.paging-admin a  {padding:10px; border:1px solid #e0e0e0;}
+.paging-admin a.active {background:#000; color:#fff;}
+.paging-admin .btn_write {background:#F78181; padding:10px 16px; color:#fff; float:right;}
