@@ -8,12 +8,11 @@
 	padding-left:100px;
 }
 .display-image{
-	width:80%; 
-	margin-left:100px;
+	border:1px solid lightgray;
 }
-
+.menu > li:first-child{
+	margin-top:20px;
+}
 .menu input{
-	width: 70%;
-	padding: 3px;
-	margin-bottom: 20px;
+	margin-bottom:20px;
 }
