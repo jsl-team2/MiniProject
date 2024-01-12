@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <div class="wrap">
+
 	<div class="left-section">
 		<div>
 			<a href="admin.do">회원조회</a>
@@ -11,9 +12,6 @@
 		</div>
 		<div>
 			<a href="myorder.do">주문내역</a>
-		</div>
-		<div>
-			<a href="adminorderview.do">관리자주문조회 테스트</a>
 		</div>
 	</div>
 	<div class="right-section">
@@ -27,7 +25,6 @@
 				<col width="*%">
 				<col width="12%">
 				<col width="10%">
-				<col width="12%">
 			</colgroup>
 			<thead>
 				<tr>
@@ -49,27 +46,39 @@
 					<th>
 						<p class="columns">状態</p>
 					</th>
-					<th>
-						<p class="columns">注文詳細</p>
-					</th>
 				</tr>
 			</thead>
 			<tbody>
+				<tr>
+					<td>${vo.order_no}</td>
+					<td>${vo.order_user}</td>
+					<td>${vo.order_tel}</td>
+					<td>${vo.order_address}</td>
+					<td>${vo.order_date}</td>
+					<td>${vo.order_status}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="admin-table">
+			<caption class="sr-only">주문내역</caption>
+			<colgroup>
+				<col width="20%">
+				<col width="*%">
+				<col width="15%">
+				<col width="25%">
+			</colgroup>
+			<tbody>
 				<c:forEach var="list" items="${list}" varStatus="loopStatus">
 					<tr>
-						<td>${list.order_no}</td>
-						<td>${list.order_user}</td>
-						<td>${list.order_tel}</td>
-						<td>${list.order_address}</td>
-						<td>${list.order_date}</td>
-						<td>${list.order_status}</td>
-						<td><a href="myorderdetail.do?order_no=${list.order_no}">注文詳細</a></td>
+						<td><img src="images/product/${list.orderdetail_picture}" alt=""
+						style="width: 80px; height: auto;"></td>
+						<td>${list.orderdetail_product}</td>
+						<td>${list.orderdetail_quantity}</td>
+						<td>${list.orderdetail_price}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
-
 		</table>
-
 	</div>
 </div>
 </body>

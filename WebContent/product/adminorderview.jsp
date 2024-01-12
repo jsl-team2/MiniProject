@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <div class="wrap">
+
 	<div class="left-section">
 		<div>
 			<a href="admin.do">회원조회</a>
@@ -11,9 +12,6 @@
 		</div>
 		<div>
 			<a href="myorder.do">주문내역</a>
-		</div>
-		<div>
-			<a href="adminorderview.do">관리자주문조회 테스트</a>
 		</div>
 	</div>
 	<div class="right-section">
@@ -63,7 +61,8 @@
 						<td>${list.order_address}</td>
 						<td>${list.order_date}</td>
 						<td>${list.order_status}</td>
-						<td><a href="myorderdetail.do?order_no=${list.order_no}">注文詳細</a></td>
+						<td><a href="adminorderdetailview.do?order_no=${list.order_no}">注文詳細</a></td>
+						<%-- <td><a href="adminorderstatus.do?order_no=${list.order_no}">注文詳細 変更</a></td> --%>
 					</tr>
 				</c:forEach>
 			</tbody>

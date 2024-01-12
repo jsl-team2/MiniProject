@@ -475,16 +475,52 @@ public class ProductDao {
 
 	}
 	
-	public List<ProductVo> getMyOrderDetail(String user) {
+	public ProductVo getMyOrderOne(int order_no) {
 
-		String sql = "select * from tbl_orderdetail where user_id = ?"; // user
+		String sql = "select * from tbl_order where order_no = ?"; 
+		
+		ProductVo vo = new ProductVo();
+		
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, order_no);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+				
+				return vo;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return vo;
+
+	}
+	
+	public List<ProductVo> getMyOrderDetail(int order_no) {
+
+		String sql = "select * from tbl_orderdetail where orderdetail_orderno = ?"; 
 
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user);
+			pstmt.setInt(1, order_no);
 
 			rs = pstmt.executeQuery();
 
@@ -513,4 +549,44 @@ public class ProductDao {
 
 	}
 
+	public List<ProductVo> getAdminOrderView() {
+
+		String sql = "select * from tbl_order"; 
+
+		List<ProductVo> list = new ArrayList<ProductVo>();
+		
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVo vo = new ProductVo();
+				
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+				
+				list.add(vo);
+			}
+			
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return list;
+
+	}
+	
+	
+	
 }
