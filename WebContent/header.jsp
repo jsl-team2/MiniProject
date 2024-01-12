@@ -28,9 +28,19 @@
 
 <link rel="stylesheet" href="css/product.css">
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="css/search.css">
 
 <link rel="stylesheet" href="css/mystyle.css">
+=======
+    <link rel="stylesheet" href="css/search.css">
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    
+    <link rel ="stylesheet" href="css/mystyle.css">
+>>>>>>> branch 'feature_product' of https://github.com/jsl-team2/MiniProject.git
+
 
 
 
@@ -72,5 +82,53 @@
 					</div>
 				</li>
 			</ul>
+<<<<<<< HEAD
 		</div>
 	</nav>
+=======
+=======
+  </head>
+  <body>
+  <div style="padding:0 100px">
+  	<nav>
+  	<div class="nav__left">
+  	<a href="main.do"><img class="logo" alt="" src="images/team_logo2.jpg"></a></div>
+  	<div class="nav__middle">
+  		<form class="searchForm" name="searchForm" method="get" action="search.do">
+  			<span style="position:relative;
+	left: 20px;"class="glyphicon glyphicon-search"></span><input name="keyword" class="search-input" type="text">
+  		</form>
+  	</div>
+  	<div class="nav__right">
+  		<ul>
+  		<li>
+  		<a href="productlist.do">제품목록</a>
+  		</li>
+  		<li>
+>>>>>>> branch 'feature_product' of https://github.com/jsl-team2/MiniProject.git
+
+  		<a href="#">회사정보</a>
+  		</li>
+  		<li>
+  		<a href="#">고객센터</a>
+  		</li>
+  		<li class="drop-down">
+  		<a href="#" class="glyphicon glyphicon-user"></a>
+  		<div class="drop-down__div">
+	<div><a href="#">회원가입</a></div>
+	<div><a href="#">로그인</a></div>
+
+	<div><a href="admin.do">관리자 페이지</a></div>
+
+
+	</div>
+  </li>
+  		</ul>
+  	
+  	</div>
+  	
+  	</nav>
+
+  	</div>
+
+>>>>>>> branch 'feature_product' of https://github.com/jsl-team2/MiniProject.git

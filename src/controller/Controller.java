@@ -27,7 +27,9 @@ import dao.product.ProductOrderCompleteService;
 import dao.product.ProductOrderOneCompleteService;
 import dao.product.ProductOrderOneService;
 import dao.product.ProductOrderService;
+import dao.product.ProductSelectAll;
 import dao.search.SearchService;
+import dao.user.UserSelectAll;
 
 /**
  * Servlet implementation class Controller
@@ -150,13 +152,14 @@ public class Controller extends HttpServlet {
 			}
 			
 		// 개인 주문 목록
-		} else if (command.equals("/myorder.do")) {
+		}else if(command.equals("/myorder.do")) {
 			try {
 				new MyOrderService().execute(request, response);
 				path = "/product/myorder.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
 		
 		// 개인 주문 상세
 		} else if (command.equals("/myorderdetail.do")) {
@@ -271,7 +274,9 @@ public class Controller extends HttpServlet {
 			}
 		}
 
-		if (command.equals("/search.do")) {
+		
+		if(command.equals("/search.do")) {
+
 			try {
 				new SearchService().execute(request, response);
 
@@ -279,6 +284,36 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			path = "search.jsp";
+		}else if(command.equals("/admin.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/usersearch.do")) {
+			try {
+				new UserSelectAll().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path="/admin/admin.jsp";
+		}else if(command.equals("/productmanagement.do")) {
+				try {
+					new ProductSelectAll().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productsearch.do")) {
+			try {
+				new ProductSelectAll().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			path="/admin/productmanagement.jsp";
+		}else if(command.equals("/productadd.do")) {
+			path= "/admin/productadd.jsp";
 		}
 
 		if (path != null) {
