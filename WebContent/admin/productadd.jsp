@@ -37,7 +37,7 @@
 	</div>
 	
 	</ul>
-		<input type="submit" class="btn btn-default" style="background: #000; color: #fff; float:right;"value="상품등록하기">
+		<input type="submit" class="product-add-btn btn btn-default" value="상품등록하기">
 	</form>
 </div>
 </body>

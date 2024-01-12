@@ -30,12 +30,13 @@
     		<th>배터리</th>
     		<th>가격</th>
     		<th>출시일</th>
+    		<th></th>
     	</tr>
     </thead>
     <tbody>
     <c:set var="bno" value="${tot-((page.cri.pageNum - 1 )*10) }"/>
 				<c:forEach var="list" items="${list }">
-				<tr data-no="${list.product_no }">
+				<tr>
 					<td>${list.product_no }</td>
 					<td><img style="width:50px;"src="images/product/${list.product_picture }" alt=""/></td>
 					<td>${list.product_name }</td>
@@ -45,10 +46,11 @@
 		    		<td>${list.product_battery }</td>
 		   			<td>${list.product_price }</td>
 		    		<td>${list.product_rdate }</td>
+		    		<td><button class="update-btn btn btn-warning" onclick="updateCheck(${list.product_no})">수정</button>
+		    		<button class="delete-btn btn btn-danger" onclick="deleteCheck(${list.product_no})">삭제</button></td>
 				</tr>
 				<c:set var="bno" value="${bno-1}"/>
 				</c:forEach>
-    	
     	</tbody>
     	</table>
     	
@@ -68,12 +70,22 @@
 		</div>
     	</div>
     </div>
+    <script>
+    function deleteCheck(product_no){
+    	  		let check = confirm("정말로 삭제하시겠습니까?")
+    	  		 if(check){
+    	  			window.location.href = "productdelete.do?product_no="+product_no;
+    	  		}else{
+    	  			return false;
+    	  		}  
+    	  	}
+    
+    function updateCheck(product_no){
+    	  			window.location.href = "productupdateview.do?product_no="+product_no;
+    	  	}
+
+    </script>
 </body>
 </html>
-<script>
-$('table tr').click(function(e) {
-	console.log(e.target.dataset.no);
 
-});
-</script>
 <%@ include file="../footer.jsp" %>
