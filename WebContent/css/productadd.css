@@ -8,6 +8,7 @@
 	padding-left:100px;
 }
 .display-image{
+	width: 100%;
 	border:1px solid lightgray;
 }
 .menu > li:first-child{
