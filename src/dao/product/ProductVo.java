@@ -15,56 +15,132 @@ public class ProductVo {
 	private String product_rdate;
 	private int product_price;
 	
-	private int basket_no;
-	private String basket_user;
-	private String basket_product;
-	private String basket_picture;
-	private int basket_price; 
+	private int cart_no;
+	private String cart_user;
+	private int cart_productno; 
+	private String cart_product;
+	private String cart_picture;
+	private int cart_quantity;
+	private int cart_price; 
 	
 	private int order_no;
 	private String order_user;
-	private String order_product;
-	private String order_picture;
-    private int order_price;   
-    private String order_status;
-    private String order_date;
+	private String order_name;
+	private String order_tel;
+	private String order_address;
+	private String order_status;
+	private String order_date;
+	
+	private int orderdetail_no;
+	private int orderdetail_orderno;
+	private String orderdetail_picture;
+	private String orderdetail_product;
+	private int orderdetail_quantity;
+	private int orderdetail_price;   
+	
+	
     
-    
-	public String getBasket_picture() {
-		return basket_picture;
+	public int getOrderdetail_quantity() {
+		return orderdetail_quantity;
 	}
-	public void setBasket_picture(String basket_picture) {
-		this.basket_picture = basket_picture;
+	public void setOrderdetail_quantity(int orderdetail_quantity) {
+		this.orderdetail_quantity = orderdetail_quantity;
 	}
-	public String getOrder_picture() {
-		return order_picture;
+	public int getOrderdetail_price() {
+		return orderdetail_price;
 	}
-	public void setOrder_picture(String order_picture) {
-		this.order_picture = order_picture;
+	public void setOrderdetail_price(int orderdetail_price) {
+		this.orderdetail_price = orderdetail_price;
 	}
-	public int getBasket_no() {
-		return basket_no;
+	public int getOrderdetail_orderno() {
+		return orderdetail_orderno;
 	}
-	public void setBasket_no(int basket_no) {
-		this.basket_no = basket_no;
+	public void setOrderdetail_orderno(int orderdetail_orderno) {
+		this.orderdetail_orderno = orderdetail_orderno;
 	}
-	public String getBasket_user() {
-		return basket_user;
+	public int getCart_quantity() {
+		return cart_quantity;
 	}
-	public void setBasket_user(String basket_user) {
-		this.basket_user = basket_user;
+	public void setCart_quantity(int cart_quantity) {
+		this.cart_quantity = cart_quantity;
 	}
-	public String getBasket_product() {
-		return basket_product;
+	public String getProduct_rdate() {
+		return product_rdate;
 	}
-	public void setBasket_product(String basket_product) {
-		this.basket_product = basket_product;
+	public int getOrderdetail_no() {
+		return orderdetail_no;
 	}
-	public int getBasket_price() {
-		return basket_price;
+	public void setOrderdetail_no(int orderdetail_no) {
+		this.orderdetail_no = orderdetail_no;
 	}
-	public void setBasket_price(int basket_price) {
-		this.basket_price = basket_price;
+	public String getOrderdetail_product() {
+		return orderdetail_product;
+	}
+	public void setOrderdetail_product(String orderdetail_product) {
+		this.orderdetail_product = orderdetail_product;
+	}
+	public String getOrderdetail_picture() {
+		return orderdetail_picture;
+	}
+	public void setOrderdetail_picture(String orderdetail_picture) {
+		this.orderdetail_picture = orderdetail_picture;
+	}
+	public void setProduct_rdate(String product_rdate) {
+		this.product_rdate = product_rdate;
+	}
+	public String getOrder_name() {
+		return order_name;
+	}
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+	public String getOrder_address() {
+		return order_address;
+	}
+	public void setOrder_address(String order_address) {
+		this.order_address = order_address;
+	}
+	public String getOrder_tel() {
+		return order_tel;
+	}
+	public void setOrder_tel(String order_tel) {
+		this.order_tel = order_tel;
+	}
+	public int getCart_productno() {
+		return cart_productno;
+	}
+	public void setCart_productno(int cart_productno) {
+		this.cart_productno = cart_productno;
+	}
+	public int getCart_no() {
+		return cart_no;
+	}
+	public void setCart_no(int cart_no) {
+		this.cart_no = cart_no;
+	}
+	public String getCart_user() {
+		return cart_user;
+	}
+	public void setCart_user(String cart_user) {
+		this.cart_user = cart_user;
+	}
+	public String getCart_product() {
+		return cart_product;
+	}
+	public void setCart_product(String cart_product) {
+		this.cart_product = cart_product;
+	}
+	public String getCart_picture() {
+		return cart_picture;
+	}
+	public void setCart_picture(String cart_picture) {
+		this.cart_picture = cart_picture;
+	}
+	public int getCart_price() {
+		return cart_price;
+	}
+	public void setCart_price(int cart_price) {
+		this.cart_price = cart_price;
 	}
 	public int getOrder_no() {
 		return order_no;
@@ -77,18 +153,6 @@ public class ProductVo {
 	}
 	public void setOrder_user(String order_user) {
 		this.order_user = order_user;
-	}
-	public String getOrder_product() {
-		return order_product;
-	}
-	public void setOrder_product(String order_product) {
-		this.order_product = order_product;
-	}
-	public int getOrder_price() {
-		return order_price;
-	}
-	public void setOrder_price(int order_price) {
-		this.order_price = order_price;
 	}
 	public String getOrder_status() {
 		return order_status;
@@ -168,11 +232,6 @@ public class ProductVo {
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
-	public String getProduct_rdate() {
-		return product_rdate;
-	}
-	public void setProduct_rdate(String product_rdate) {
-		this.product_rdate = product_rdate;
-	}
+
 	
 }

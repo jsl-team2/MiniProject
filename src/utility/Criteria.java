@@ -9,7 +9,9 @@ public class Criteria {
 	private String keyword;
 	
 	public Criteria() {
-		this(1,10);
+
+		this(1, 10); // 현재 자기자신의 다른생성자 호출
+
 	}
 	
 	
