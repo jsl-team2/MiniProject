@@ -32,25 +32,37 @@ public class ProductVo {
 	private String order_date;
 	
 	private int orderdetail_no;
-	private String orderdetail_orderno;
-	private String orderdetail_product;
+	private int orderdetail_orderno;
 	private String orderdetail_picture;
-	private int order_quantity;
-	private int order_price;   
+	private String orderdetail_product;
+	private int orderdetail_quantity;
+	private int orderdetail_price;   
 	
 	
     
+	public int getOrderdetail_quantity() {
+		return orderdetail_quantity;
+	}
+	public void setOrderdetail_quantity(int orderdetail_quantity) {
+		this.orderdetail_quantity = orderdetail_quantity;
+	}
+	public int getOrderdetail_price() {
+		return orderdetail_price;
+	}
+	public void setOrderdetail_price(int orderdetail_price) {
+		this.orderdetail_price = orderdetail_price;
+	}
+	public int getOrderdetail_orderno() {
+		return orderdetail_orderno;
+	}
+	public void setOrderdetail_orderno(int orderdetail_orderno) {
+		this.orderdetail_orderno = orderdetail_orderno;
+	}
 	public int getCart_quantity() {
 		return cart_quantity;
 	}
 	public void setCart_quantity(int cart_quantity) {
 		this.cart_quantity = cart_quantity;
-	}
-	public int getOrder_quantity() {
-		return order_quantity;
-	}
-	public void setOrder_quantity(int order_quantity) {
-		this.order_quantity = order_quantity;
 	}
 	public String getProduct_rdate() {
 		return product_rdate;
@@ -60,12 +72,6 @@ public class ProductVo {
 	}
 	public void setOrderdetail_no(int orderdetail_no) {
 		this.orderdetail_no = orderdetail_no;
-	}
-	public String getOrderdetail_orderno() {
-		return orderdetail_orderno;
-	}
-	public void setOrderdetail_orderno(String orderdetail_orderno) {
-		this.orderdetail_orderno = orderdetail_orderno;
 	}
 	public String getOrderdetail_product() {
 		return orderdetail_product;
@@ -148,12 +154,6 @@ public class ProductVo {
 	public void setOrder_user(String order_user) {
 		this.order_user = order_user;
 	}
-	public int getOrder_price() {
-		return order_price;
-	}
-	public void setOrder_price(int order_price) {
-		this.order_price = order_price;
-	}
 	public String getOrder_status() {
 		return order_status;
 	}
@@ -232,5 +232,6 @@ public class ProductVo {
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
+
 	
 }

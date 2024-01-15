@@ -13,18 +13,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import dao.product.ProductAddService;
+
+
+import dao.product.MyOrderService;
 
 import dao.product.ProductCartDeleteService;
 import dao.product.ProductCartService;
 import dao.product.ProductDeleteService;
 import dao.product.ProductDetailService;
+import dao.product.ProductListMenuService;
 import dao.product.ProductListService;
+
 
 import dao.product.ProductRecentListService;
 import dao.product.ProductSelectAll;
 import dao.product.ProductUpdateService;
 import dao.product.ProductUpdateView;
+
+import dao.product.ProductOrderCompleteService;
+
 import dao.product.ProductOrderOneCompleteService;
 import dao.product.ProductOrderOneService;
 import dao.product.ProductOrderService;
@@ -73,7 +82,7 @@ public class Controller extends HttpServlet {
 		String path = null;
 		if(command.equals("/main.do") || command.equals("/")) {
 			try {
-				new ProductRecentListService().execute(request, response);
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -87,6 +96,13 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/productlistmenu.do")) {
+			try {
+				new ProductListMenuService().execute(request, response);
+				path = "/product/productlist.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}else if(command.equals("/productdetail.do")) {
 			try {
 				new ProductDetailService().execute(request, response);
@@ -131,11 +147,20 @@ public class Controller extends HttpServlet {
 			}
 		}else if(command.equals("/productordercomplete.do")) {
 			try {
-				
+				new ProductOrderCompleteService().execute(request, response);
 				path = "/product/productordercomplete.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+		}else if(command.equals("/myorder.do")) {
+			try {
+				new MyOrderService().execute(request, response);
+				path = "/product/myorder.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 
 		}
 		
@@ -149,8 +174,7 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		 //1:1 문의 글쓰기
+				 //1:1 문의 글쓰기
 		else if (command.equals("/boardwrite.do")) {
 			path="/board/boardwrite.jsp";
 		}
@@ -225,25 +249,14 @@ public class Controller extends HttpServlet {
 		}
     
 		
-		// 장바구니 수량
-		// 장바구니 삭제 
-		// orderone 기능 수정 - 저장테이블 칼럼 확인.
-		// 페이징   / 발표?
-		// 메뉴 ?
-		// 제품 데이터
-		// 배송정보 자동입력 //
-		// 주문조회 
-		// 장바구니 한번에 주문
-		
-		
 
+		
 		if(command.equals("/search.do")) {
 
 			try {
 				new SearchService().execute(request, response);
 			
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			path = "search.jsp";

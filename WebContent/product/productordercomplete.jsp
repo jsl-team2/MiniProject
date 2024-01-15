@@ -3,16 +3,20 @@
 
 <%@ include file="/header.jsp"%>
 
-<div class="container-fluid subvisual">
-	<h2>주문완료</h2>
-</div>
-
 <!-- sub contents -->
-<div class="container contents" style="margin:0 auto;  text-align:center;">
-	<img src="images/product/ordercomplete.png" alt="" style="width: 700px; height:auto;">
-	<div style="text-align:center; margin-bottom:30px;">
-		<a href="main.do?" class="btn btn-default" role="button">ホーム</a> <a
-			href="productlist.do?" class="btn btn-default" role="button">製品リスト</a>
+<div class="container contents"
+	style="margin: 0 auto; text-align: center;">
+	<img src="images/product/ordercompletepic.png" alt=""
+		style="width: 700px; height: auto;">
+	<div class="ordercomplete">
+		<p>ご注文が完了しました。</p>
+		<p> ありがとうございます。</p>
+		<p>注文番号 : ${orderno}</p>
+	</div>
+
+	<div style="text-align: center; margin-bottom: 30px;">
+		<a href="main.do" class="btn btn-default btn-lg" role="button">ホーム</a>
+		<a href="productlist.do" class="btn btn-default btn-lg" role="button">製品リスト</a>
 	</div>
 </div>
 
