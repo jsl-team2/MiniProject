@@ -20,15 +20,15 @@
 					</colgroup>
 					<tbody>
 						<tr class="first">
-							<th>글쓴이</th>
+							<th style="color: #333;">글쓴이</th>
 							<td><input type="text" name="writer"></td>
 						</tr>
 						<tr>
-							<th>제목</th>
+							<th style="color: #333;">제목</th>
 							<td><input type="text" name="title"></td>
 						</tr>
 						<tr>
-							<th>내용</th>
+							<th style="color: #333;">내용</th>
 							<td><textarea name="content" id="content"></textarea></td>
 						</tr>
 					</tbody>

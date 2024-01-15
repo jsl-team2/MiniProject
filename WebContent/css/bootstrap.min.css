@@ -3304,9 +3304,9 @@ select[multiple].input-lg, textarea.input-lg {
 
 @media ( min-width :768px) {
 	.form-horizontal .control-label {
-		padding-top: 7px;
+		padding-top: 30px;
 		margin-bottom: 0;
-		text-align: right
+		text-align: center;
 	}
 }
 
@@ -3530,7 +3530,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-info {
 	color: #fff;
 	background-color: #5bc0de;
-	border-color: #46b8da
+	border-color: #fff
 }
 
 .btn-info.focus, .btn-info:focus {

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -23,6 +24,10 @@
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/search.css">
 <link rel="stylesheet" href="css/mystyle.css">
+
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/productadd.css">
+
 <link rel="stylesheet" href="css/admin.css">
 
 
@@ -32,9 +37,8 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
-
 </head>
-	
+
 <body>
 	<div style="padding: 0 100px">
 		<nav>
@@ -53,8 +57,8 @@
 			<div class="nav__right">
 				<ul>
 					<li><a href="productlist.do">제품목록</a></li>
-					<li><a href="adminorderview.do">회사정보</a></li>
-					<li><a href="#">고객센터</a></li>
+					<li><a href="#">회사정보</a></li>
+					<li><a href="/board.do">고객센터</a></li>
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">

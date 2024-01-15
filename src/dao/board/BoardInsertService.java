@@ -23,7 +23,6 @@ public class BoardInsertService implements Action {
 		 
 		 dao.BoardInsert(vo);
 	}
-	// 1:1 문의 Insert 끝 //
 	
 	
 	
