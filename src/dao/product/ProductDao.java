@@ -514,7 +514,7 @@ public class ProductDao {
 
 		return list;
 
-
+	}
 	public List<ProductVo> getListWithPaging(Criteria cri){
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -46,32 +46,6 @@
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
 
-<<<<<<< HEAD
-	<nav>
-		<div class="nav__left">
-			<a href="main.do">LOGO</a>
-		</div>
-		<div class="nav__middle">
-			<span class="glyphicon glyphicon-search"></span><input
-				class="search-input" type="text">
-		</div>
-		<div class="nav__right">
-			<ul>
-				<li><a href="productlist.do">제품목록</a></li>
-				<li><a href="myorder.do">회사정보</a></li>
-				<li><a href="#">고객센터</a></li>
-				<li class="drop-down"><a href="#"
-					class="glyphicon glyphicon-user"></a>
-					<div class="drop-down__div">
-						<div>
-							<a href="#">회원가입</a>
-						</div>
-						<div>
-							<a href="#">로그인</a>
-						</div>
-					</div></li>
-			</ul>
-=======
   </head>
   <body>
   <div style="padding:0 100px">
@@ -90,7 +64,6 @@
   		<a href="productlist.do">제품목록</a>
   		</li>
   		<li>
->>>>>>> branch 'feature_product' of https://github.com/jsl-team2/MiniProject.git
 
   		<a href="#">회사정보</a>
   		</li>
