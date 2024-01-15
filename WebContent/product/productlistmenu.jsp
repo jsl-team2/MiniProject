@@ -45,16 +45,16 @@
 			</c:forEach>
 			<div class="paging" style="margin-bottom:50px;">
 				<c:if test="${page.prev }">
-					<a href="productlist.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<a href="productlistmenu.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">
 						<i class="fa  fa-angle-double-left"></i></a>
 				</c:if>
 				<c:forEach var="num" begin="${page.startPage }"
 					end="${page.endPage }">
-					<a href="productlist.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}"
+					<a href="productlistmenu.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}"
 						class="${page.cri.pageNum == num?'active' : ''}">${num }</a>
 				</c:forEach>
 				<c:if test="${page.next }">
-					<a href="productlist.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<a href="productlistmenu.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}">
 						<i class="fa fa-angle-double-right"></i></a>
 				</c:if>
 			</div>

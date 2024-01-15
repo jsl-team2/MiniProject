@@ -6,6 +6,7 @@
 	<div class="left-section">
 		<div><a href="admin.do">회원조회</a></div>
 		<div><a href="productmanagement.do">상품관리</a></div>
+		<div><a href="adminorder.do">주문조회</a></div>
 	</div>
 	<div class="right-section">
     	<h1 class="tabs-title" >회원 리스트</h1>
