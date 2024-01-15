@@ -10,14 +10,13 @@
 	<div class="right-section">
     	<h1 class="tabs-title" >회원 리스트</h1>
     	<form name=userSearchForm class="admin-search" method="get" action="usersearch.do">
-    	<select name="type" style="padding:10px 20px;border-radius:30px;">
+    	<select class="select-tag form-control" name="type">
     		<option value="user_id">아이디</option>
     		<option value="user_name">이름</option>
     		<option value="user_email">이메일</option>
     	</select>
-    	<input name="keyword" style="padding:10px 20px; border-radius:30px;" placeholder="Search..">
-    	<span style="position:relative;
-	right: 30px;"class="glyphicon glyphicon-search"></span>
+    	<input class="search-tag form-control" name="keyword" placeholder="Search..">
+    	<span class="search-icon glyphicon glyphicon-search"></span>
     	</form>
     	 <table class="admin-table">
     <thead>
@@ -48,7 +47,7 @@
     	</tbody>
     	</table>
     	
-    	<div class="paging">
+    	<div class="paging-admin">
 		<c:if test="${page.prev }">
 			<a href="$admin.do?pageNum=${page.startPage -1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		</c:if>	

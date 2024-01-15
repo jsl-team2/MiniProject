@@ -13,12 +13,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import dao.product.ProductAddService;
+
+
 import dao.product.MyOrderService;
+
 import dao.product.ProductCartDeleteService;
 import dao.product.ProductCartService;
+import dao.product.ProductDeleteService;
 import dao.product.ProductDetailService;
 import dao.product.ProductListMenuService;
 import dao.product.ProductListService;
+
+
+import dao.product.ProductRecentListService;
+import dao.product.ProductSelectAll;
+import dao.product.ProductUpdateService;
+import dao.product.ProductUpdateView;
 
 import dao.product.ProductOrderCompleteService;
 
@@ -281,6 +293,34 @@ public class Controller extends HttpServlet {
 			path="/admin/productmanagement.jsp";
 		}else if(command.equals("/productadd.do")) {
 			path= "/admin/productadd.jsp";
+		}else if(command.equals("/productaddpro.do")) {
+			try {
+				new ProductAddService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			};
+		}else if(command.equals("/productdelete.do")) {
+			try {
+				new ProductDeleteService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productupdateview.do")) {
+			try {
+				new ProductUpdateView().execute(request, response);
+				path="/admin/productupdate.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productupdate.do")) {
+			try {
+				new ProductUpdateService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
 		}
 
 		if(path != null) {
