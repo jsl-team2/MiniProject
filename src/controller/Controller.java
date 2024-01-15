@@ -4,28 +4,25 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-
-import javax.servlet.ServletConfig;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-import dao.product.ProductDetailService;
-import dao.product.ProductListService;
-import dao.product.ProductRecentListService;
-import dao.search.SearchService;
-
+import dao.board.BoardCommentDeleteService;
+import dao.board.BoardCommentInsertService;
+import dao.board.BoardCommentModifyService;
 import dao.board.BoardDeleteService;
 import dao.board.BoardInsertService;
 import dao.board.BoardSearchService;
 import dao.board.BoardSelectAll;
 import dao.board.BoardUpdateService;
 import dao.board.BoardViewService;
+import dao.product.ProductDetailService;
+import dao.product.ProductListService;
+import dao.product.ProductRecentListService;
+import dao.search.SearchService;
 
 
 
@@ -181,20 +178,43 @@ public class Controller extends HttpServlet {
 		 else if (command.equals("/boardsearch.do")) {
 			try {
 				new BoardSearchService().execute(request, response);
-				path = "/board//board.jsp";
+				path = "/board/board.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-    
-		
+		 //댓글 글 쓰기
+		 else if (command.equals("/commentinsert.do")) {
+			 try {
+				new BoardCommentInsertService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 }
+		 
+		 //댓글 삭제
+		 else if(command.equals("/commentdelete.do")) {
+				try {
+					new BoardCommentDeleteService().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		 
+		 //댓글 수정
+		 else if(command.equals("/commentmodify.do")) {
+				try {
+					new BoardCommentModifyService().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 
 		if(command.equals("/search.do")) {
 			try {
 				new SearchService().execute(request, response);
 			
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			path = "search.jsp";
