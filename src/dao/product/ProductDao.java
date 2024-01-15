@@ -3,11 +3,9 @@ package dao.product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.user.UserVo;
 import db.DBmanager;
 import utility.Criteria;
 
@@ -16,7 +14,7 @@ public class ProductDao {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
+
 	public List<ProductVo> getRecentProducts() {
 		String sql = "select * from tbl_product order by product_rdate desc";
 		List<ProductVo> list = new ArrayList<ProductVo>();
@@ -24,7 +22,7 @@ public class ProductDao {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				ProductVo vo = new ProductVo();
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
@@ -40,15 +38,16 @@ public class ProductDao {
 				vo.setProduct_rdate(rs.getString("product_rdate"));
 				list.add(vo);
 			}
-		}catch (Exception e) {
-				e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-				DBmanager.getInstance().close(conn, pstmt, rs);
+			DBmanager.getInstance().close(conn, pstmt, rs);
 		}
 
-			return list;
-		
+		return list;
+
 	}
+
 	public List<ProductVo> getProductSelectAll() {
 
 		String sql = "select * from tbl_product";
@@ -282,7 +281,7 @@ public class ProductDao {
 
 	public void orderInsert(ProductVo vo) {
 
-		String sql = "insert into tbl_order \r\n" + " values (order_seq.nextval, 'user', ?, ?, ?, '주문완료', sysdate)"; // user
+		String sql = "insert into tbl_order \r\n" + " values (order_seq.nextval, 'user', ?, ?, ?, '注文完了', sysdate)"; // user
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
@@ -305,7 +304,7 @@ public class ProductDao {
 	public int getOrderNo() {
 
 		String sql = "SELECT * \r\n" + "FROM ( \r\n" + "    SELECT * \r\n" + "    FROM tbl_order \r\n"
-				+ "    WHERE order_user = 'user' AND order_status = '주문완료' \r\n" + "    ORDER BY order_no DESC \r\n"
+				+ "    WHERE order_user = 'user' AND order_status = '注文完了' \r\n" + "    ORDER BY order_no DESC \r\n"
 				+ ") \r\n" + "WHERE ROWNUM <= 1"; // user
 
 		int order_no = 1;
@@ -401,49 +400,57 @@ public class ProductDao {
 
 	}
 
-	public List<ProductVo> getProductMenu(String keyword) {
-		
-		String sql = "SELECT * FROM tbl_product WHERE product_name LIKE '%"+keyword+"%'";
+	public List<ProductVo> getProductMenuWithPaging(Criteria cri) {
+
+		String sql = "SELECT * FROM (SELECT rownum rn, product_no, product_name, product_picture, \r\n" + 
+				"    product_display, product_capacity, product_camera, product_color, product_ram, \r\n" + 
+				"    product_weight, product_battery, product_rdate, product_price \r\n" + 
+				"    FROM tbl_product WHERE product_name LIKE '%" + cri.getKeyword() + "%' and rownum <= ? * ?) \r\n" + 
+				"    WHERE rn > (? - 1) * ?";
 		
 		List<ProductVo> list = new ArrayList<ProductVo>();
-		
+
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cri.getPageNum());
+			pstmt.setInt(2, cri.getAmount());
+			pstmt.setInt(3, cri.getPageNum());
+			pstmt.setInt(4, cri.getAmount());
 			
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				ProductVo vo = new ProductVo();
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getNString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_price(rs.getInt("product_price"));
-				
+
 				list.add(vo);
-				
+
 			}
-			
+
 			return list;
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBmanager.getInstance().close(conn, pstmt, rs);
 		}
-		
+
 		return list;
-		
+
 	}
-	
 
 	public List<ProductVo> getMyOrder(String user) {
 
 		String sql = "select * from tbl_order where order_user = ?"; // user
 
 		List<ProductVo> list = new ArrayList<ProductVo>();
-		
+
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -453,7 +460,7 @@ public class ProductDao {
 
 			while (rs.next()) {
 				ProductVo vo = new ProductVo();
-				
+
 				vo.setOrder_no(rs.getInt("order_no"));
 				vo.setOrder_user(rs.getString("order_user"));
 				vo.setOrder_name(rs.getString("order_name"));
@@ -462,10 +469,10 @@ public class ProductDao {
 				vo.setOrder_status(rs.getString("order_status"));
 				String date = rs.getString("order_date");
 				vo.setOrder_date(date.substring(0, 10));
-				
+
 				list.add(vo);
 			}
-			
+
 			return list;
 
 		} catch (Exception e) {
@@ -477,33 +484,69 @@ public class ProductDao {
 		return list;
 
 	}
-	
-	public List<ProductVo> getMyOrderDetail(String user) {
 
-		String sql = "select * from tbl_orderdetail where user_id = ?"; // user
+	public ProductVo getMyOrderOne(int order_no) {
 
-		List<ProductVo> list = new ArrayList<ProductVo>();
-		
+		String sql = "select * from tbl_order where order_no = ?";
+
+		ProductVo vo = new ProductVo();
+
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user);
+			pstmt.setInt(1, order_no);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+
+				return vo;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return vo;
+
+	}
+
+	public List<ProductVo> getMyOrderDetail(int order_no) {
+
+		String sql = "select * from tbl_orderdetail where orderdetail_orderno = ?";
+
+		List<ProductVo> list = new ArrayList<ProductVo>();
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, order_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				ProductVo vo = new ProductVo();
-				
+
 				vo.setOrderdetail_no(rs.getInt("orderdetail_no"));
 				vo.setOrderdetail_orderno(rs.getInt("orderdetail_orderno"));
 				vo.setOrderdetail_picture(rs.getString("orderdetail_picture"));
 				vo.setOrderdetail_product(rs.getString("orderdetail_product"));
 				vo.setOrderdetail_quantity(rs.getInt("orderdetail_quantity"));
 				vo.setOrderdetail_price(rs.getInt("orderdetail_price"));
-				
+
 				list.add(vo);
 			}
-			
+
 			return list;
 
 		} catch (Exception e) {
@@ -513,26 +556,27 @@ public class ProductDao {
 		}
 
 		return list;
-
 	}
-	public List<ProductVo> getListWithPaging(Criteria cri){
+
+
+	public List<ProductVo> getListWithPaging(Criteria cri) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 //		String sql = "select * from (\r\n" + 
 //				"    select /*+ index_desc(notice notice_pk) */ rownum rn,idx,title,content,writer,wdate,viewcount from notice\r\n" + 
 //				"    where rownum <= ?*?\r\n" + 
 //				") where rn > (?-1)*?";
-		
-		String sql = "select * from (\r\n" + 
-				"    select /*+ index_desc(tbl_product product_pk) */ rownum rn,product_no,product_name,product_picture"
-				+ ",product_display,product_capacity,product_camera,product_color,product_ram,product_weight,product_battery,product_price,product_rdate from tbl_product\r\n" + 
-				"    where "+cri.getType()+" like '%" + cri.getKeyword()+"%' and rownum <= ?*?\r\n" + 
-				") where rn > (?-1)*?";
-		
+
+		String sql = "select * from (\r\n"
+				+ "    select /*+ index_desc(tbl_product product_pk) */ rownum rn,product_no,product_name,product_picture"
+				+ ",product_display,product_capacity,product_camera,product_color,product_ram,product_weight,product_battery,product_price,product_rdate from tbl_product\r\n"
+				+ "    where " + cri.getType() + " like '%" + cri.getKeyword() + "%' and rownum <= ?*?\r\n"
+				+ ") where rn > (?-1)*?";
+
 		List<ProductVo> list = new ArrayList<ProductVo>();
- 		try {
+		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cri.getPageNum());
@@ -540,7 +584,7 @@ public class ProductDao {
 			pstmt.setInt(3, cri.getPageNum());
 			pstmt.setInt(4, cri.getAmount());
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				ProductVo vo = new ProductVo();
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
@@ -556,36 +600,345 @@ public class ProductDao {
 				vo.setProduct_rdate(rs.getString("product_rdate"));
 				list.add(vo);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBmanager.getInstance().close(conn, pstmt, rs);
 		}
 		return list;
 	}
+
 	public int getUserCount(Criteria cri) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int total = 0;
-		String sql = "select count(*) as total from tbl_product where "+cri.getType()+" like '%"+cri.getKeyword()+"%'";
+		String sql = "select count(*) as total from tbl_product where " + cri.getType() + " like '%" + cri.getKeyword()
+				+ "%'";
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				total = rs.getInt("total");
 				return total;
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		return total;
+
+	}
+
+	public List<ProductVo> getAdminOrderView() {
+
+		String sql = "select * from tbl_order";
+
+		List<ProductVo> list = new ArrayList<ProductVo>();
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVo vo = new ProductVo();
+
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+
+				list.add(vo);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return list;
+
+	}
+
+	public void setAdminOrderStatus(int order_no, String order_status) {
+
+		String sql = "update tbl_order set order_status = ? where order_no = ?"; // user
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, order_status);
+			pstmt.setInt(2, order_no);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+	}
+	
+	public List<ProductVo> getProductSelectAllWithPaging(Criteria cri) {
+
+		String sql = "SELECT * FROM (SELECT rownum rn, product_no, product_name, product_picture, " +
+	             "product_display, product_capacity, product_camera, product_color, product_ram, " +
+	             "product_weight, product_battery, product_rdate, product_price FROM tbl_product " +
+	             "WHERE rownum <= ? * ?) WHERE rn > (? - 1) * ?";
+
+		List<ProductVo> list = new ArrayList<ProductVo>();
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, cri.getPageNum());
+			pstmt.setInt(2, cri.getAmount());
+			pstmt.setInt(3, cri.getPageNum());
+			pstmt.setInt(4, cri.getAmount());
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+
+				ProductVo vo = new ProductVo();
+
+				vo.setProduct_no(rs.getInt("product_no"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_display(rs.getString("product_display"));
+				vo.setProduct_capacity(rs.getString("product_capacity"));
+				vo.setProduct_camera(rs.getString("product_camera"));
+				vo.setProduct_color(rs.getString("product_color"));
+				vo.setProduct_ram(rs.getString("product_ram"));
+				vo.setProduct_weight(rs.getString("product_weight"));
+				vo.setProduct_battery(rs.getString("product_battery"));
+				vo.setProduct_rdate(rs.getString("product_rdate"));
+				vo.setProduct_price(rs.getInt("product_price"));
+
+				list.add(vo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return list;
+
+	}
+	
+	public int getProductCount(Criteria cri) {
+
+		String sql = "select count(*) as total from tbl_product";
+
+		int tot = 0;
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				tot = rs.getInt("total");
+				return tot;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return tot;
+
+	}
+	
+	public int getProductMenuCount(Criteria cri) {
+
+		String sql = "select count(*) as total from tbl_product WHERE product_name LIKE '%" + cri.getKeyword() + "%'";
+
+		int tot = 0;
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				tot = rs.getInt("total");
+				return tot;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return tot;
+
+	}
+	
+	public List<ProductVo> getMyOrderWithPaging(Criteria cri) {
+
+		String sql = "SELECT * FROM (SELECT rownum rn, order_no, order_user, order_name,\r\n" + 
+				"    order_tel, order_address, order_status, order_date \r\n" + 
+				"    FROM tbl_order WHERE rownum <= ? * ? ORDER BY order_no DESC) WHERE rn > (? - 1) * ? \r\n" + 
+				"    and order_user=? order by order_no desc"; 
+
+		String user = "user"; // user
+		
+		List<ProductVo> list = new ArrayList<ProductVo>();
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cri.getPageNum());
+			pstmt.setInt(2, cri.getAmount());
+			pstmt.setInt(3, cri.getPageNum());
+			pstmt.setInt(4, cri.getAmount());
+			pstmt.setString(5, user);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVo vo = new ProductVo();
+
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+
+				list.add(vo);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return list;
+
+	}
+	
+	public int getMyOrderCount(Criteria cri) {
+		
+		int total = 0;
+		
+		String sql = "select count(*) as total from tbl_order WHERE order_user LIKE ?";
+		
+		String user = "user";
+		
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt("total");
+				return total;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			DBmanager.getInstance().close(conn, pstmt, rs);
 		}
 		return total;
 
 	}
 	
+
+	public List<ProductVo> getAdminOrderWithPaging(Criteria cri) {
+
+		String sql = "SELECT * FROM (SELECT rownum rn, order_no, order_user, order_name,\r\n" + 
+				"    order_tel, order_address, order_status, order_date \r\n" + 
+				"    FROM tbl_order WHERE rownum <= ? * ? ORDER BY order_no DESC) WHERE rn > (? - 1) * ? \r\n" + 
+				"    order by order_no desc"; 
+
+		List<ProductVo> list = new ArrayList<ProductVo>();
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cri.getPageNum());
+			pstmt.setInt(2, cri.getAmount());
+			pstmt.setInt(3, cri.getPageNum());
+			pstmt.setInt(4, cri.getAmount());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVo vo = new ProductVo();
+
+				vo.setOrder_no(rs.getInt("order_no"));
+				vo.setOrder_user(rs.getString("order_user"));
+				vo.setOrder_name(rs.getString("order_name"));
+				vo.setOrder_tel(rs.getString("order_tel"));
+				vo.setOrder_address(rs.getString("order_address"));
+				vo.setOrder_status(rs.getString("order_status"));
+				String date = rs.getString("order_date");
+				vo.setOrder_date(date.substring(0, 10));
+
+				list.add(vo);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		return list;
+
+	}
+	
+	public int getAdminOrderCount(Criteria cri) {
+		
+		int total = 0;
+		
+		String sql = "select count(*) as total from tbl_order";
+		
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt("total");
+				return total;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		return total;
+
+	}
+	
+
 	public void insertProduct(ProductVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -664,4 +1017,5 @@ public class ProductDao {
 			DBmanager.getInstance().close(conn, pstmt);
 		}
 	}
+
 }
