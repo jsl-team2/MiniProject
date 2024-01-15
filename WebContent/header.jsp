@@ -1,11 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 
 <!doctype html>
 <html lang="en">
@@ -17,7 +13,6 @@
 
 <title>MiniProject</title>
 
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.12.4.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -25,16 +20,10 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/index.css">
-
 <link rel="stylesheet" href="css/product.css">
-
 <link rel="stylesheet" href="css/search.css">
-
 <link rel="stylesheet" href="css/mystyle.css">
-
 <link rel="stylesheet" href="css/admin.css">
-
-
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -70,10 +59,10 @@
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
 							<div>
-								<a href="#">회원가입</a>
+								<a href="join.do">회원가입</a>
 							</div>
 							<div>
-								<a href="#">로그인</a>
+								<a href="login.do">로그인</a>
 							</div>
 							<div>
 								<a href="myorder.do">개인주문내역</a>
