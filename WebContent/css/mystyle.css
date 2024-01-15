@@ -12,7 +12,7 @@ a {
 .navbar {
 	position: relative;
 	min-height: 50px;
-	margin-bottom: 20px;
+	margin-bottom: -45px;
 	border: 0 none;
 	margin-top: 20px;
 }
@@ -101,13 +101,14 @@ ul.nav li:hover {
 
 /* sub css */
 .subvisual {
-	padding-top: 40px;
+	padding-top: 100px;
 	padding-bottom: 40px;
 	text-align: center;
 }
 
 .subvisual h2 {
 	font-size: 60px;
+	padding-top: 30px;
 }
 
 .content {
@@ -359,7 +360,7 @@ div .top_menu {
 
 .board_view {
 	margin-top: 100px;
-	height: 550px;
+	height: 500px;
 }
 
 .board_view h2 {
@@ -477,5 +478,80 @@ div .top_menu {
 
 .glyphicon-search{
 	padding-right: 30px;
->>>>>>> b936169b84b2e6c6df18457dde0319e064726268
+
 }
+
+.subvisual {
+	text-align: center;
+	padding-top: 70px;
+}
+
+ table {
+  border-collapse: collapse;
+  margin: 0rem auto;
+  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+ /* 테이블 행 */
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #1b1b1b;
+  color: #ddd;
+  width: 100%;
+}
+
+/* 테이블 올렸을 때 */
+tbody tr:hover {
+  background-color: #d3d3d3;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+/* 테이블 비율 */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 10%;
+  color: #333;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+  color: #333;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15%;
+  color: #333;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 15%;
+  color: #333;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 15%;
+  color: #333;
+}
+
+.btn-list1 {
+	padding: 28px;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: center;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
