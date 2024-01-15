@@ -18,12 +18,23 @@ import dao.board.BoardViewService;
 import dao.product.AdminOrderStatusService;
 import dao.product.AdminOrderViewService;
 import dao.product.MyOrderDetailService;
+
+import dao.product.ProductAddService;
+
 import dao.product.MyOrderService;
+
 import dao.product.ProductCartDeleteService;
 import dao.product.ProductCartService;
+import dao.product.ProductDeleteService;
 import dao.product.ProductDetailService;
 import dao.product.ProductListMenuService;
 import dao.product.ProductListService;
+
+import dao.product.ProductRecentListService;
+import dao.product.ProductSelectAll;
+import dao.product.ProductUpdateService;
+import dao.product.ProductUpdateView;
+
 import dao.product.ProductOrderCompleteService;
 import dao.product.ProductOrderOneCompleteService;
 import dao.product.ProductOrderOneService;
@@ -31,6 +42,25 @@ import dao.product.ProductOrderService;
 import dao.product.ProductSelectAll;
 import dao.search.SearchService;
 import dao.user.UserSelectAll;
+
+import dao.user.UserSelectService;
+
+
+import dao.board.BoardDeleteService;
+import dao.board.BoardInsertService;
+import dao.board.BoardSearchService;
+import dao.board.BoardSelectAll;
+import dao.board.BoardUpdateService;
+import dao.board.BoardViewService;
+import dao.board.BoardCommentDeleteService;
+import dao.board.BoardCommentInsertService;
+import dao.board.BoardCommentModifyService;
+
+import dao.product.ProductDetailService;
+import dao.product.ProductListService;
+import dao.product.ProductRecentListService;
+import dao.search.SearchService;
+
 
 /**
  * Servlet implementation class Controller
@@ -66,6 +96,7 @@ public class Controller extends HttpServlet {
 		// 메인
 		if (command.equals("/main.do") || command.equals("/")) {
 			try {
+				new ProductRecentListService().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -281,11 +312,38 @@ public class Controller extends HttpServlet {
 		else if (command.equals("/boardsearch.do")) {
 			try {
 				new BoardSearchService().execute(request, response);
-				path = "/board//board.jsp";
+				path = "/board/board.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+
+		 //댓글 글 쓰기
+		 else if (command.equals("/commentinsert.do")) {
+			 try {
+				new BoardCommentInsertService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 }
+		 
+		 //댓글 삭제
+		 else if(command.equals("/commentdelete.do")) {
+				try {
+					new BoardCommentDeleteService().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		 
+		 //댓글 수정
+		 else if(command.equals("/commentmodify.do")) {
+				try {
+					new BoardCommentModifyService().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 
 		
 		if(command.equals("/search.do")) {
@@ -327,6 +385,34 @@ public class Controller extends HttpServlet {
 			path="/admin/productmanagement.jsp";
 		}else if(command.equals("/productadd.do")) {
 			path= "/admin/productadd.jsp";
+		}else if(command.equals("/productaddpro.do")) {
+			try {
+				new ProductAddService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			};
+		}else if(command.equals("/productdelete.do")) {
+			try {
+				new ProductDeleteService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productupdateview.do")) {
+			try {
+				new ProductUpdateView().execute(request, response);
+				path="/admin/productupdate.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/productupdate.do")) {
+			try {
+				new ProductUpdateService().execute(request, response);
+				response.sendRedirect("/productmanagement.do");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
 		}
 
 		if (path != null) {

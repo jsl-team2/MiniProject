@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.BoardVo;
+import dao.CommentVo;
 import db.DBmanager;
 import utility.Criteria;
 
@@ -294,7 +295,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		BoardVo vo = new BoardVo();
-		String sql = "select * from tbl_board where board_no = (select max(board_no) from tbl_board where board_no < ?)";
+		String sql = "select * from tbl_board where board_no = (select max(board_no) from tbl_board where board_no < ?) ";
 
 
 		try {
@@ -319,7 +320,6 @@ public class BoardDao {
 		}
 		return vo;
 	}
-
 		
 	//다음 페이지 이동
 	public BoardVo getNextNoticeNo(int board_no) {
@@ -354,6 +354,148 @@ public class BoardDao {
 		return vo;
 	}
 
+	//댓글 글 쓰기
+	public void CommentInsert(CommentVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "insert into tbl_comment (comment_no, board_no, comment_id, comment_content, "
+				+ " comment_createdate) "
+				+ " values (tbl_comment_seq.nextval,?,?,?,sysdate)";
+
+		
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, vo.getBoard_no());
+			pstmt.setString(2, vo.getComment_id());
+			pstmt.setString(3, vo.getComment_content());
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt);
+		}
+	}
 	
+	//해당 댓글 가져오기
+	public List<CommentVo> getCommentSelect(int board_no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CommentVo vo = null;
+		List<CommentVo> list = new ArrayList<CommentVo>();
+		String sql = "select * from tbl_comment where board_no = ? order by comment_createdate desc";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				vo = new CommentVo();
+				
+				vo.setBoard_no(rs.getInt("board_no"));
+				vo.setComment_no(rs.getInt("comment_no"));
+				vo.setComment_id(rs.getString("comment_id"));
+				vo.setComment_content(rs.getString("comment_content"));
+				vo.setComment_createdate(rs.getString("comment_createdate"));
+				
+				list.add(vo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	//댓글 삭제 
+	public void getCommentDelet(int comment_no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "delete tbl_comment where comment_no = ?";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, comment_no);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt);
+		}
+	}
+	
+	//댓글 수정
+	public void setCommentUpdate(CommentVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update tbl_comment set comment_content = ?, "
+					+" comment_createdate = sysdate where comment_no =? ";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getComment_content());
+			pstmt.setInt(2, vo.getComment_no());
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt);
+		}
+	}
+	
+	//댓글 paging을 위한 지정 갯수만큼 출력
+	public List<CommentVo> getCommentPaging(Criteria cri, BoardVo vo) {
+
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    CommentVo vo1 = null; 
+	    String sql = "select * from (select rownum rn, a.* from "
+	    		+ "(select * from tbl_comment where tbl_comment.board_no = ? order by comment_no desc) a ) "
+	    		+ "where rn > ? and rn <= ?";
+
+	    List<CommentVo> list = new ArrayList<CommentVo>();
+
+	    try {
+	        conn = DBmanager.getInstance().getConnection();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, vo.getBoard_no());
+	        pstmt.setInt(2, (cri.getPageNum() -1) * cri.getAmount());
+	        pstmt.setInt(3, cri.getPageNum() * cri.getAmount());
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            vo1 = new CommentVo();
+	            vo1.setComment_id(rs.getString("comment_id"));
+	            vo1.setComment_no(rs.getInt("comment_no"));
+	            vo1.setComment_content(rs.getString("comment_content"));
+	            vo1.setComment_createdate(rs.getString("comment_createdate").substring(0, 10));
+	            list.add(vo1);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBmanager.getInstance().close(conn, pstmt, rs);
+	    }
+	    return list;
+	}
+
 	
 }

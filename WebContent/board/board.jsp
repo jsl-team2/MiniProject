@@ -48,14 +48,14 @@
 						</thead>
 						<tbody>
 							<c:set var="bno" value="${total - ((page.cri.pageNum -1)* 10)}" />
-							<c:forEach var="list" items="${list}">
+							<c:forEach var="Blist" items="${Blist}">
 							<tr>
 								<td>${bno}</td>
 								<td class="title">
-								<a href="boardview.do?board_no=${list.board_no}">${list.board_title}</a></td>
-								<td>${list.board_writer}</td>
-								<td>${list.board_date.substring(0,10)}</td>
-								<td>${list.board_hits}</td>
+								<a href="boardview.do?board_no=${Blist.board_no}&bno=${bno}">${Blist.board_title}</a></td>
+								<td>${Blist.board_writer}</td>
+								<td>${Blist.board_date.substring(0,10)}</td>
+								<td>${Blist.board_hits}</td>
 							</tr>
 							<c:set var="bno" value="${bno -1}" />
 							</c:forEach>
@@ -64,23 +64,7 @@
 						
 					<div class="paging">
 						
-			<c:if test="${page.prev }">
-				<a href="board.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}">
-					<i class="fa  fa-angle-double-left"></i>
-				</a>
-			</c:if>
-			<c:forEach var="num" begin="${page.startPage }"
-				end="${page.endPage }">
-				<a
-					href="board.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}"
-					class="${page.cri.pageNum == num?'active' : ''}">${num }</a>
-			</c:forEach>
-			<c:if test="${page.next }">
-				<a
-					href="board.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}">
-					<i class="fa fa-angle-double-right"></i>
-				</a>
-			</c:if>
+			<%@include file = "/paging.jsp" %>
 			
 				<button type="button" class="btn btn-primary btn-lg btn-block" 
 				onclick="location.href='boardwrite.do'">글쓰기</button>
