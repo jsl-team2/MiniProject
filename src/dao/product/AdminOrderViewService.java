@@ -7,22 +7,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Action;
+import utility.Criteria;
+import utility.PageDto;
 
-public class AdminOrderViewService implements Action{
+public class AdminOrderViewService implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		request.setCharacterEncoding("utf-8");
-		
+
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		ProductDao dao = new ProductDao();
-		
-		list = dao.getAdminOrderView();
-		
-		request.setAttribute("list", list);
-		
-	}
-	
-}
+		Criteria cri = new Criteria();
 
+		int pageNum = 1;
+		int amount = 10;
+
+		if (request.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			amount = Integer.parseInt(request.getParameter("amount"));
+		}
+
+		cri.setPageNum(pageNum); // 페이지 번호
+		cri.setAmount(amount); // 페이지 번호에 해당하는 출력 레코드 개수
+
+		list = dao.getAdminOrderWithPaging(cri); // 페이지에 해당하는 10개 레코드 검색
+		int tot = dao.getAdminOrderCount(cri); // 총 레코드 개수
+
+		PageDto dto = new PageDto(cri, tot);
+
+		request.setAttribute("list", list);
+		request.setAttribute("page", dto);
+		request.setAttribute("tot", tot);
+
+	}
+
+}

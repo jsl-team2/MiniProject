@@ -15,6 +15,7 @@ import dao.board.BoardSearchService;
 import dao.board.BoardSelectAll;
 import dao.board.BoardUpdateService;
 import dao.board.BoardViewService;
+import dao.product.AdminOrderStatusService;
 import dao.product.AdminOrderViewService;
 import dao.product.MyOrderDetailService;
 import dao.product.MyOrderService;
@@ -83,7 +84,7 @@ public class Controller extends HttpServlet {
 		} else if (command.equals("/productlistmenu.do")) {
 			try {
 				new ProductListMenuService().execute(request, response);
-				path = "/product/productlist.jsp";
+				path = "/product/productlistmenu.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -171,23 +172,35 @@ public class Controller extends HttpServlet {
 			}
 		
 		// 관리자 주문 목록
-		} else if (command.equals("/adminorderview.do")) {
+		} else if (command.equals("/adminorder.do")) {
 			try {
 				new AdminOrderViewService().execute(request, response);
-				path = "/product/adminorderview.jsp";
+				path = "/product/adminorder.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		
 		// 관리자 주문 상세
-		} else if (command.equals("/adminorderdetailview.do")) {
+		} else if (command.equals("/adminorderdetail.do")) {
 			try {
 				new MyOrderDetailService().execute(request, response);
-				path = "/product/adminorderdetailview.jsp";
+				path = "/product/adminorderdetail.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		// 주문상태 수정
+		else if (command.equals("/adminorderstatus.do")) {
+			try {
+				new AdminOrderStatusService().execute(request, response);
+				path = "/product/adminorder.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
 
 		// board
