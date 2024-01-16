@@ -5,7 +5,7 @@
 
 <!-- sub visual -->
 <div class="container-fluid subvisual">
-	<h2>[카트]상품주문</h2>
+	<h2>[カート]注文</h2>
 </div>
 
 <!-- sub contents -->
@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="cart_list">
 			<table class="cart_table">
-				<caption class="sr-only">장바구니 리스트</caption>
+				<caption class="sr-only">カートリスト</caption>
 				<colgroup>
 					<col width="20%">
 					<col width="*">

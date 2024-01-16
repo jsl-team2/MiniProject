@@ -5,7 +5,7 @@
 
 <!-- sub visual -->
 <div class="container-fluid subvisual">
-	<h2>제품상세</h2>
+	<h2>商品詳細</h2>
 </div>
 
 <!-- sub contents -->
