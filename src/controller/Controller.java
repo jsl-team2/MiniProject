@@ -290,7 +290,7 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			path = "search.jsp";
+			path = "/search.jsp";
 		}else if(command.equals("/admin.do")) {
 			try {
 				new UserSelectAll().execute(request, response);
@@ -302,7 +302,6 @@ public class Controller extends HttpServlet {
 			try {
 				new UserSelectAll().execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			path="/admin/admin.jsp";
@@ -310,7 +309,6 @@ public class Controller extends HttpServlet {
 				try {
 					new ProductSelectAll().execute(request, response);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			path="/admin/productmanagement.jsp";
@@ -318,7 +316,6 @@ public class Controller extends HttpServlet {
 			try {
 				new ProductSelectAll().execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			path="/admin/productmanagement.jsp";
@@ -350,7 +347,6 @@ public class Controller extends HttpServlet {
 				new ProductUpdateService().execute(request, response);
 				response.sendRedirect("/productmanagement.do");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 			}
 		}
 

@@ -1,4 +1,4 @@
-package dao;
+package dao.board;
 
 public class BoardVo {
 
@@ -8,7 +8,6 @@ public class BoardVo {
 	private int board_hits;
 	private String board_writer;
 	private String board_date;
-	
 	
 	public int getBoard_no() {
 		return board_no;
@@ -46,6 +45,5 @@ public class BoardVo {
 	public void setBoard_date(String board_date) {
 		this.board_date = board_date;
 	}
-	
 	
 }

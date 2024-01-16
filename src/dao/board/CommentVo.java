@@ -1,4 +1,4 @@
-package dao;
+package dao.board;
 
 public class CommentVo {
 
@@ -7,7 +7,6 @@ public class CommentVo {
 	private int board_no;
 	private String comment_content;
 	private String comment_createdate;
-	
 	
 	public String getComment_id() {
 		return comment_id;
@@ -39,13 +38,6 @@ public class CommentVo {
 	public void setComment_createdate(String comment_createdate) {
 		this.comment_createdate = comment_createdate;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

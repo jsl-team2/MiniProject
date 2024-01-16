@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="css/productadd.css">
 
     
-    <link rel ="stylesheet" href="css/mystyle.css">
+    <link rel ="stylesheet" href="css/board.css">
 
 
 
@@ -75,8 +75,8 @@
   		<li class="drop-down">
   		<a href="#" class="glyphicon glyphicon-user"></a>
   		<div class="drop-down__div">
-	<div><a href="#">회원가입</a></div>
-	<div><a href="#">로그인</a></div>
+	<div><a href="/join.do">회원가입</a></div>
+	<div><a href="/login.do">로그인</a></div>
 
 	<div><a href="admin.do">관리자 페이지</a></div>
 
