@@ -34,7 +34,10 @@
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/productadd.css">
 
-<link rel="stylesheet" href="css/admin.css">
+  <link rel ="stylesheet" href="css/board.css">
+
+
+
 
 
 
@@ -45,6 +48,7 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>

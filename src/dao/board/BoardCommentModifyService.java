@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Action;
-import dao.CommentVo;
 
 public class BoardCommentModifyService implements Action {
 
