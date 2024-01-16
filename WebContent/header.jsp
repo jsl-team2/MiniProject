@@ -71,10 +71,10 @@
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
 							<div>
-								<a href="#">회원가입</a>
+								<a href="memberterms.do">회원가입</a>
 							</div>
 							<div>
-								<a href="#">로그인</a>
+								<a href="login.do">로그인</a>
 							</div>
 							<div>
 								<a href="myorder.do">개인주문내역</a>

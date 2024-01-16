@@ -15,6 +15,11 @@ import dao.board.BoardSearchService;
 import dao.board.BoardSelectAll;
 import dao.board.BoardUpdateService;
 import dao.board.BoardViewService;
+import dao.member.CertiCheckService;
+import dao.member.EmailSendService;
+import dao.member.LoginService;
+import dao.member.MemberIdSearchService;
+import dao.member.MemberSaveService;
 import dao.product.AdminOrderStatusService;
 import dao.product.AdminOrderViewService;
 import dao.product.MyOrderDetailService;
@@ -413,7 +418,53 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 			}
-		}
+		}else if(command.equals("/memberterms.do")) {
+			//무작위의 문자 생성
+			
+			char ran = (char)((Math.random()*26)+65);//대문자 65, 소문자 97
+			request.setAttribute("alpa", ran);
+			path = "/member/terms.jsp";
+		}else if(command.equals("/join.do")){
+			
+			String chk = request.getParameter("check");
+			System.out.println(chk);
+			request.setAttribute("check", chk);
+			path="/member/join.jsp";
+		}else if(command.equals("/memberidcheck.do")) {
+			try {
+				new MemberIdSearchService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+ 		}else if(command.equals("/emailsend.do")) {
+ 			try {
+				new EmailSendService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+ 		}else if(command.equals("/certinumber.do")) {
+ 			try {
+				new CertiCheckService().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+ 		}else if(command.equals("/memberwrite.do")) {
+ 			try {
+				new MemberSaveService().execute(request, response);
+				response.sendRedirect("main.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+ 		}else if(command.equals("/login.do")) {
+ 			path = "/member/login.jsp";
+ 		}else if(command.equals("/loginpro.do")) {
+ 			try {
+				new LoginService().execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+ 		}
 
 		if (path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
