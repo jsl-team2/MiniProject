@@ -46,7 +46,7 @@
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
 </head>
-	
+
 <body>
 	<div style="padding: 0 100px">
 		<nav>
@@ -70,18 +70,27 @@
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
-							<div>
-								<a href="memberterms.do">회원가입</a>
-							</div>
-							<div>
-								<a href="login.do">로그인</a>
-							</div>
-							<div>
-								<a href="myorder.do">개인주문내역</a>
-							</div>
-							<div>
-								<a href="admin.do">관리자 페이지</a>
-							</div>
+							<c:choose>
+								<c:when test="${empty user_id }">
+									<div class="first">
+										 <a href="login.do">로그인</a>
+									</div>
+									<div>
+										<a href="terms.do">회원가입</a>
+									</div>
+								</c:when>
+								<c:when test="${not empty user_id }">
+									<div class="first">
+										<a href="logout.do">로그아웃</a>
+									</div>
+									<div>
+										<a href="myorder.do">개인주문내역</a>
+									</div>
+									<div>	
+										<a href="admin.do">관리자 페이지</a>
+									</div>	
+								</c:when>
+							</c:choose>
 						</div></li>
 				</ul>
 			</div>
