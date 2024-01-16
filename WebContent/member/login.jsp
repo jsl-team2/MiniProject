@@ -27,7 +27,7 @@
     </div>
   </form>
   <div class="caption">
-    <a href="join.do">Would you like to sign up as a member?</a>
+    <a href="terms.do">Would you like to sign up as a member?</a>
   </div>
 </section>
 
