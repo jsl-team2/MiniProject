@@ -79,16 +79,22 @@
 										<a href="terms.do">회원가입</a>
 									</div>
 								</c:when>
-								<c:when test="${not empty user_id }">
+								<c:when test="${not empty user_id && user_id != 'admin' }">
 									<div class="first">
 										<a href="logout.do">로그아웃</a>
 									</div>
 									<div>
 										<a href="myorder.do">개인주문내역</a>
 									</div>
-									<div>	
-										<a href="admin.do">관리자 페이지</a>
-									</div>	
+									</c:when>
+									
+								<c:when test="${not empty user_id && user_id eq 'admin'}" >
+								<div>
+									<a href="logout.do">로그아웃</a>
+								</div>
+								<div>	
+									<a href="admin.do">관리자 페이지</a>
+								</div>	
 								</c:when>
 							</c:choose>
 						</div></li>
