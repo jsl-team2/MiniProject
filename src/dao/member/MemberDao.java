@@ -103,8 +103,8 @@ public class MemberDao {
 			// 제목, 수신자의 이메일 주소, 발송자의 이메일주소, 보낸날짜와 같은 실제 이메일 메세지의 세부사항을 나타낸다
 			msg.setFrom(new InternetAddress(user, "GUNTAMS")); // 보내는 사람
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email)); // 받는사람
-			msg.setSubject("거니거니가 바보임을 증명하고 있습니다."); // 메일제목
-			msg.setText("바보 인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
+			msg.setSubject("이메일 인증번호입니다."); // 메일제목
+			msg.setText("인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
 
 			Transport.send(msg); // 메세지 전송
 

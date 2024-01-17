@@ -57,30 +57,29 @@
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left: 20px;"
+					<span style="position: relative; left:55px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>
 			</div>
 			<div class="nav__right">
 				<ul>
-					<li><a href="productlist.do">제품목록</a></li>
-					<li><a href="#">회사정보</a></li>
-					<li><a href="/board.do">고객센터</a></li>
+					<li><a href="productlist.do">製品リスト</a></li>
+					<li><a href="/board.do">カスタマーセンター</a></li>
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
 							<div>
-								<a href="memberterms.do">회원가입</a>
+								<a href="terms.do">会員加入</a>
 							</div>
 							<div>
-								<a href="login.do">로그인</a>
+								<a href="login.do">ログイン</a>
 							</div>
 							<div>
-								<a href="myorder.do">개인주문내역</a>
+								<a href="myorder.do">個人注文履歴</a>
 							</div>
 							<div>
-								<a href="admin.do">관리자 페이지</a>
+								<a href="admin.do">管理者ページ</a>
 							</div>
 						</div></li>
 				</ul>
