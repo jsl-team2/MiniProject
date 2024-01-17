@@ -1,4 +1,4 @@
-package dao;
+package dao.board;
 
 public class UserVo {
 

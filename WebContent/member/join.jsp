@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link href="css/common.css" rel="stylesheet">
-<link href="css/layout.css" rel='stylesheet'>
+<link href="css/singup.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- sub contents -->
 <div class="sub_title">

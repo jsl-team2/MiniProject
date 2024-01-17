@@ -34,7 +34,10 @@
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/productadd.css">
 
-<link rel="stylesheet" href="css/admin.css">
+  <link rel ="stylesheet" href="css/board.css">
+
+
+
 
 
 
@@ -45,8 +48,9 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
+
 </head>
-	
+
 <body>
 	<div style="padding: 0 100px">
 		<nav>
@@ -69,18 +73,33 @@
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
-							<div>
-								<a href="terms.do">会員加入</a>
-							</div>
-							<div>
-								<a href="login.do">ログイン</a>
-							</div>
-							<div>
-								<a href="myorder.do">個人注文履歴</a>
-							</div>
-							<div>
-								<a href="admin.do">管理者ページ</a>
-							</div>
+							<c:choose>
+								<c:when test="${empty user_id }">
+									<div class="first">
+										 <a href="login.do">로그인</a>
+									</div>
+									<div>
+										<a href="terms.do">회원가입</a>
+									</div>
+								</c:when>
+								<c:when test="${not empty user_id && user_id != 'admin' }">
+									<div class="first">
+										<a href="logout.do">로그아웃</a>
+									</div>
+									<div>
+										<a href="myorder.do">개인주문내역</a>
+									</div>
+									</c:when>
+									
+								<c:when test="${not empty user_id && user_id eq 'admin'}" >
+								<div>
+									<a href="logout.do">로그아웃</a>
+								</div>
+								<div>	
+									<a href="admin.do">관리자 페이지</a>
+								</div>	
+								</c:when>
+							</c:choose>
 						</div></li>
 				</ul>
 			</div>

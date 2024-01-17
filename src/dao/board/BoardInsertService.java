@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Action;
-import dao.BoardVo;
 
 public class BoardInsertService implements Action {
 
@@ -17,7 +16,6 @@ public class BoardInsertService implements Action {
 		 vo.setBoard_title(request.getParameter("title"));
 		 vo.setBoard_writer(request.getParameter("writer"));
 		 vo.setBoard_content(request.getParameter("content"));
-
 		 
 		BoardDao dao = new BoardDao();
 		 
