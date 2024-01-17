@@ -157,8 +157,8 @@ public class MemberDao {
 
 		String sql = "select user_id,user_pw from tbl_user where user_id = ?";
 
-		int result = 0;
-
+		int result = 0; 
+			
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
