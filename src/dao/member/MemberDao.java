@@ -23,33 +23,31 @@ public class MemberDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-
 	public int getIdSearch(String id) {
-	      Connection conn = null;
-	      PreparedStatement pstmt = null;
-	      ResultSet rs = null;
-	      
-	      String sql = "select user_id from tbl_user where user_id = ?";
-	      int result;
-	      try {
-	         conn = DBmanager.getInstance().getConnection();
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setNString(1, id);
-	         rs = pstmt.executeQuery();
-	         if(rs.next()) {
-	            result = 1;
-	            return result;
-	         }
-	      }catch(Exception e) {
-	         e.printStackTrace();
-	      }finally {
-	         DBmanager.getInstance().close(conn, pstmt, rs);
-	      }
-	      result = 0 ;
-	      return result;
-	   }
-	
-	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select user_id from tbl_user where user_id = ?";
+		int result;
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = 1;
+				return result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		result = 0;
+		return result;
+	}
+
 	public String emailSend(String email, HttpServletRequest request, HttpServletResponse response) {
 		String host = "smtp.naver.com";
 		String user = "tnsdl3000@naver.com";
@@ -105,8 +103,8 @@ public class MemberDao {
 			// 제목, 수신자의 이메일 주소, 발송자의 이메일주소, 보낸날짜와 같은 실제 이메일 메세지의 세부사항을 나타낸다
 			msg.setFrom(new InternetAddress(user, "GUNTAMS")); // 보내는 사람
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email)); // 받는사람
-			msg.setSubject("거니거니가 바보임을 증명하고 있습니다."); // 메일제목
-			msg.setText("바보 인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
+			msg.setSubject("이메일 인증번호입니다."); // 메일제목
+			msg.setText("인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
 
 			Transport.send(msg); // 메세지 전송
 
@@ -122,27 +120,27 @@ public class MemberDao {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
+
 		System.out.println("sql 전");
-		
-		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address)\r\n" + 
-				" VALUES (user_seq.nextval,?,?,?,?,?,?)";
+
+		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address)\r\n"
+				+ " VALUES (user_seq.nextval,?,?,?,?,?,?)";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, vo.getUser_id());
 			pstmt.setString(2, vo.getUser_pw());
 			pstmt.setString(3, vo.getUser_name());
 			pstmt.setString(4, vo.getUser_phone());
 			pstmt.setString(5, vo.getUser_email());
 			pstmt.setString(6, vo.getUser_address());
-			
+
 			pstmt.executeUpdate();
-			
+
 			System.out.println("업데이트 후");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -150,46 +148,44 @@ public class MemberDao {
 		}
 
 	}
-	
+
 	public int getMemberLogin(String id, String pw) {
-		
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+		String sql = "select user_id,user_pw from tbl_user where user_id = ?";
 
-			String sql = "select user_id,user_pw from tbl_user where user_id = ?";
+		int result = 0; 
+			
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 
-			int result = 0; 
-
-			try {
-				conn = DBmanager.getInstance().getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					if(rs.getString("user_pw") != null && rs.getString("user_pw").equals(pw)) {
-						result = 1; // id,pw 같을때		
-						System.out.println("로그인완료");
-					}else {
-						result = 0; //pw 같지않을때
-						System.out.println("비밀번호가틀렸습니다");
-					}
-				}else {
-					result = -1; //id가 없을때
-					System.out.println("id가 없습니다");
+			if (rs.next()) {
+				if (rs.getString("user_pw") != null && rs.getString("user_pw").equals(pw)) {
+					result = 1; // id,pw 같을때
+					System.out.println("로그인완료");
+				} else {
+					result = 0; // pw 같지않을때
+					System.out.println("비밀번호가틀렸습니다");
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				DBmanager.getInstance().close(conn, pstmt, rs);
+			} else {
+				result = -1; // id가 없을때
+				System.out.println("id가 없습니다");
 			}
-	
-			System.out.println(result);
-			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+		System.out.println(result);
+		return result;
 	}
 
-
 }
- //
+//

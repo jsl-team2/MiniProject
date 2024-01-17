@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.BoardVo;
-import dao.CommentVo;
 import db.DBmanager;
 import utility.Criteria;
 
@@ -251,8 +249,9 @@ public class BoardDao {
 		String sql = "SELECT * FROM ( SELECT /*+ index_desc(tbl_board board_pk) */ rownum rn, "
 				+ "board_no, board_title, board_content, board_writer, board_date, board_hits FROM tbl_board "
 		        + "WHERE " + cri.getType() + " LIKE '%" + cri.getKeyword() + "%' AND rownum <= ?*? "
-		        + "ORDER BY board_date DESC) "
+		        + "order by board_no desc ) "
 		        + "WHERE rn > (?-1)*? ";
+		
 		
 		
 		List<BoardVo> list = new ArrayList<BoardVo>();
@@ -382,7 +381,7 @@ public class BoardDao {
 	}
 	
 	//해당 댓글 가져오기
-	public List<CommentVo> getCommentSelect(int board_no) {
+	public List<CommentVo> getCommentSelect(int Board_no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -393,7 +392,7 @@ public class BoardDao {
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, board_no);
+			pstmt.setInt(1, Board_no);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -405,6 +404,7 @@ public class BoardDao {
 				vo.setComment_id(rs.getString("comment_id"));
 				vo.setComment_content(rs.getString("comment_content"));
 				vo.setComment_createdate(rs.getString("comment_createdate"));
+				
 				
 				list.add(vo);
 			}
@@ -459,43 +459,6 @@ public class BoardDao {
 		}
 	}
 	
-	//댓글 paging을 위한 지정 갯수만큼 출력
-	public List<CommentVo> getCommentPaging(Criteria cri, BoardVo vo) {
-
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    CommentVo vo1 = null; 
-	    String sql = "select * from (select rownum rn, a.* from "
-	    		+ "(select * from tbl_comment where tbl_comment.board_no = ? order by comment_no desc) a ) "
-	    		+ "where rn > ? and rn <= ?";
-
-	    List<CommentVo> list = new ArrayList<CommentVo>();
-
-	    try {
-	        conn = DBmanager.getInstance().getConnection();
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, vo.getBoard_no());
-	        pstmt.setInt(2, (cri.getPageNum() -1) * cri.getAmount());
-	        pstmt.setInt(3, cri.getPageNum() * cri.getAmount());
-	        rs = pstmt.executeQuery();
-
-	        while (rs.next()) {
-	            vo1 = new CommentVo();
-	            vo1.setComment_id(rs.getString("comment_id"));
-	            vo1.setComment_no(rs.getInt("comment_no"));
-	            vo1.setComment_content(rs.getString("comment_content"));
-	            vo1.setComment_createdate(rs.getString("comment_createdate").substring(0, 10));
-	            list.add(vo1);
-	        }
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        DBmanager.getInstance().close(conn, pstmt, rs);
-	    }
-	    return list;
-	}
-
+	//
 	
 }

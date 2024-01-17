@@ -19,7 +19,7 @@ public class LogoutService implements Action {
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		String address = request.getParameter("addrss");
-		
+
 		
 		ProjectVo vo = new ProjectVo();
 		vo.setUser_email(email);

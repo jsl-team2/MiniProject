@@ -28,7 +28,10 @@
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/productadd.css">
 
-<link rel="stylesheet" href="css/admin.css">
+  <link rel ="stylesheet" href="css/board.css">
+
+
+
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -37,6 +40,7 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
@@ -49,31 +53,45 @@
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left: 20px;"
+					<span style="position: relative; left:55px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>
 			</div>
 			<div class="nav__right">
 				<ul>
-					<li><a href="productlist.do">제품목록</a></li>
-					<li><a href="#">회사정보</a></li>
-					<li><a href="/board.do">고객센터</a></li>
+					<li><a href="productlist.do">製品リスト</a></li>
+					<li><a href="/board.do">カスタマーセンター</a></li>
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
-							<div>
-								<a href="join.do">회원가입</a>
-							</div>
-							<div>
-								<a href="login.do">로그인</a>
-							</div>
-							<div>
-								<a href="myorder.do">개인주문내역</a>
-							</div>
-							<div>
-								<a href="admin.do">관리자 페이지</a>
-							</div>
+							<c:choose>
+								<c:when test="${empty user_id }">
+									<div class="first">
+										 <a href="login.do">ログイン</a>
+									</div>
+									<div>
+										<a href="terms.do">会員加入</a>
+									</div>
+								</c:when>
+								<c:when test="${not empty user_id && user_id != 'admin' }">
+									<div class="first">
+										<a href="logout.do">ログアウト</a>
+									</div>
+									<div>
+										<a href="myorder.do">個人注文の内訳</a>
+									</div>
+									</c:when>
+									
+								<c:when test="${not empty user_id && user_id eq 'admin'}" >
+								<div>
+									<a href="logout.do">ログアウト</a>
+								</div>
+								<div>	
+									<a href="admin.do">管理者ページ</a>
+								</div>	
+								</c:when>
+							</c:choose>
 						</div></li>
 				</ul>
 			</div>
