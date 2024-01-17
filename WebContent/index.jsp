@@ -14,12 +14,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/main1.jpg" alt="...">
+       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/phone1.jpg" alt="...">
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/main2.jpg" alt="..."> 
+       <img style="height:600px; width:100%; object-fit:cover;" src="images/main/phone2.jpg" alt="..."> 
       <div class="carousel-caption">
       </div>
     </div>
@@ -37,7 +37,7 @@
 </div>
   	  	</main>
   	  	<div class="mid">
-  	  		<p>당신에게 딱 맞는 신제품</p>
+  	  		<p>新しい製品をご紹介します</p>
   	  	</div>
   	  	<section class="mid-section">
   	  	<div class="mid-product-container">

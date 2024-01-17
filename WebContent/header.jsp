@@ -61,16 +61,15 @@
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left: 20px;"
+					<span style="position: relative; left:55px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>
 			</div>
 			<div class="nav__right">
 				<ul>
-					<li><a href="productlist.do">제품목록</a></li>
-					<li><a href="#">회사정보</a></li>
-					<li><a href="/board.do">고객센터</a></li>
+					<li><a href="productlist.do">製品リスト</a></li>
+					<li><a href="/board.do">カスタマーセンター</a></li>
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
