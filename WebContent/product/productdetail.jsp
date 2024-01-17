@@ -93,6 +93,12 @@
 	        inputQuantity.name = 'quantity';
 	        inputQuantity.value = $(".quantity").val(); 
 	        form.appendChild(inputQuantity);
+	        
+	        var inputUserId = document.createElement('input');
+	        inputUserId.type = 'hidden';
+	        inputUserId.name = 'user_id';
+	        inputUserId.value = "${user_id}";  // `${user_id}`는 서버사이드에서 동적으로 값을 가져오는 방법이므로 주의 필요
+	        form.appendChild(inputUserId);
 
 			document.body.appendChild(form);
 			form.submit();

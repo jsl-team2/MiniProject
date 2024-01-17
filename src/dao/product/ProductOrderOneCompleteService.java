@@ -15,7 +15,7 @@ public class ProductOrderOneCompleteService implements Action {
 
 		request.setCharacterEncoding("utf-8");
 
-//		String order_user = "user"; // 로그인 유저
+		String user_id = request.getParameter("user_id");
 
 		int order_productno = Integer.parseInt(request.getParameter("product_no"));
 		int cart_quantity = 1;
@@ -41,8 +41,8 @@ public class ProductOrderOneCompleteService implements Action {
 		vo.setOrder_tel(order_tel);
 		vo.setOrder_address(order_address);
 		
-		dao.orderInsert(vo);
-		int orderdetail_orderno = dao.getOrderNo();
+		dao.orderInsert(vo, user_id);
+		int orderdetail_orderno = dao.getOrderNo(user_id);
 		vo.setOrderdetail_orderno(orderdetail_orderno);
 		
 		List<ProductVo> list = new ArrayList<ProductVo>();

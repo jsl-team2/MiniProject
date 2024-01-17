@@ -18,7 +18,7 @@ public class ProductOrderOneService implements Action {
 			cart_quantity = Integer.parseInt(request.getParameter("quantity"));
 		}
 			
-//		String user = request.getParameter("cart_user");
+		String user_id = request.getParameter("user_id");
 
 		ProductVo vo = new ProductVo();
 		ProductDao dao = new ProductDao();
@@ -32,7 +32,7 @@ public class ProductOrderOneService implements Action {
 		vo.setProduct_price(totPrice);
 		
 		//배송정보 가져오기
-		ProductVo vo2 = dao.getUserInfo();
+		ProductVo vo2 = dao.getUserInfo(user_id);
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("vo2", vo2);

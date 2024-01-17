@@ -15,15 +15,14 @@ public class ProductOrderService implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String user = "user";
-//		String user = request.getParameter("cart_user");
+		String user_id = request.getParameter("user_id");
 		
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		ProductDao dao = new ProductDao();
 		
-		list = dao.getCartAll(user);
+		list = dao.getCartAll(user_id);
 		
-		ProductVo vo = dao.getUserInfo(); // 배송정보
+		ProductVo vo = dao.getUserInfo(user_id); 
 		
 		request.setAttribute("list", list);
 		request.setAttribute("vo", vo);
