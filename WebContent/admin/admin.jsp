@@ -4,17 +4,17 @@
 <div class="wrap">
 
 	<div class="left-section">
-		<div><a href="admin.do">회원조회</a></div>
-		<div><a href="productmanagement.do">상품관리</a></div>
-		<div><a href="adminorder.do">주문조회</a></div>
+		<div><a href="admin.do">会員照会</a></div>
+		<div><a href="productmanagement.do">商品管理</a></div>
+		<div><a href="adminorder.do">全体注文内訳</a></div>
 	</div>
 	<div class="right-section">
-    	<h1 class="tabs-title" >회원 리스트</h1>
+    	<h1 class="tabs-title" >会員リスト</h1>
     	<form name=userSearchForm class="admin-search" method="get" action="usersearch.do">
     	<select class="select-tag form-control" name="type">
-    		<option value="user_id">아이디</option>
-    		<option value="user_name">이름</option>
-    		<option value="user_email">이메일</option>
+    		<option value="user_id">会員ID</option>
+    		<option value="user_name">会員名</option>
+    		<option value="user_email">email</option>
     	</select>
     	<input class="search-tag form-control" name="keyword" placeholder="Search..">
     	<span class="search-icon glyphicon glyphicon-search"></span>
@@ -22,12 +22,12 @@
     	 <table class="admin-table">
     <thead>
     	<tr style="border-bottom: 1px solid black;">
-    		<th>회원번호</th>
-    		<th>회원ID</th>
-    		<th>회원이름</th>
-    		<th>전화번호</th>
-    		<th>이메일</th>
-    		<th>주소</th>
+    		<th>会員番号</th>
+    		<th>会員ID</th>
+    		<th>会員名</th>
+    		<th>電話番号</th>
+    		<th>email</th>
+    		<th>住所</th>
     	</tr>
     </thead>
     <tbody>

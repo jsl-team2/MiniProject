@@ -76,27 +76,27 @@
 							<c:choose>
 								<c:when test="${empty user_id }">
 									<div class="first">
-										 <a href="login.do">로그인</a>
+										 <a href="login.do">ログイン</a>
 									</div>
 									<div>
-										<a href="terms.do">회원가입</a>
+										<a href="terms.do">会員加入</a>
 									</div>
 								</c:when>
 								<c:when test="${not empty user_id && user_id != 'admin' }">
 									<div class="first">
-										<a href="logout.do">로그아웃</a>
+										<a href="logout.do">ログアウト</a>
 									</div>
 									<div>
-										<a href="myorder.do">개인주문내역</a>
+										<a href="myorder.do">個人注文の内訳</a>
 									</div>
 									</c:when>
 									
 								<c:when test="${not empty user_id && user_id eq 'admin'}" >
 								<div>
-									<a href="logout.do">로그아웃</a>
+									<a href="logout.do">ログアウト</a>
 								</div>
 								<div>	
-									<a href="admin.do">관리자 페이지</a>
+									<a href="admin.do">管理者ページ</a>
 								</div>	
 								</c:when>
 							</c:choose>
