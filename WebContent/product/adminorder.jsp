@@ -8,7 +8,7 @@
 			<a href="admin.do">会員照会</a>
 		</div>
 		<div>
-			<a href="admin/productmanagement.do">商品管理</a>
+			<a href="productmanagement.do">商品管理</a>
 		</div>
 		<div>
 			<a href="adminorder.do">全体注文内訳</a>

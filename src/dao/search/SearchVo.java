@@ -11,7 +11,7 @@ public class SearchVo {
     private String product_ram;
     private String product_weight;
     private String product_battery;
-    private String product_price;
+    private int product_price;
     
     private int board_no;
     private String board_title;
@@ -111,10 +111,10 @@ public class SearchVo {
 	public void setProduct_battery(String product_battery) {
 		this.product_battery = product_battery;
 	}
-	public String getProduct_price() {
+	public int getProduct_price() {
 		return product_price;
 	}
-	public void setProduct_price(String product_price) {
+	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
     

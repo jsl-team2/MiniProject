@@ -4,17 +4,17 @@
 <div class="wrap">
 
 	<div class="left-section">
-		<div><a href="admin.do">회원조회</a></div>
-		<div><a href="productmanagement.do">상품관리</a></div>
-		<div><a href="adminorder.do">주문조회</a></div>
+		<div><a href="admin.do">会員照会</a></div>
+		<div><a href="productmanagement.do">商品管理</a></div>
+		<div><a href="adminorder.do">全体注文内訳</a></div>
 	</div>
 	<div class="right-section">
-    	<h1 class="tabs-title" >상품관리</h1>
+    	<h1 class="tabs-title" >商品管理</h1>
     	<form name=productSearchForm class="admin-search" method="get" action="productsearch.do">
     	<select class="select-tag form-control" name="type" >
-    		<option value="product_name">상품명</option>
-    		<option value="product_capacity">용량</option>
-    		<option value="product_ram">메모리</option>
+    		<option value="product_name">商品名</option>
+    		<option value="product_capacity">容量</option>
+    		<option value="product_ram">メモリー</option>
     	</select>
     	<input class="search-tag form-control" name="keyword" placeholder="Search..">
     	<span class="search-icon glyphicon glyphicon-search"></span>
@@ -22,15 +22,15 @@
     	 <table class="admin-table" >
     <thead>
     	<tr style="border-bottom: 1px solid black;">
-    		<th>상품번호</th>
-    		<th>상품사진</th>
-    		<th>상품이름</th>
-    		<th>용량</th>
-    		<th>메모리</th>
-    		<th>무게</th>
-    		<th>배터리</th>
-    		<th>가격</th>
-    		<th>출시일</th>
+    		<th>商品番号</th>
+    		<th>商品写真</th>
+    		<th>商品名</th>
+    		<th>容量</th>
+    		<th>メモリー</th>
+    		<th>重さ</th>
+    		<th>バッテリー</th>
+    		<th>価格</th>
+    		<th>発売日</th>
     		<th></th>
     	</tr>
     </thead>
@@ -47,8 +47,8 @@
 		    		<td>${list.product_battery }</td>
 		   			<td>${list.product_price }</td>
 		    		<td>${list.product_rdate }</td>
-		    		<td><button class="update-btn btn btn-warning" onclick="updateCheck(${list.product_no})">수정</button>
-		    		<button class="delete-btn btn btn-danger" onclick="deleteCheck(${list.product_no})">삭제</button></td>
+		    		<td><button class="update-btn btn btn-warning" onclick="updateCheck(${list.product_no})">修整</button>
+		    		<button class="delete-btn btn btn-danger" onclick="deleteCheck(${list.product_no})">削除</button></td>
 				</tr>
 				<c:set var="bno" value="${bno-1}"/>
 				</c:forEach>
@@ -56,7 +56,7 @@
     	</table>
     	
     	<a href="productadd.do">
-    		<button class="product-add btn btn-primary">상품 추가</button>
+    		<button class="product-add btn btn-primary">商品追加</button>
     	</a>
     	<div class="paging-admin">
 		<c:if test="${page.prev }">
@@ -73,7 +73,7 @@
     </div>
     <script>
     function deleteCheck(product_no){
-    	  		let check = confirm("정말로 삭제하시겠습니까?")
+    	  		let check = confirm("本当に削除しますか?")
     	  		 if(check){
     	  			window.location.href = "productdelete.do?product_no="+product_no;
     	  		}else{

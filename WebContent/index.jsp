@@ -47,7 +47,7 @@
 	  				<img src="images/product/${list.product_picture }" alt=""/>
   	  			<div class="main__product__name">${list.product_name }</div>
   	  			<fmt:formatNumber value="${list.product_price}" var="formattedPrice"/> 
-  	  			<div class="main__product__price">${formattedPrice }원</div>
+  	  			<div class="main__product__price">${formattedPrice }¥</div>
 	  			</div>
 	  			</a>
   			</c:forEach>
