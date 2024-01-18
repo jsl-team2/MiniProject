@@ -67,6 +67,7 @@
 											<option value="配送開始">配送開始</option>
 											<option value="配送中">配送中</option>
 											<option value="配送完了">配送完了</option>
+											<option value="取り消し">取り消し</option>
 										</select> <input type="hidden" id="selectedValueHidden"
 											name="selectedValueHidden" value=""> <input
 											type="hidden" id="selectedOrderNo" name="selectedOrderNo"
