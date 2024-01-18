@@ -29,15 +29,25 @@
 	<div class="board-container">
 		<div class="main__title">掲示文</div>
 		<c:forEach var="boardList" items="${boardList }">
+		
 		<div class="board">
-		<p class="board__title">${boardList.board_title }</p>
+		
+		<p class="board__title">
+		<a href="boardview.do?board_no=${boardList.board_no }">
+		${boardList.board_title }
+		</a>
+		</p>
+		
 		<div class="board__section">
+		
 		<p class="board__content">${boardList.board_content}</p>
+		
 		<div class="board__detail">
 		<p>${boardList.board_writer} | ${boardList.board_date.substring(0,10)}</p>
 		</div>
 		</div>
 		</div>
+		
 		</c:forEach>
 		</div>
  	</c:otherwise>
