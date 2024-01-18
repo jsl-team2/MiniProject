@@ -32,6 +32,7 @@ public class ProductOrderOneService implements Action {
 		vo.setProduct_price(totPrice);
 		
 		//배송정보 가져오기
+		System.out.println(user_id);
 		ProductVo vo2 = dao.getUserInfo(user_id);
 		
 		request.setAttribute("vo", vo);
