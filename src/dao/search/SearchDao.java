@@ -11,7 +11,6 @@ import db.DBmanager;
 
 public class SearchDao {
 	public List<SearchVo> getSearchProduct(String keyword) {
-		DecimalFormat df = new DecimalFormat("###,###원");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -26,7 +25,7 @@ public class SearchDao {
 				SearchVo vo = new SearchVo();
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getNString("product_name"));
-				vo.setProduct_price(df.format(rs.getInt("product_price")));
+				vo.setProduct_price(rs.getInt("product_price"));
 				vo.setProduct_picture(rs.getString("product_picture"));
 				productList.add(vo);
 			}

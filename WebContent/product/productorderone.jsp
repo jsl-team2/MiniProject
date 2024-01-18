@@ -62,7 +62,7 @@
 			<form name="order" id="order">
 				<input type="hidden" name="product_no" value="${vo.product_no}">
 				<input type="hidden" name="quantity" value="${vo.cart_quantity}">
-				<!-- 유저정보 히든인풋 -->
+				<input type="hidden" name="user_id" value="${user_id}">
 				<table class="table_write02" summary="제품배송을 위한 이름, 휴대전화번호, 주소">
 					<caption style="font-weight: bold; font-size: 20px; color:#000;">配送情報</caption>
 					<colgroup>

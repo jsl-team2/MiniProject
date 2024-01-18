@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 
 <!doctype html>
 <html lang="en">
@@ -17,7 +14,6 @@
 
 <title>MiniProject</title>
 
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.12.4.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -25,16 +21,15 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/index.css">
-
 <link rel="stylesheet" href="css/product.css">
-
 <link rel="stylesheet" href="css/search.css">
-
 <link rel="stylesheet" href="css/mystyle.css">
+
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/productadd.css">
 
   <link rel ="stylesheet" href="css/board.css">
+
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -56,43 +51,42 @@
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left: 20px;"
+					<span style="position: relative; left:55px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>
 			</div>
 			<div class="nav__right">
 				<ul>
-					<li><a href="productlist.do">제품목록</a></li>
-					<li><a href="#">회사정보</a></li>
-					<li><a href="/board.do">고객센터</a></li>
+					<li><a href="productlist.do">製品リスト</a></li>
+					<li><a href="/board.do">カスタマーセンター</a></li>
 					<li class="drop-down"><a href="#"
 						class="glyphicon glyphicon-user"></a>
 						<div class="drop-down__div">
 							<c:choose>
 								<c:when test="${empty user_id }">
 									<div class="first">
-										 <a href="login.do">로그인</a>
+										 <a href="login.do">ログイン</a>
 									</div>
 									<div>
-										<a href="terms.do">회원가입</a>
+										<a href="terms.do">会員加入</a>
 									</div>
 								</c:when>
 								<c:when test="${not empty user_id && user_id != 'admin' }">
 									<div class="first">
-										<a href="logout.do">로그아웃</a>
+										<a href="logout.do">ログアウト</a>
 									</div>
 									<div>
-										<a href="myorder.do">개인주문내역</a>
+										<a href="myorder.do">個人注文の内訳</a>
 									</div>
 									</c:when>
 									
 								<c:when test="${not empty user_id && user_id eq 'admin'}" >
 								<div>
-									<a href="logout.do">로그아웃</a>
+									<a href="logout.do">ログアウト</a>
 								</div>
 								<div>	
-									<a href="admin.do">관리자 페이지</a>
+									<a href="admin.do">管理者ページ</a>
 								</div>	
 								</c:when>
 							</c:choose>
