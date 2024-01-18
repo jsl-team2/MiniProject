@@ -18,7 +18,7 @@ public class BoardDao {
 
 		String sql = "insert into tbl_board (board_no, board_title, board_writer, board_content, "
 				+ " board_date, board_hits ) "
-				+ " values (tbl_board_seq.nextval,?,?,?,sysdate,0)";
+				+ " values (board_seq.nextval,?,?,?,sysdate,0)";
 
 		
 		try {
@@ -358,9 +358,9 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "insert into tbl_comment (comment_no, board_no, comment_id, comment_content, "
+		String sql = "insert into tbl_comment (comment_no, board_no, comment_id, comment_content, comment_secret, "
 				+ " comment_createdate) "
-				+ " values (tbl_comment_seq.nextval,?,?,?,sysdate)";
+				+ " values (comment_seq.nextval,?,?,?,?,sysdate)";
 
 		
 		try {
@@ -370,7 +370,7 @@ public class BoardDao {
 			pstmt.setInt(1, vo.getBoard_no());
 			pstmt.setString(2, vo.getComment_id());
 			pstmt.setString(3, vo.getComment_content());
-
+			pstmt.setInt(4, vo.getComment_secret());
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -403,6 +403,7 @@ public class BoardDao {
 				vo.setComment_no(rs.getInt("comment_no"));
 				vo.setComment_id(rs.getString("comment_id"));
 				vo.setComment_content(rs.getString("comment_content"));
+				vo.setComment_secret(rs.getInt("comment_secret"));
 				vo.setComment_createdate(rs.getString("comment_createdate"));
 				
 				
