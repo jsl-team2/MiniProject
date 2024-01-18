@@ -123,7 +123,7 @@ public class MemberDao {
 
 		System.out.println("sql 전");
 
-		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address)\r\n"
+		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address) "
 				+ " VALUES (user_seq.nextval,?,?,?,?,?,?)";
 
 		try {
