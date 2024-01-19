@@ -33,8 +33,6 @@
 
 
 
-
-
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -80,7 +78,7 @@
 										<a href="logout.do">ログアウト</a>
 									</div>
 									<div>
-										<a href="myorder.do">個人注文の内訳</a>
+										<a href="myorder.do?user_id=${user_id}">個人注文の内訳</a>
 									</div>
 									</c:when>
 									

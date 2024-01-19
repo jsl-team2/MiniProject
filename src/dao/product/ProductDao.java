@@ -846,6 +846,25 @@ public class ProductDao {
 
 	}
 	
+	public void setMYOrderCancel(int order_no) {
+
+		String sql = "update tbl_order set order_status = 'キャンセル要請中'  where order_no = ?";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, order_no);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+	}
+	
 	public int getMyOrderCount(Criteria cri, String user_id) {
 		
 		int total = 0;

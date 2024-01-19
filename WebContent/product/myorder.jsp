@@ -40,26 +40,38 @@
 						<td>${list.order_address}</td>
 						<td>${list.order_date}</td>
 						<td>${list.order_status}</td>
-						<td><a href="myorderdetail.do?order_no=${list.order_no}" class="btn btn-default" role="button">注文詳細</a></td>
+						<td><a href="myorderdetail.do?order_no=${list.order_no}"
+							class="btn btn-default" role="button">注文詳細</a>
+						<c:if test="${list.order_status eq '注文完了'}">
+							<a
+								href="myordercancel.do?order_no=${list.order_no}&user_id=${user_id}"
+								class="btn btn-default" role="button">キャンセル要請</a>
+						</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="paging" style="margin-bottom:50px;">
-				<c:if test="${page.prev }">
-					<a href="myorder.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">
-						<i class="fa  fa-angle-double-left"></i></a>
-				</c:if>
-				<c:forEach var="num" begin="${page.startPage }"
-					end="${page.endPage }">
-					<a href="myorder.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}"
-						class="${page.cri.pageNum == num?'active' : ''}">${num }</a>
-				</c:forEach>
-				<c:if test="${page.next }">
-					<a href="myorder.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}">
-						<i class="fa fa-angle-double-right"></i></a>
-				</c:if>
-			</div>
+		<div class="paging" style="margin-bottom: 50px;">
+			<c:if test="${page.prev }">
+				<a
+					href="myorder.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<i class="fa  fa-angle-double-left"></i>
+				</a>
+			</c:if>
+			<c:forEach var="num" begin="${page.startPage }"
+				end="${page.endPage }">
+				<a
+					href="myorder.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}"
+					class="${page.cri.pageNum == num?'active' : ''}">${num }</a>
+			</c:forEach>
+			<c:if test="${page.next }">
+				<a
+					href="myorder.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<i class="fa fa-angle-double-right"></i>
+				</a>
+			</c:if>
+		</div>
 	</div>
 </div>
 </body>
