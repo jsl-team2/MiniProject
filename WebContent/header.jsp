@@ -29,12 +29,14 @@
 <link rel="stylesheet" href="css/product.css">
 
 <link rel="stylesheet" href="css/search.css">
-
+ <link rel="stylesheet" href="css/terms.css">
 <link rel="stylesheet" href="css/mystyle.css">
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/productadd.css">
 
 <link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/login.css">
+
 
 
 
