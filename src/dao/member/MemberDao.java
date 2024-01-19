@@ -47,11 +47,36 @@ public class MemberDao {
 		result = 0;
 		return result;
 	}
+	
+	public String getUserName(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select user_name from tbl_user where user_id = ?";
+		String name = null;
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				name = rs.getNString("user_name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		return name;
+	}
 
 	public String emailSend(String email, HttpServletRequest request, HttpServletResponse response) {
 		String host = "smtp.naver.com";
-	      String user = utility.env.getEmail();
-	      String password = utility.env.getPw();
+
+		String user = utility.env.getEmail();
+		String password = utility.env.getPw();
+
 		String to_email = email;
 
 		Properties props = new Properties();
@@ -102,8 +127,8 @@ public class MemberDao {
 			// 제목, 수신자의 이메일 주소, 발송자의 이메일주소, 보낸날짜와 같은 실제 이메일 메세지의 세부사항을 나타낸다
 			msg.setFrom(new InternetAddress(user, "GUNTAMS")); // 보내는 사람
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email)); // 받는사람
-			msg.setSubject("거니거니가 바보임을 증명하고 있습니다."); // 메일제목
-			msg.setText("바보 인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
+			msg.setSubject("이메일 인증번호입니다."); // 메일제목
+			msg.setText("인증번호 : " + temp + "  >> 복사하여 붙여넣기 하세요");
 
 			Transport.send(msg); // 메세지 전송
 
@@ -122,7 +147,7 @@ public class MemberDao {
 
 		System.out.println("sql 전");
 
-		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address)\r\n"
+		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address) "
 				+ " VALUES (user_seq.nextval,?,?,?,?,?,?)";
 
 		try {
@@ -147,6 +172,7 @@ public class MemberDao {
 		}
 
 	}
+	
 
 	public int getMemberLogin(String id, String pw) {
 
@@ -156,8 +182,8 @@ public class MemberDao {
 
 		String sql = "select user_id,user_pw from tbl_user where user_id = ?";
 
-		int result = 0;
-
+		int result = 0; 
+			
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);

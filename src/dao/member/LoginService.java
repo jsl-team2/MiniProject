@@ -20,10 +20,11 @@ public class LoginService implements Action {
          
         MemberDao dao = new MemberDao();
         int loginResult = dao.getMemberLogin(id, pw);
-         
+        String name = dao.getUserName(id); 
         if(loginResult == 1) {
           HttpSession session = request.getSession();
           session.setAttribute("user_id", id);
+          session.setAttribute("user_name", name);
           session.setAttribute("login_msg", "로그인이 완료되었습니다.");
           session.setMaxInactiveInterval(30 * 60); // 세션 유효 시간 30분 설정
           response.sendRedirect("main.do");

@@ -17,12 +17,12 @@ public class MyOrderService implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String user = "user"; //
+		String user_id = request.getParameter("user_id"); 
 		
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		ProductDao dao = new ProductDao();
 		
-		list = dao.getMyOrder(user);
+		list = dao.getMyOrder(user_id);
 		
 		Criteria cri = new Criteria();
 		
@@ -37,8 +37,8 @@ public class MyOrderService implements Action{
 		cri.setPageNum(pageNum); // 페이지 번호
 		cri.setAmount(amount); // 페이지 번호에 해당하는 출력 레코드 개수
 
-		list = dao.getMyOrderWithPaging(cri); // 페이지에 해당하는 10개 레코드 검색
-		int tot = dao.getMyOrderCount(cri); // 총 레코드 개수
+		list = dao.getMyOrderWithPaging(cri, user_id); // 페이지에 해당하는 10개 레코드 검색
+		int tot = dao.getMyOrderCount(cri, user_id); // 총 레코드 개수
 
 		PageDto dto = new PageDto(cri, tot);
 

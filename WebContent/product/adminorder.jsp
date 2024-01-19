@@ -8,7 +8,7 @@
 			<a href="admin.do">会員照会</a>
 		</div>
 		<div>
-			<a href="admin/productmanagement.do">商品管理</a>
+			<a href="productmanagement.do">商品管理</a>
 		</div>
 		<div>
 			<a href="adminorder.do">全体注文内訳</a>
@@ -67,6 +67,7 @@
 											<option value="配送開始">配送開始</option>
 											<option value="配送中">配送中</option>
 											<option value="配送完了">配送完了</option>
+											<option value="取り消し">取り消し</option>
 										</select> <input type="hidden" id="selectedValueHidden"
 											name="selectedValueHidden" value=""> <input
 											type="hidden" id="selectedOrderNo" name="selectedOrderNo"

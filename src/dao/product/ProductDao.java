@@ -34,8 +34,8 @@ public class ProductDao {
 				vo.setProduct_ram(rs.getString("product_ram"));
 				vo.setProduct_weight(rs.getString("product_weight"));
 				vo.setProduct_battery(rs.getString("product_battery"));
-				vo.setProduct_price(rs.getInt("product_price"));
 				vo.setProduct_rdate(rs.getString("product_rdate"));
+				vo.setProduct_price(rs.getInt("product_price"));
 				list.add(vo);
 			}
 		} catch (Exception e) {
@@ -73,8 +73,8 @@ public class ProductDao {
 				vo.setProduct_ram(rs.getString("product_ram"));
 				vo.setProduct_weight(rs.getString("product_weight"));
 				vo.setProduct_battery(rs.getString("product_battery"));
-				vo.setProduct_rdate(rs.getString("product_rdate"));
 				vo.setProduct_price(rs.getInt("product_price"));
+				vo.setProduct_rdate(rs.getString("product_rdate"));
 
 				list.add(vo);
 
@@ -115,8 +115,8 @@ public class ProductDao {
 				vo.setProduct_ram(rs.getString("product_ram"));
 				vo.setProduct_weight(rs.getString("product_weight"));
 				vo.setProduct_battery(rs.getString("product_battery"));
-				vo.setProduct_rdate(rs.getString("product_rdate"));
 				vo.setProduct_price(rs.getInt("product_price"));
+				vo.setProduct_rdate(rs.getString("product_rdate"));
 
 			}
 		} catch (Exception e) {
@@ -129,15 +129,16 @@ public class ProductDao {
 
 	}
 
-	public void cartDelete(int cart_no) {
+	public void cartDelete(int cart_no, String user_id) { 
 
-		String sql = "delete from tbl_cart where cart_user = 'user' and cart_productno=?"; // user
+		String sql = "delete from tbl_cart where cart_user=? and cart_productno=?"; 
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, cart_no);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, cart_no);
 
 			pstmt.executeUpdate();
 
@@ -149,9 +150,9 @@ public class ProductDao {
 
 	}
 
-	public int getCartCheck(int product_no) {
+	public int getCartCheck(int product_no, String user_id) {
 
-		String sql = "select * from tbl_cart where cart_user='user' and cart_productno=?";
+		String sql = "select * from tbl_cart where cart_user=? and cart_productno=?"; 
 
 		int quantity = 0;
 
@@ -159,7 +160,8 @@ public class ProductDao {
 
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, product_no);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, product_no);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -183,21 +185,22 @@ public class ProductDao {
 
 	}
 
-	public void cartInsert(ProductVo vo, int quantity) {
+	public void cartInsert(ProductVo vo, int quantity, String user_id) {
 
-		String sql = "insert into tbl_cart \r\n" + "values (basket_seq.nextval, 'user', ?, ?, ?, ?, ?)"; // user
-
+		String sql = "insert into tbl_cart \r\n" + "values (cart_seq.nextval, ?, ?, ?, ?, ?, ?)";
+		
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, vo.getProduct_no());
-			pstmt.setString(2, vo.getProduct_name());
-			pstmt.setString(3, vo.getProduct_picture());
-			pstmt.setInt(4, quantity);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, vo.getProduct_no());
+			pstmt.setString(3, vo.getProduct_name());
+			pstmt.setString(4, vo.getProduct_picture());
+			pstmt.setInt(5, quantity);
 			int price = vo.getProduct_price();
 			int totprice = quantity * price;
-			pstmt.setInt(5, totprice);
+			pstmt.setInt(6, totprice);
 
 			pstmt.executeUpdate();
 
@@ -209,9 +212,9 @@ public class ProductDao {
 
 	}
 
-	public List<ProductVo> getCartAll(String user) {
+	public List<ProductVo> getCartAll(String user) { 
 
-		String sql = "select * from tbl_cart where cart_user = ?"; // user
+		String sql = "select * from tbl_cart where cart_user = ?"; 
 
 		List<ProductVo> list = new ArrayList<ProductVo>();
 
@@ -248,17 +251,16 @@ public class ProductDao {
 
 	}
 
-	public ProductVo getUserInfo() {
+	public ProductVo getUserInfo(String user_id) {
 
-		String sql = "select * from tbl_user where user_id = ?"; // user
+		String sql = "select * from tbl_user where user_id = ?"; 
 
-		String user = "user";
 		ProductVo vo = new ProductVo();
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user);
+			pstmt.setString(1, user_id);
 
 			rs = pstmt.executeQuery();
 
@@ -279,17 +281,19 @@ public class ProductDao {
 
 	}
 
-	public void orderInsert(ProductVo vo) {
+	public void orderInsert(ProductVo vo, String user_id) {
 
-		String sql = "insert into tbl_order \r\n" + " values (order_seq.nextval, 'user', ?, ?, ?, '注文完了', sysdate)"; // user
+		String sql = "insert into tbl_order \r\n" + 
+				" values (order_seq.nextval, ?, ?, ?, ?, '注文完了', sysdate)";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, vo.getOrder_name());
-			pstmt.setString(2, vo.getOrder_tel());
-			pstmt.setString(3, vo.getOrder_address());
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, vo.getOrder_name());
+			pstmt.setString(3, vo.getOrder_tel());
+			pstmt.setString(4, vo.getOrder_address());
 
 			pstmt.executeUpdate();
 
@@ -301,18 +305,20 @@ public class ProductDao {
 
 	}
 
-	public int getOrderNo() {
+	public int getOrderNo(String user_id) { 
 
 		String sql = "SELECT * \r\n" + "FROM ( \r\n" + "    SELECT * \r\n" + "    FROM tbl_order \r\n"
-				+ "    WHERE order_user = 'user' AND order_status = '注文完了' \r\n" + "    ORDER BY order_no DESC \r\n"
-				+ ") \r\n" + "WHERE ROWNUM <= 1"; // user
+				+ "    WHERE order_user = ? AND order_status = '注文完了' \r\n" + "    ORDER BY order_no DESC \r\n"
+				+ ") \r\n" + "WHERE ROWNUM <= 1"; 
 
 		int order_no = 1;
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-
+			
+			pstmt.setString(1, user_id);
+			
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -332,7 +338,7 @@ public class ProductDao {
 
 	public void orderdetailInsert(List<ProductVo> list) {
 
-		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)"; // user
+		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			for (ProductVo vo : list) {
@@ -357,7 +363,7 @@ public class ProductDao {
 
 	public void orderdetailAllInsert(List<ProductVo> list) {
 
-		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)"; // user
+		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			for (ProductVo vo : list) {
@@ -382,13 +388,13 @@ public class ProductDao {
 
 	public void cartDelete(String user) {
 
-		String sql = "delete from tbl_cart where cart_user = 'user'"; // user
+		String sql = "delete from tbl_cart where cart_user = ?";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-//			pstmt.setString(1, user);
+			pstmt.setString(1, user);
 
 			pstmt.executeUpdate();
 
@@ -404,7 +410,7 @@ public class ProductDao {
 
 		String sql = "SELECT * FROM (SELECT rownum rn, product_no, product_name, product_picture, \r\n" + 
 				"    product_display, product_capacity, product_camera, product_color, product_ram, \r\n" + 
-				"    product_weight, product_battery, product_rdate, product_price \r\n" + 
+				"    product_weight, product_battery, product_price, product_rdate \r\n" + 
 				"    FROM tbl_product WHERE product_name LIKE '%" + cri.getKeyword() + "%' and rownum <= ? * ?) \r\n" + 
 				"    WHERE rn > (? - 1) * ?";
 		
@@ -445,16 +451,16 @@ public class ProductDao {
 
 	}
 
-	public List<ProductVo> getMyOrder(String user) {
+	public List<ProductVo> getMyOrder(String user_id) {
 
-		String sql = "select * from tbl_order where order_user = ?"; // user
+		String sql = "select * from tbl_order where order_user = ?"; 
 
 		List<ProductVo> list = new ArrayList<ProductVo>();
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user);
+			pstmt.setString(1, user_id);
 
 			rs = pstmt.executeQuery();
 
@@ -672,7 +678,7 @@ public class ProductDao {
 
 	public void setAdminOrderStatus(int order_no, String order_status) {
 
-		String sql = "update tbl_order set order_status = ? where order_no = ?"; // user
+		String sql = "update tbl_order set order_status = ? where order_no = ?";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
@@ -694,7 +700,7 @@ public class ProductDao {
 
 		String sql = "SELECT * FROM (SELECT rownum rn, product_no, product_name, product_picture, " +
 	             "product_display, product_capacity, product_camera, product_color, product_ram, " +
-	             "product_weight, product_battery, product_rdate, product_price FROM tbl_product " +
+	             "product_weight, product_battery, product_price, product_rdate FROM tbl_product " +
 	             "WHERE rownum <= ? * ?) WHERE rn > (? - 1) * ?";
 
 		List<ProductVo> list = new ArrayList<ProductVo>();
@@ -793,15 +799,13 @@ public class ProductDao {
 
 	}
 	
-	public List<ProductVo> getMyOrderWithPaging(Criteria cri) {
+	public List<ProductVo> getMyOrderWithPaging(Criteria cri, String user_id) {
 
 		String sql = "SELECT * FROM (SELECT rownum rn, order_no, order_user, order_name,\r\n" + 
 				"    order_tel, order_address, order_status, order_date \r\n" + 
 				"    FROM tbl_order WHERE rownum <= ? * ? ORDER BY order_no DESC) WHERE rn > (? - 1) * ? \r\n" + 
 				"    and order_user=? order by order_no desc"; 
 
-		String user = "user"; // user
-		
 		List<ProductVo> list = new ArrayList<ProductVo>();
 
 		try {
@@ -811,7 +815,7 @@ public class ProductDao {
 			pstmt.setInt(2, cri.getAmount());
 			pstmt.setInt(3, cri.getPageNum());
 			pstmt.setInt(4, cri.getAmount());
-			pstmt.setString(5, user);
+			pstmt.setString(5, user_id);
 
 			rs = pstmt.executeQuery();
 
@@ -842,18 +846,35 @@ public class ProductDao {
 
 	}
 	
-	public int getMyOrderCount(Criteria cri) {
+	public void setMYOrderCancel(int order_no) {
+
+		String sql = "update tbl_order set order_status = 'キャンセル要請中'  where order_no = ?";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, order_no);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+
+	}
+	
+	public int getMyOrderCount(Criteria cri, String user_id) {
 		
 		int total = 0;
 		
 		String sql = "select count(*) as total from tbl_order WHERE order_user LIKE ?";
 		
-		String user = "user";
-		
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user);
+			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				total = rs.getInt("total");
