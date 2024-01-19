@@ -13,14 +13,16 @@
 
 	<div class="col-lg-12">
 		<div style="text-align: center; margin-bottom: 30px;">
-			<a href="javascript:void(0);" id="btnS23"
-				class="btn btn-default btn-lg" role="button" style="width: 200px;"
-				onclick="selectButton('S23')">S23</a> <a href="javascript:void(0);"
-				id="btnFlip" class="btn btn-default btn-lg" role="button"
-				style="width: 200px;" onclick="selectButton('Flip')">Flip</a> <a
-				href="javascript:void(0);" id="btnFold"
-				class="btn btn-default btn-lg" role="button" style="width: 200px;"
+			<a href="javascript:void(0);" id="btnS24" class="btn btn-default btn-lg" role="button" style="width: 200px;"
+				onclick="selectButton('S24')">S24</a> 
+			<a href="javascript:void(0);" id="btnS23" class="btn btn-default btn-lg" role="button" style="width: 200px;"
+				onclick="selectButton('S23')">S23</a> 
+			<a href="javascript:void(0);" id="btnFlip" class="btn btn-default btn-lg" role="button" style="width: 200px;" 
+				onclick="selectButton('Flip')">Flip</a>
+			<a href="javascript:void(0);" id="btnFold" class="btn btn-default btn-lg" role="button" style="width: 200px;"
 				onclick="selectButton('Fold')">Fold</a>
+			<a href="javascript:void(0);" id="btnS9" class="btn btn-default btn-lg" role="button" style="width: 200px;"
+				onclick="selectButton('S23')">S9</a> 	
 		</div>
 		<div><p><span>${tot }</span> 個</p></div>
 		<div class="row">
@@ -65,10 +67,11 @@
 <script>
 	function selectButton(selectedButton) {
 		// 모든 버튼의 스타일 초기화
+		document.getElementById('btnS24').classList.remove('active');
 		document.getElementById('btnS23').classList.remove('active');
 		document.getElementById('btnFlip').classList.remove('active');
 		document.getElementById('btnFold').classList.remove('active');
-
+		document.getElementById('btnS9').classList.remove('active');
 		// 선택한 버튼에 스타일 추가
 		document.getElementById('btn' + selectedButton).classList.add('active');
 
