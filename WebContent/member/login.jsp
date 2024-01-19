@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/login.css">
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-</head>
+<%@ include file="/header.jsp" %>
 
-<body>
-
+<div class="container1">
 <section class="login-form">
   <h1>Welcome</h1>
   <form name="login" action="loginpro.do" method="post" onsubmit="javascript:fn_login();">
@@ -30,47 +22,70 @@
     <a href="terms.do">Would you like to sign up as a member?</a>
   </div>
 </section>
-
+</div>
 <script>
 
 
-$(document).ready(function () {
-	  let id = $('#id');
-	  let pw = $('#pw');
-	  let btn = $('.btn-area button');
+document.addEventListener('DOMContentLoaded', function () {
+    // "모두 동의" 체크박스
+    const checkAllCheckbox = document.getElementById('checkAll');
 
-	  if ($(id).val() === "" || $(pw).val() === "") {
-	    $(id).next('label').addClass('warning');
-	    $(pw).next('label').addClass('warning');
-	    setTimeout(function () {
-	      $('label').removeClass('warning');
-	    }, 1500);
-	  } else {
-	    // 아이디와 비밀번호가 모두 입력된 경우
-	    $.ajax({
-	      url: '/loginpro.do',
-	      data: {
-	        id: $(id).val(),
-	        pw: $(pw).val()
-	      },
-	      dataType: 'json',
-	      success: function (data) {
-	        if (data.result === 'success') {
-	          // 로그인 성공
-	          location.href = '/main.do';
-	        } else {
-	          // 로그인 실패
-	          alert('아이디 또는 비밀번호가 틀렸습니다.');
-	        }
-	      }
-	    });
-	  }
-	});
+    // "필수" 동의 체크박스들
+    const requiredCheckboxes = document.querySelectorAll('.terms__list .required');
+
+    // "프로모션 정보 수신 동의" 체크박스
+    const allowPromotionsCheckbox = document.getElementById('allowPromotions');
+
+    // 확인 버튼
+    const submitButton = document.querySelector('.next-button');
+
+    // "모두 동의" 체크박스의 변경 이벤트에 대한 핸들러 등록
+    checkAllCheckbox.addEventListener('change', function () {
+        // "모두 동의" 체크박스의 상태에 따라 "필수" 동의 체크박스들을 업데이트
+        requiredCheckboxes.forEach(checkbox => {
+            checkbox.checked = checkAllCheckbox.checked;
+        });
+
+        // "프로모션 정보 수신 동의" 체크박스도 업데이트
+        allowPromotionsCheckbox.checked = checkAllCheckbox.checked;
+
+        // 확인 버튼의 활성화/비활성화 상태 업데이트
+        submitButton.disabled = !checkAllCheckbox.checked || !areAllRequiredChecked();
+    });
+
+    // "필수" 동의 체크박스들의 변경 이벤트에 대한 핸들러 등록
+    requiredCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            // "모두 동의" 체크박스의 상태 업데이트
+            checkAllCheckbox.checked = areAllRequiredChecked();
+
+            // "프로모션 정보 수신 동의" 체크박스도 업데이트
+            allowPromotionsCheckbox.checked = checkAllCheckbox.checked;
+
+            // 확인 버튼의 활성화/비활성화 상태 업데이트
+            submitButton.disabled = !checkAllCheckbox.checked || !areAllRequiredChecked();
+        });
+    });
+
+    // "프로모션 정보 수신 동의" 체크박스의 변경 이벤트에 대한 핸들러 등록
+    allowPromotionsCheckbox.addEventListener('change', function () {
+        // 확인 버튼의 활성화/비활성화 상태 업데이트
+        submitButton.disabled = !checkAllCheckbox.checked || !areAllRequiredChecked();
+    });
+
+    // 초기 상태에서 확인 버튼의 상태 업데이트
+    submitButton.disabled = true;
+});
+
+// 모든 "필수" 동의 체크박스가 체크되었는지 확인하는 함수
+function areAllRequiredChecked() {
+    return [...requiredCheckboxes].every(checkbox => checkbox.checked);
+}
+
 
 </script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-1.12.4.min.js"></script>
-</body>
-</html>
+<%@ include file="/footer.jsp" %>

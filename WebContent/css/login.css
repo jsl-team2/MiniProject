@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 }
 
-body {
+.container1 {
 	font-family:'Noto Sans KR', sans-serif;
 	display: flex;
 	justify-content: center;
@@ -19,15 +19,15 @@ body {
     font-weight: bold;
     margin-top: 10px;
 }
-body::before {
+.container1::before {
 	content: "";
-	position: absolute;
+	position: relative;
 	z-index: 1;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, .3);
+	background-color: rgba(0, 0, 0, .0);
 }
 
 .login-form {
@@ -100,7 +100,7 @@ body::before {
 	text-align: center;
 }
 .caption a {
-	font-size:15px; color:#999;
+	font-size:15px; color:#fff;
 	text-decoration: none;
 	background-color: transparent;
 	

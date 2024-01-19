@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link href="css/singup.css" rel="stylesheet">
+	<%@ include file="/header.jsp" %>
+
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- sub contents -->
 <div class="sub_title">
@@ -65,8 +66,6 @@
 								
 									<select class="form-control" name="phone1" required	id="selectPhone" style="width: 9%; display: inline-block;">
 										<option value="010">010</option>
-										<option value="011">011</option>
-										<option value="012">012</option>
 									</select> 
 									
 									- 
@@ -89,14 +88,20 @@
 						</td>
 					</tr>
 					<tr>
-						<th><label for="email">이메일<span class="must"><b>필수입력</b></span></label></th>
-						<td><input type="email" name="email" id="email" class="w300"
-							placeholder="이메일 주소입력"> <input type="button"
-							id="btn_email" class="btn_email" value="인증번호전송">
-							<p id="emailmsg"></p> <input type="password" name="certinumber"
-							id="certinumber" class="w300" placeholder="인증번호"> <input
-							type="button" id="email_ok" value="인증번호확인"></td>
-					</tr>
+    <th><label for="email">이메일<span class="must"><b>필수입력</b></span></label></th>
+    <td>
+        <input type="email" name="email" id="email" class="w300" placeholder="이메일 주소입력">@
+        <select class="form-control" name="emailDomain" required id="selectEmail" style="width: 9%; display: inline-block;">
+            <option value="naver.com">naver.com</option>
+            <option value="nate.com">nate.com</option>
+            <option value="google.com">google.com</option>
+        </select>
+        <input type="button" id="btn_email" class="btn_email" value="인증번호전송">
+        <p id="emailmsg"></p>
+        <input type="password" name="certinumber" id="certinumber" class="w300" placeholder="인증번호">
+        <input type="button" id="email_ok" value="인증번호확인">
+    </td>
+</tr>
 			</table>
 			<div class="btnArea Acenter pt60 pb100">
 				<a href="javascript:history.go(-1);"
@@ -346,9 +351,7 @@ $("#btn_email").on("click", function(){
  	 })
 });
 </script>
-<footer>Copyright&copy;Start with this basic HTML template, or
-	modify these examples. We hope you'll customize our templates and
-	examples, adapting them to suit your needs.</footer>
+<%@ include file="/footer.jsp" %>
 <script src="js/bootstrap.min.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.12.4.min.js"></script>

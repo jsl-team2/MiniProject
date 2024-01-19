@@ -1,94 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
- pageEncoding="EUC-KR"%>
- <link rel="stylesheet" href="css/mystyle.css">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/mystyle.css">
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap -->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-    
-  </head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-function chk(){
- var req = document.form.req.checked;
- var num = 0;
- if(req == true){
-  num = 1;
- }
- if(num==1){
-  document.form.submit();
- }else{
-  alert("�������� ����� �����ϼž� �մϴ�.");
- }
-}
-function nochk(){
- alert("�������� ������ �����Ͻ� �� �����ϴ�");
-location.href="../index.jsp";}
-</script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ȸ������ â</title>
+<title>Parcel Sandbox</title>
+<meta charset="UTF-8" />
 </head>
+<div class="logoterms">
+	<h1>弱冠</h1>
+</div>
 <body>
-<form action="join.do" name="form" method="post">
- <table width="1500px" height="650px" text-align="center">
-  <tr>
-   <td width="100%" height="10%"><span style="padding-left: 0px"><img
-    align="middle"></span>&nbsp; <h2 style= "text-align: center ">ȸ������</h2>
-   </td>
-  </tr>
-  <tr>
-   <td width="100%" height="50%" align="center">
-   <h3 style="text-align:center">�������</h3>
-   <textarea
-     rows="20" cols="150">��. �����ϴ� ���������� �׸�ù°, ȸ��� ȸ���� ��, ��Ȱ�� �������, ���� ������ ������ ���� ���� ȸ������ ��� �Ʒ��� ���� �ּ����� ���������� �ʼ��׸����� �����ϰ� �ֽ��ϴ�.
-ȸ������
-- �̸�, �������, ����, ���̵�, ��й�ȣ, ����, ����ó(�����ּ�, �޴��� ��ȣ �� ����), ������������
-��14�� �̸� �Ƶ� ȸ������
-- �̸�, �������, ����, �����븮�� ����, ���̵�, ��й�ȣ, ����ó (�����ּ�, �޴��� ��ȣ �� ����), ������������
-��ü���̵� ȸ������
-- ��ü���̵�, ȸ���, ��ǥ�ڸ�, ��ǥ ��ȭ��ȣ, ��ǥ �̸��� �ּ�, ��ü�ּ�, ������ ���̵�, ������ ����ó, ������ �μ�/����
-- �����׸� : ��ǥ Ȩ������, ��ǥ �ѽ���ȣ
-��°, ���� �̿�����̳� ���ó�� �������� �Ʒ��� ���� �������� �ڵ����� �����Ǿ� ������ �� �ֽ��ϴ�.
-- IP Address, ��Ű, �湮 �Ͻ�, ���� �̿� ���, �ҷ� �̿� ���
-��°, ���̹� ���̵� �̿��� �ΰ� ���� �� ����� ���� �̿� �Ǵ� �̺�Ʈ ���� �������� �ش� ������ �̿��ڿ� ���ؼ��� �������� �߰� ������ �߻��� �� ������, �̷��� ��� ������ ���Ǹ� �޽��ϴ�.
-��°, ����������, ����/���� �� �Ϻ� ���� �̿�� ���� ���� �ؼ��� ���� ���������� �ʿ��� ���, �Ʒ��� ���� �������� ������ �� �ֽ��ϴ�.
-- �̸�, �������, ����, �ߺ�����Ȯ������(DI), ��ȣȭ�� ������ �ĺ�����(CI), �޴��� ��ȣ(����), ������ ��ȣ(������ �̿��), ��/�ܱ��� ����
-�ټ�°, ���� ���� �̿� �������� �Ʒ��� ���� ���� �������� ������ �� �ֽ��ϴ�.
-- �ſ�ī�� ������ : ī����, ī���ȣ ��
-- �޴���ȭ ������ : �̵���ȭ��ȣ, ��Ż�, �������ι�ȣ ��
-- ������ü�� : �����, ���¹�ȣ ��
-- ��ǰ�� �̿�� : ��ǰ�� ��ȣ
-��. �������� �������ȸ��� ������ ���� ������� ���������� �����մϴ�.
-- Ȩ������, ������, �ѽ�, ��ȭ, ��� �Խ���, �̸���, �̺�Ʈ ����, ��ۿ�û
-- ����ȸ��κ����� ����
-- �������� ���� ���� ���� ����
-   </textarea>
-   <br>
-   <input type="checkbox" name="req"> �������� ���� �� �̿뿡 �����մϴ�.
-   </td>
-  </tr>
-  <tr>
-   <td align="center" valign="top">
-    <input type="button" value="����" onclick="chk()"/>&nbsp;&nbsp;&nbsp;
-    <input type="button" value="�������� �ʽ��ϴ�" onclick="nochk()"/>
-   </td>
-  </tr>
- </table>
-</form>
+	<div class="wrap">
+		<div class="contents">
+			<form action="/join.do" method="POST" id="form__wrap">
+				<div class="terms__check__all">
+					<label for="checkAll"> 利用弱冠、個人情報の収集·利用、プロモーション情報の受信(選択)にすべて
+						同意します。</label> <input type="checkbox" name="checkAll" id="checkAll">
+				</div>
+				<ul class="terms__list">
+					<li class="terms__box">
+						<div class="input__check">
+							<input type="checkbox" name="agreement" id="termsOfService"
+								value="termsOfService" class="required" /> <label
+								for="termsOfService" class="required">利用約款同意 </label>
+						</div>
+						<div class="terms__content">皆さんを歓迎します。 galaxy サービス及び製品（以下
+「サービス」）をご利用いただきありがとうございます。 本約款は、様々なGalaxyサービスの利用に関連して、Galaxyサービスを
+提供するgalaxy株式会社（以下「galaxy」という。）と、それを利用するgalaxyサービス会員（以下「会員」という。）又は
+非会員との関係を説明するとともに、皆様のGalaxyサービス利用に役立つ有益な情報を含め
+あります. galaxyサービスをご利用いただくか、galaxyサービス会員としてご登録いただく場合、皆様は本約款および関連
+運営ポリシーを確認したり同意したりすることになりますので、しばらくお時間を割いて、注意深くご覧ください。</div>
+					</li>
+					<li class="terms__box">
+						<div class="input__check">
+							<input type="checkbox" name="agreement" id="privacyPolicy"
+								value="privacyPolicy" class="required" /> <label
+								for="privacyPolicy" class="required"> 個人情報の収集及び利用に関する同意 </label>
+						</div>
+						<div class="terms__content">個人情報保護法に基づき、Galaxyに会員登録を申請する
+方に収集する個人情報の項目、個人情報の収集及び利用目的、個人情報の保有及び利用期間、同意拒否権及び同意
+拒否時の不利益に関する事項をご案内いたしますので、詳しくお読みの上、同意してください。1. 収集する個人情報利用者は
+会員登録をしなくても情報検索、ニュース表示など大部分のネイバーサービスを会員と同じように利用することができます。
+利用者がメール、カレンダー、カフェ、ブログなどのように個人化または会員制サービスを利用するために会員登録をする場合、
+ネイバーはサービス利用のために必要最小限の個人情報を収集します。</div>
+					</li>
+					<li class="terms__box">
+						<div class="input__check">
+							<input type="checkbox" name="agreement" id="allowPromotions"
+								value="allowPromotions" /> <label for="allowPromotions"
+								class="required promotion">プロモーション情報の受信同意 </label>
+						</div>
+						<div class="terms__content">galaxyが提供するイベント/特典など様々な情報を
+携帯電話(Galaxyアプリの通知またはメッセージ)、Eメールで受け取ることができます。 一部のサービス(別途会員制で運営したり
+galaxy加入後、追加加入して利用するサービスなど)の場合、個別サービスに対して別途受信同意を受けることができる
+あり、この際にも受信同意について別途ご案内し同意を得ます ネイバーはサービス利用のために必要最小限の個人情報を収集します。</div>
+					</li>
+				</ul>
+				<button type="submit" class="next-button" disabled>確認</button>
+			</form>
+		</div>
+	</div>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		// "모두 동의" 체크박스
+		const checkAllCheckbox = document.getElementById('checkAll');
+
+		// "필수" 동의 체크박스들
+		const requiredCheckboxes = document.querySelectorAll('.terms__list .required');
+
+		// "프로모션 정보 수신 동의" 체크박스
+		const allowPromotionsCheckbox = document.getElementById('allowPromotions');
+
+		// 확인 버튼
+		const submitButton = document.querySelector('.next-button');
+
+		// "모두 동의" 체크박스의 변경 이벤트에 대한 핸들러 등록
+		checkAllCheckbox.addEventListener('change', function () {
+		// "모두 동의" 체크박스의 상태에 따라 "필수" 동의 체크박스들과 "프로모션 정보 수신 동의" 체크박스들을 업데이트
+		requiredCheckboxes.forEach(checkbox => {
+			checkbox.checked = checkAllCheckbox.checked;
+		});
+
+		// "프로모션 정보 수신 동의" 체크박스도 업데이트
+		allowPromotionsCheckbox.checked = checkAllCheckbox.checked;
+
+		// 확인 버튼을 활성화
+		submitButton.disabled = !checkAllCheckbox.checked;
+		});
+
+		// "이용약관" 체크박스의 변경 이벤트에 대한 핸들러 등록
+		termsOfService.addEventListener('change', function () {
+		// "이용약관" 체크박스의 상태에 따라 확인 버튼의 활성화/비활성화 상태 업데이트
+		checkRequiredCheckboxes();
+		});
+
+		// "개인정보 수집 및 이용" 체크박스의 변경 이벤트에 대한 핸들러 등록
+		privacyPolicy.addEventListener('change', function () {
+		// "개인정보 수집 및 이용" 체크박스의 상태에 따라 확인 버튼의 활성화/비활성화 상태 업데이트
+		checkRequiredCheckboxes();
+		});
+
+		// "프로모션 정보 수신 동의" 체크박스의 변경 이벤트에 대한 핸들러 등록
+		allowPromotionsCheckbox.addEventListener('change', function () {
+		// "프로모션 정보 수신 동의" 체크박스의 상태에 따라 확인 버튼의 활성화/비활성화 상태 업데이트
+		checkRequiredCheckboxes();
+		});
+
+		function checkRequiredCheckboxes() {
+		  // "이용약관" 체크박스와 "개인정보 수집 및 이용" 체크박스 중 하나 이상이 체크되어 있는지 확인
+		  const bothChecked = (
+		    termsOfService.checked && privacyPolicy.checked
+		  ) || checkAllCheckbox.checked;
+
+		  submitButton.disabled = !bothChecked;
+
+
+		  // 모두 동의 체크박스가 체크되어 있지 않은 경우 확인 버튼을 비활성화
+
+		  // "이용약관" 체크박스와 "개인정보 수집 및 이용" 체크박스 모두 체크되었을 때 확인 버튼을 클릭
+		  if (
+		    termsOfService.checked &&
+		    privacyPolicy.checked
+		  ) {
+		  }
+		}
+	});
+	</script>
 </body>
 </html>
+<%@ include file="/footer.jsp"%>
+<script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-1.12.4.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
