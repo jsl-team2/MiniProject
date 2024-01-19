@@ -34,6 +34,7 @@
 					</tr>
 				</thead>
 				<tbody>
+				
 					<c:forEach var="list" items="${list}" varStatus="loopStatus">
 						<tr>
 							<td><img src="images/product/${list.cart_picture}" alt=""
@@ -48,6 +49,7 @@
 							</c:if>
 						</tr>
 						<c:set var="totalPrice" value="${totalPrice + list.cart_price}" />
+						<c:set var="bno" value="${bno+1}"/>
 					</c:forEach>
 					<tr>
 						<td><img src="images/product/cart.png" alt=""
@@ -134,7 +136,7 @@
 			</form>
 		</div>
 		<div style="margin: 20px; text-align: center;">
-			<a class="btn btn-default btn-lg" href="javascript:fn_order();">決済する</a>
+			<button type="submit" class="btn btn-default btn-lg" onclick="fn_order(${totalPrice},'${user_name }','${list[0].cart_product}',${bno } )">決済する</button>
 		</div>
 	</div>
 </div>
@@ -199,7 +201,7 @@
 	}
 </script>
 <script>
-	function fn_order() {
+	function fn_order(price,name,productName,count) {
 		if (!order.name.value) {
 			alert("受取人を入力してください");
 			order.name.focus();
@@ -216,13 +218,27 @@
 			return false;
 		}
 
-		// 자바스크립트로 form 태그 속성을 지정할 수 있다
-		var form = document.order;
-		form.method = "post";
-		form.action = "productordercomplete.do";
-		form.submit();
 
 		var msg = "${msg}"; // 자바 속성값을 자바 변수에 저장 할 수 있다.
+		
+		IMP.init("imp44553606")
+		IMP.request_pay({
+			pg : 'kakaopay.TC0ONETIME',
+			amount : price,
+			buyer_name : name,
+			name : productName+" 외 "+count+"개"
+		}, function(response) {
+			//결제 후 호출되는 callback함수
+			if ( response.success ) { //결제 성공
+				console.log(response);
+				var form = document.order;
+				form.method = "post";
+				form.action = "productordercomplete.do";
+				form.submit();
+			} else {
+				alert('결제실패 : ' + response.error_msg);
+			}
+		})
 	}
 </script>
 <script>

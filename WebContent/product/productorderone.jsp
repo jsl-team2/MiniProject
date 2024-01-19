@@ -60,6 +60,7 @@
 
 		<div>
 			<form name="order" id="order">
+			
 				<input type="hidden" name="product_no" value="${vo.product_no}">
 				<input type="hidden" name="quantity" value="${vo.cart_quantity}">
 				<input type="hidden" id="user_id" name="user_id" value="${user_id}">
@@ -132,7 +133,7 @@
 			</form>
 		</div>
 		<div style="margin: 20px; text-align: center;">
-			<a class="btn btn-default btn-lg" href="javascript:fn_order();">決済する</a>
+			<button type="submit" class="btn btn-default btn-lg" onclick="fn_order(${vo.product_price},'${user_name }','${vo.product_name}')">決済する</button>
 		</div>
 	</div>
 </div>
@@ -197,7 +198,7 @@
 	}
 </script>
 <script>
-	function fn_order() {
+	function fn_order(price,name,productName) {
 		if (!order.name.value) {
 			alert("受取人を入力してください");
 			order.name.focus();
@@ -213,15 +214,34 @@
 			order.address.focus();
 			return false;
 		}
-
-		// 자바스크립트로 form 태그 속성을 지정할 수 있다
-		var form = document.order;
-		form.method = "post";
-		form.action = "productorderonecomplete.do";
-		form.submit();
-
+		
 		var msg = "${msg}"; // 자바 속성값을 자바 변수에 저장 할 수 있다.
+		
+		
+		IMP.init("imp44553606")
+		IMP.request_pay({
+			pg : 'kakaopay.TC0ONETIME',
+			amount : price,
+			buyer_name : name,
+			name : productName
+		}, function(response) {
+			//결제 후 호출되는 callback함수
+			if ( response.success ) { //결제 성공
+				console.log(response);
+				var form = document.order;
+				form.method = "post";
+				form.action = "productorderonecomplete.do";
+				form.submit();
+			} else {
+				alert('결제실패 : ' + response.error_msg);
+			}
+		})
+		
+		
 	}
+	
+	
+	
 </script>
 <script>
 	//체크박스 상태에 따라 수정 가능한 테이블을 표시하거나 숨김
