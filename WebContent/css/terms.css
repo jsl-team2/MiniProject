@@ -1,0 +1,161 @@
+/* 전체 페이지 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.wrap {
+    max-width: 800px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* 중앙 정렬을 위한 스타일 */
+}
+
+.logoterms h1 {
+    color: #333;
+    font-size: 36px;
+    font-weight: bold; /* 굵게 */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logo h1 {
+    display: block;
+    font-size: 36px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+/* .contents 스타일 */
+.contents {
+  padding: 20px;
+}
+
+/* .terms__check__all 스타일 */
+.terms__check__all {
+    margin-left: 3px;
+    text-decoration: underline;
+}
+.termsOfService{
+	margin-left: 3px;
+    text-decoration: underline;
+	background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+.checkAll{
+	margin-left: 3px;
+    text-decoration: underline;
+	background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+.terms__check__all label {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  border: initial;
+  margin-left: 3px;
+  text-decoration: underline;
+  margin-bottom:20px;
+  margin-top: 40px;
+}
+
+/* .terms__list 스타일 */
+.terms__list {
+  list-style: none;
+  padding: 0;
+}
+
+/* .terms__box 스타일 */
+.terms__box {
+  margin-bottom: 20px;
+}
+
+/* .input__check 스타일 */
+.input__check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input__check input {
+  margin-right: 10px;
+}
+
+.input__check label {
+  color: #333;
+  font-size: 14px;
+}
+
+/* .terms__content 스타일 */
+.terms__content {
+	margin-bottom: 30px;
+    height: 100px;
+    width: 100%;
+    overflow:auto;
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid #dadada;
+    background: #fff;
+    font-size: 12px;
+}
+
+.next-button {
+      width: 100%;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+     border-radius: 10px;
+    background-color: #242222;
+    color: #ffffff;
+    margin-bottom: 30px;
+ 	 margin-top: 20px;
+}
+
+.next-button:disabled {
+	height: 40px;
+	width: 100%;
+	outline: none;
+  background-color: #0086ff;
+ cursor: pointer;;
+ border: none;
+ border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  transition-duration: 0.2s;
+}
+label.required::after {
+    margin-left: 4px;
+    font-size: 13px;
+    font-weight: 30px;
+    line-height: 24px;
+    color: #0086ff;
+    content: "(必須)";
+}
+
+label.promotion::after {
+    margin-left: 4px;
+    font-size: 13px;
+    font-weight: 200px;
+    line-height: 30px;
+    color: #ff8040;
+    content: "(選択)";
+}
