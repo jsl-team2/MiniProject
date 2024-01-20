@@ -39,7 +39,8 @@ public class ProductListMenuService implements Action {
 		int tot = dao.getProductMenuCount(cri); // 총 레코드 개수
 
 		PageDto dto = new PageDto(cri, tot);
-
+		
+		request.setAttribute("keyword", keyword);
 		request.setAttribute("list", list);
 		request.setAttribute("page", dto);
 		request.setAttribute("tot", tot);

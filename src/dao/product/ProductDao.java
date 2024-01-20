@@ -27,6 +27,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -66,6 +67,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -108,6 +110,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
