@@ -466,7 +466,6 @@ public class Controller extends HttpServlet {
 		if (path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request, response);
-
 		}
 	}
 }
