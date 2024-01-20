@@ -68,7 +68,6 @@
 		document.getElementById('btnS23').classList.remove('active');
 		document.getElementById('btnFlip').classList.remove('active');
 		document.getElementById('btnFold').classList.remove('active');
-		document.getElementById('btnS9').classList.remove('active');
 
 		// 선택한 버튼에 스타일 추가
 		document.getElementById('btn' + selectedButton).classList.add('active');
