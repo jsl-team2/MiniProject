@@ -47,11 +47,35 @@ public class MemberDao {
 		result = 0;
 		return result;
 	}
+	
+	public String getUserName(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select user_name from tbl_user where user_id = ?";
+		String name = null;
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				name = rs.getNString("user_name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
+		return name;
+	}
 
 	public String emailSend(String email, HttpServletRequest request, HttpServletResponse response) {
 		String host = "smtp.naver.com";
-		String user = "tnsdl3000@naver.com";
-		String password = "dkssudgktka12!";
+
+		String user = utility.env.getEmail();
+		String password = utility.env.getPw();
 
 		String to_email = email;
 
@@ -123,7 +147,7 @@ public class MemberDao {
 
 		System.out.println("sql 전");
 
-		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address)\r\n"
+		String sql = "insert INTO tbl_user (user_no, user_id, user_pw,user_name,user_phone,user_email,user_address) "
 				+ " VALUES (user_seq.nextval,?,?,?,?,?,?)";
 
 		try {
@@ -148,6 +172,7 @@ public class MemberDao {
 		}
 
 	}
+	
 
 	public int getMemberLogin(String id, String pw) {
 

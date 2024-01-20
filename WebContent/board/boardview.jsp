@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <%@ include file="/header.jsp"%>
 
 <div class="container-fluid subvisual ">
@@ -57,7 +57,21 @@
 	<c:forEach var="Clist" items="${Clist }">
 		<tr>
 			<td>${Clist.comment_id}</td>
-			<td>${Clist.comment_content}</td>
+			
+			<td>
+			<c:if test="${Clist.comment_secret eq 1}">
+			 <c:choose>
+                <c:when test="${Clist.comment_id eq user_id || user_id eq 'asdf'}">
+                    <c:out value="${Clist.comment_content}"/>
+                </c:when>
+                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
+            </c:choose>
+			</c:if>
+			<c:if test="${Clist.comment_secret eq 0}" >
+            <c:out value="${Clist.comment_content}"/>
+        </c:if>
+			</td>
+			
 			<td>${Clist.comment_createdate.substring(0,10) }</td>
 			<td>
 
@@ -88,7 +102,7 @@
 						<input type="hidden" name="comment_no"
 							value="${Clist.comment_no }">
 						<textarea rows="3" name="reContent" class="form-control">${Clist.comment_content }</textarea>
-						<input type="hidden" name="reMemId" value="mini14">
+						<input type="hidden" name="reMemId" value="${user_id }">
 						<input type="hidden" name="board_no"
 							value="${Clist.board_no}"> <input type="hidden"
 							name="redate" value="${Clist.comment_createdate }">
@@ -120,7 +134,7 @@
 			<form name="commentList" action="commentinsert.do" method="post"
 				onsubmit="return check();">
 				<input type="hidden" name="board_no" value="${view.board_no }">
-				<input type="hidden" name="comment_id" value="mini14">
+				<input type="hidden" name="comment_id" value="${user_id }">
 
 				<div class="form-group">
 					<label class="col-sm-2  control-label"
@@ -132,14 +146,16 @@
 						<button id="comment_regist" type="submit"
 							class="btn btn-sm btn-list1"
 							style="font-size: 15px; background: #007dc6;">등록</button>
-						<input class="form-check-input" type="checkbox" name="secret"
-							id="secret"> <label class="form-check-label">비밀글설정</label>
+						<input type="hidden" name="comment_secret" value="0"> <!-- 기본값을 0으로 설정 -->
+           				<input class="form-check-input" type="checkbox" name="comment_secret" 
+           				id="comment_secret_checkbox" value="1"> 
+						<label class="form-check-label">비밀글설정</label>
 					</div>
 				</div>
 			</form>
-		</div>
-	</div>
-</div>
+    	</div>
+     </div>
+    </div>
 
 
 
@@ -180,10 +196,25 @@
 		}
 
 		var content = document.getElementById("reContent");
-		commentmodify.reContent.value = content.value.replace(/(\n|\r\n)/g,
-				'<br>');
+		commentmodify.reContent.value = content.value.replace(/(\n|\r\n)/g,'<br>');
 		return true;
 	}
+</script>
+
+<script>
+function check() {
+    // 비밀글 체크박스의 값 설정
+    var checkbox = document.getElementById("comment_secret_checkbox");
+    if (checkbox.checked) {
+        checkbox.value = 1;
+    } else {
+        checkbox.value = 0;
+    }
+
+    // 폼이 제출될 때 호출되는 함수
+    // 여기서 필요한 추가적인 유효성 검사 등을 수행할 수 있습니다.
+    return true; // 무조건 true를 리턴하면 폼이 제출됩니다.
+}
 </script>
 
 <script>
@@ -198,7 +229,5 @@
 		document.getElementById(selectedOrderNo).style.display = "none";
 	}
 </script>
-
-
 
 <%@ include file="/footer.jsp"%>

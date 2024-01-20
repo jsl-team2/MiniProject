@@ -15,6 +15,7 @@ public class MemberLogoutService implements Action {
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("user_id"); //userid 세션 속성만 삭제 
+		session.removeAttribute("user_name"); //username 세션 속성만 삭제 
 		String user_id = (String)request.getSession().getAttribute("user_id");
 		if(user_id == null) {
 			System.out.println("로그아웃 성공");

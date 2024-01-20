@@ -16,6 +16,7 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Bootstrap -->
@@ -23,14 +24,18 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/search.css">
+ <link rel="stylesheet" href="css/terms.css">
 <link rel="stylesheet" href="css/mystyle.css">
 
 <link rel="stylesheet" href="css/admin.css">
+
+<link rel="stylesheet" href="css/login.css">
+
+
 <link rel="stylesheet" href="css/productadd.css">
 
+
   <link rel ="stylesheet" href="css/board.css">
-
-
 
 
 
@@ -79,7 +84,7 @@
 										<a href="logout.do">ログアウト</a>
 									</div>
 									<div>
-										<a href="myorder.do">個人注文の内訳</a>
+										<a href="myorder.do?user_id=${user_id}">個人注文の内訳</a>
 									</div>
 									</c:when>
 									

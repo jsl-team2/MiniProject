@@ -14,11 +14,12 @@ public class BoardCommentInsertService {
 		String board_no = request.getParameter("board_no");
 		String content = request.getParameter("content");
 		String id = request.getParameter("comment_id");
-
+		int secret = Integer.parseInt(request.getParameter("comment_secret"));
 		
 		vo.setBoard_no(Integer.parseInt(board_no));
 		vo.setComment_content(content);
 		vo.setComment_id(id);
+		vo.setComment_secret(secret);
 		
 		BoardDao dao = new BoardDao();
 		 
