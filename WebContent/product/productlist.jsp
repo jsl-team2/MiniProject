@@ -21,8 +21,6 @@
 				onclick="selectButton('Flip')">Flip</a>
 			<a href="javascript:void(0);" id="btnFold" class="btn btn-default btn-lg" role="button" style="width: 200px;"
 				onclick="selectButton('Fold')">Fold</a>
-			<a href="javascript:void(0);" id="btnS9" class="btn btn-default btn-lg" role="button" style="width: 200px;"
-				onclick="selectButton('S23')">S9</a> 	
 		</div>
 		<div><p><span>${tot }</span> 個</p></div>
 		<div class="row">
@@ -71,7 +69,6 @@
 		document.getElementById('btnS23').classList.remove('active');
 		document.getElementById('btnFlip').classList.remove('active');
 		document.getElementById('btnFold').classList.remove('active');
-		document.getElementById('btnS9').classList.remove('active');
 		// 선택한 버튼에 스타일 추가
 		document.getElementById('btn' + selectedButton).classList.add('active');
 
