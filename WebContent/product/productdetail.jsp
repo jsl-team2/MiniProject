@@ -91,7 +91,7 @@
 		</div>
 		<div>
 			<img src="images/product/${vo.product_detailpicture}" alt=""
-				style="width: 500px; height: auto;">
+				style="width: 900px; height: auto;">
 		</div>
 		<div>
 			<div class="specifications">

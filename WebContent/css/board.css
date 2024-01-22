@@ -76,7 +76,7 @@ body {
 	line-height: 20px;
 	background: transparent;
 	border: 1px solid #dadada;
-	diaplay: inline-block;
+	display: inline-block;
 }
 
 .quantity {
@@ -115,7 +115,7 @@ body {
 	text-align: center;
 }
 
-.bord_list tr,th,td{
+.bord_list tr,.bord_list th,.bord_list td{
 	border: transparent;
 }
 
@@ -454,7 +454,7 @@ div .top_menu {
   text-align: center;
 }
 
-th {
+.bord_list th {
   background-color: #0B60B0;
   color: #fff;
 }

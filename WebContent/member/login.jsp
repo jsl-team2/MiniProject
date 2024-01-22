@@ -18,7 +18,7 @@
       <button id ="btn" type="submit">LOGIN</button>
     </div>
   </form>
-  <div class="caption">
+  <div class="login__caption">
     <a href="terms.do">Would you like to sign up as a member?</a>
   </div>
 </section>

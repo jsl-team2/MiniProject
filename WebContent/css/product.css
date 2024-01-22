@@ -54,7 +54,7 @@
 	text-align: center;
 }
 
-.cart_table tr, th, td {
+.cart_table tr,.cart_table th,.cart_table td {
 	border: 1px solid #ddd;
 }
 

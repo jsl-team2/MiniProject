@@ -8,18 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="wrap" style="display: block">
+<div class="admin__wrap" style="display: block">
 
 <img style="width:40px; cursor:pointer; margin-top:20px;"src="images/admin/back-arrow.png"/ onclick="history.back()">
 <form name="productForm" method="post" action="productaddpro.do" enctype="multipart/form-data" onsubmit="return check()">
-	<ul class="menu">
+	<ul class="admin__menu">
 		<li><div>商品名</div> <input class="form-control" name="product_name" type="text"/></li>
 <div class="row" style="text-align:left;">
 <div class="col-md-4">
-<img class="display-image" id="image-preview" src="images/admin/noImage4.jpg" />
+<img class="admin__display-image" id="image-preview" src="images/admin/noImage4.jpg" />
 		</div>
 		<div class="col-md-4" style="padding-left:100px;">
-		<li><div>ディスプレー.</div> <input class="form-control" name="product_display" type="text"/></li>
+		<li><div>ディスプレー</div> <input class="form-control" name="product_display" type="text"/></li>
 		<li><div>カメラ</div> <input class="form-control" name="product_camera" type="text"/></li>
 		<li><div>容量</div> <input class="form-control" name="product_capacity" type="text"/></li>
 		</div>
@@ -33,11 +33,12 @@
 		<li><div>価格</div> <input class="form-control" name="product_price" type="text"/></li>
 		<li><div>発売日 </div><input class="form-control" name="product_rdate" type="text"/></li>
 		<li><div>写真</div><label class="input-file-button btn btn-default" for="image-input">アップロード</label> <input name="product_picture" type="file" style="display:none;"id="image-input" /></li>
+		<li><div>写真2</div><label class="input-file-button btn btn-default" for="image2-input">アップロード</label> <input name="product_picture2" type="file" style="display:none;" id="image2-input"/></li>
 	</div>
 	</div>
 	
 	</ul>
-		<input type="submit" class="product-add-btn btn btn-default" value="商品を登録する">
+		<input type="submit" class="admin__product-add-btn btn btn-default" value="商品を登録する">
 	</form>
 </div>
 </body>
