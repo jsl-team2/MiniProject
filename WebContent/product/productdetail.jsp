@@ -10,11 +10,10 @@
 
 <!-- sub contents -->
 <div class="container-fluid contents">
-	<div class="container">
-
+	<div class="container" style="text-align: center;">
 		<div class="col-lg-12">
 			<div class="productrow">
-				
+
 				<div class="col-lg-5">
 					<img src="images/product/${vo.product_picture}" alt=""
 						style="width: 500px; height: auto;">
@@ -33,38 +32,61 @@
 							<p>バッテリー: ${vo.product_battery}</p>
 							<p>色: ${vo.product_color}</p>
 						</div>
-						
+
 						<p id="price" data-price="${vo.product_price}"></p>
-						<div style="text-align:right;">
-							<button class="minus" type="button" style="width:25px; height:25px;" >-</button>
-							<input type="text" name="quantity" value="1" class="quantity" style="width:20px; height:25px;">
-							<button class="plus" type="button" style="width:25px; height:25px; margin-right:20px; margin-bottom:20px;">+</button>
+						<div style="text-align: right;">
+							<button class="minus" type="button"
+								style="width: 25px; height: 25px;">-</button>
+							<input type="text" name="quantity" value="1" class="quantity"
+								style="width: 20px; height: 25px;">
+							<button class="plus" type="button"
+								style="width: 25px; height: 25px; margin-right: 20px; margin-bottom: 5px;">+</button>
 						</div>
-						<div class="total" style="font-size:20px; font-weight:bold; text-align:center;">価格: 100,000￥ (数量: 1個)</div>
+						<div class="total"
+							style="font-size: 20px; font-weight: bold; text-align: center; color: #000;">価格:
+							100,000￥ (数量: 1個)</div>
 
-						<div style="border-radius: 15px; padding: 10px;">
-							<div>
-								<div style="text-align: center;">
-									<button class="btn btn-default btn-lg"
-										onclick="showConfirmation('${vo.product_no}')">カートに入れる</button>
-									<a href="productorderone.do?product_no=${vo.product_no}&quantity=" id="purchaseLink" class="btn btn-default btn-lg" role="button">購入する</a>
-								</div>
-								<div id="confirmationModal" class="modal" style="display: none;">
-									<div class="modal-content">
-										<p>カートに入れますか？</p>
-										<button onclick="addToCart('${vo.product_no}', true)">はい</button>
-										<button onclick="addToCart('${vo.product_no}', false)">いいえ</button>
-
+						<c:choose>
+							<c:when test="${not empty user_id}">
+								<!-- user_id가 비어있지 않은 경우 -->
+								<div style="border-radius: 15px; padding: 10px;">
+									<div>
+										<div style="text-align: center;">
+											<button class="btn btn-default btn-lg"
+												onclick="showConfirmation('${vo.product_no}')">カートに入れる</button>
+											<a
+												href="productorderone.do?product_no=${vo.product_no}&user_id=${user_id}&quantity="
+												id="purchaseLink" class="btn btn-default btn-lg"
+												role="button">購入する</a>
+										</div>
+										<div id="confirmationModal" class="modal"
+											style="display: none;">
+											<div class="modal-content">
+												<p>カートに入れますか？</p>
+												<button onclick="addToCart('${vo.product_no}', true)">はい</button>
+												<button onclick="addToCart('${vo.product_no}', false)">いいえ</button>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							</c:when>
+							<c:otherwise>
+								<!-- user_id가 비어있는 경우 -->
+								<P style="text-align: center;">会員のみ購入可能です</P>
+								<a href="/terms.do" class="btn btn-default btn-lg">会員加入</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="col-lg-1"></div>
 			</div>
-
 		</div>
+		<c:choose>
+			<c:when test="${not empty user_id}">
+				<a href="productcart.do?user_id=${user_id}" class="btn btn-default"
+					style="margin-bottom: 30px;" role="button">カート</a>
+			</c:when>
+		</c:choose>
 	</div>
 </div>
 
@@ -87,12 +109,18 @@
 			input.name = 'product_no';
 			input.value = productNo;
 			form.appendChild(input);
-			
+
 			var inputQuantity = document.createElement('input');
-	        inputQuantity.type = 'hidden';
-	        inputQuantity.name = 'quantity';
-	        inputQuantity.value = $(".quantity").val(); 
-	        form.appendChild(inputQuantity);
+			inputQuantity.type = 'hidden';
+			inputQuantity.name = 'quantity';
+			inputQuantity.value = $(".quantity").val();
+			form.appendChild(inputQuantity);
+
+			var inputUserId = document.createElement('input');
+			inputUserId.type = 'hidden';
+			inputUserId.name = 'user_id';
+			inputUserId.value = "${user_id}"; // `${user_id}`는 서버사이드에서 동적으로 값을 가져오는 방법이므로 주의 필요
+			form.appendChild(inputUserId);
 
 			document.body.appendChild(form);
 			form.submit();
@@ -103,45 +131,48 @@
 
 	// 링크에 클릭 이벤트 추가
 	purchaseLink.addEventListener('click', function(event) {
-	    // 클릭 시 수량 값을 가져와서 동적으로 링크에 추가
-	    var quantityValue = $(".quantity").val();
-	    purchaseLink.href = "productorderone.do?product_no=" + '${vo.product_no}' + "&quantity=" + quantityValue;
+		// 클릭 시 수량 값을 가져와서 동적으로 링크에 추가
+		var quantityValue = $(".quantity").val();
+		purchaseLink.href = "productorderone.do?product_no="
+				+ '${vo.product_no}' + "&user_id=" + '${user_id}'
+				+ "&quantity=" + quantityValue;
 	});
-	
 </script>
 
 <script>
-$(document).ready(function() { 
-    var total = function(n) { 
-        var price1 = document.getElementById("price");
-        var price = parseInt(price1.dataset.price); // 가격
-        var amount = $(".quantity").val(); // 수량
-        amount = parseInt(amount); // 숫자 변환
-        amount = amount + n; // 전체 수량
+	$(document).ready(
+			function() {
+				var total = function(n) {
+					var price1 = document.getElementById("price");
+					var price = parseInt(price1.dataset.price); // 가격
+					var amount = $(".quantity").val(); // 수량
+					amount = parseInt(amount); // 숫자 변환
+					amount = amount + n; // 전체 수량
 
-        if (amount < 1) {
-            amount = 1;
-            alert("1つ以上を選択してください");
-        }
+					if (amount < 1) {
+						amount = 1;
+						alert("1つ以上を選択してください");
+					}
 
-        var tot = price * amount; // 총액 = 단가 * 수량
-        $(".quantity").val(amount);
+					var tot = price * amount; // 총액 = 단가 * 수량
+					$(".quantity").val(amount);
 
-        // 정규표현식
-        var regexp = /\B(?=(\d{3})+(?!\d))/g;
-        var formattedTot = tot.toString().replace(regexp, ',');
-        $(".total").html("価格: " + formattedTot + "￥ (数量: " + amount + "個)");
-    }
+					// 정규표현식
+					var regexp = /\B(?=(\d{3})+(?!\d))/g;
+					var formattedTot = tot.toString().replace(regexp, ',');
+					$(".total").html(
+							"価格: " + formattedTot + "￥ (数量: " + amount + "個)");
+				}
 
-    // .on 마우스 이벤트 핸들러
-    $(".plus").on("click", function() {
-        total(1);
-    })
+				// .on 마우스 이벤트 핸들러
+				$(".plus").on("click", function() {
+					total(1);
+				})
 
-    $(".minus").on("click", function() {
-        total(-1);
-    })
-})
+				$(".minus").on("click", function() {
+					total(-1);
+				})
+			})
 </script>
 
 <%@ include file="/footer.jsp"%>

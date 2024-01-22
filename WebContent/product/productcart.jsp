@@ -50,7 +50,7 @@
 							<td><fmt:formatNumber value="${cart.cart_price}"
 									pattern="#,##0" var="formattedPrice" /> <span
 								style="font-size: 18px;">${formattedPrice}￥</span></td>
-							<td><a href="productcartdelete.do?product_no=${cart.cart_productno}" class="btn btn-default" role="button">削除</a></td>
+							<td><a href="productcartdelete.do?product_no=${cart.cart_productno}&user_id=${user_id}" class="btn btn-default" role="button">削除</a></td>
 						</tr>
 						<c:set var="totalPrice" value="${totalPrice + cart.cart_price}" />
 					</c:forEach>
@@ -68,7 +68,7 @@
 		</div>
 		<div style="margin: 20px; text-align: center;">
 			<a href="productlist.do" class="btn btn-default btn-lg" role="button">製品リスト</a>
-			<a href="productorder.do" class="btn btn-default btn-lg" role="button">購入する</a>
+			<a href="productorder.do?user_id=${user_id}" class="btn btn-default btn-lg" role="button">購入する</a>
 			<!-- ?cart_user=user -->
 		</div>
 	</div>

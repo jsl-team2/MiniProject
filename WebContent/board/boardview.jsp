@@ -1,8 +1,7 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="dao.CommentVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <%@ include file="/header.jsp"%>
 
 <div class="container-fluid subvisual ">
@@ -55,61 +54,77 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="Clist" items="${Clist }">
-					<tr>
-						<td>${Clist.comment_id}</td>
-						<td>${Clist.comment_content}</td>
-						<td>${Clist.comment_createdate.substring(0,10) }</td>
-						<td><div class="col-sm-2" style="padding-right: 40px;">
-								<button class="btn btn-sm modifybtn"
-									onclick="openModal('id_reply_edit_modal_${Clist.comment_no}')"
-									style="color: #fff; border-color: #fff; background: #007dc6">수정</button>
-							</div>
-							<div class="col-sm-2">
-								<a type="submit" class="btn btn-sm btn-info" role="button"
-									style="background-color: #FF6A89; color: #fff; border-color: #fff;"
-									href="commentdelete.do?comment_no=${Clist.comment_no}&board_no=${Clist.board_no}">삭제</a>
-							</div> 
-							
-							<!-- START : 댓글 수정용 Modal -->
-							<div class="modal" id="id_reply_edit_modal_${Clist.comment_no}">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content">
-										<form name="commentmodify" action="commentmodify.do"
-											method="post" onsubmit="return check2();">
+	<c:forEach var="Clist" items="${Clist }">
+		<tr>
+			<td>${Clist.comment_id}</td>
+			
+			<td>
+			<c:if test="${Clist.comment_secret eq 1}">
+			 <c:choose>
+                <c:when test="${Clist.comment_id eq user_id || user_id eq 'asdf'}">
+                    <c:out value="${Clist.comment_content}"/>
+                </c:when>
+                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
+            </c:choose>
+			</c:if>
+			<c:if test="${Clist.comment_secret eq 0}" >
+            <c:out value="${Clist.comment_content}"/>
+        </c:if>
+			</td>
+			
+			<td>${Clist.comment_createdate.substring(0,10) }</td>
+			<td>
 
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"></button>
-												<h4 class="modal-title">댓글수정</h4>
-											</div>
+				<div class="col-sm-2" style="padding-right: 40px;">
+					<button class="btn btn-sm modifybtn"
+						onclick="openModal('id_reply_edit_modal_${Clist.comment_no}')"
+						style="color: #fff; border-color: #fff; background: #007dc6">수정</button>
+				</div>
+				<div class="col-sm-2">
+					<a type="submit" class="btn btn-sm btn-info" role="button"
+						style="background-color: #FF6A89; color: #fff; border-color: #fff;"
+						href="commentdelete.do?comment_no=${Clist.comment_no}&board_no=${Clist.board_no}">삭제</a>
+						
+				</div> <!-- START : 댓글 수정용 Modal -->
+	<div class="modal" id="id_reply_edit_modal_${Clist.comment_no}">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form name="commentmodify" action="commentmodify.do"
+					method="post" onsubmit="return check2();">
 
-											<div class="modal-body">
-												<input type="hidden" name="comment_no"
-													value="${Clist.comment_no }">
-												<textarea rows="3" name="reContent" class="form-control">${Clist.comment_content }</textarea>
-												<input type="hidden" name="reMemId" value="mini14">
-												<input type="hidden" name="board_no"
-													value="${Clist.board_no}"> <input type="hidden"
-													name="redate" value="${Clist.comment_createdate }">
-												<input type="hidden" id="selectedValueHidden"
-													name="selectedValueHidden" value=""> <input
-													type="hidden" id="selectedOrderNo" name="selectedOrderNo"
-													value="${Clist.comment_no}">
-											</div>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"></button>
+						<h4 class="modal-title">댓글수정</h4>
+					</div>
 
-											<div class="modal-footer">
-												<button id="btn_reply_modify" type="submit"
-													class="btn btn-sm btn-info">저장</button>
-												<button type="button" class="btn btn-default btn-sm"
-													onclick="closeModal()">닫기</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div> <!-- END : 댓글 수정용 Modal --></td>
-					</tr>
-				</c:forEach>
+					<div class="modal-body">
+						<input type="hidden" name="comment_no"
+							value="${Clist.comment_no }">
+						<textarea rows="3" name="reContent" class="form-control">${Clist.comment_content }</textarea>
+						<input type="hidden" name="reMemId" value="${user_id }">
+						<input type="hidden" name="board_no"
+							value="${Clist.board_no}"> <input type="hidden"
+							name="redate" value="${Clist.comment_createdate }">
+						<input type="hidden" id="selectedValueHidden"
+							name="selectedValueHidden" value=""> <input
+							type="hidden" id="selectedOrderNo" name="selectedOrderNo"
+							value="${Clist.comment_no}">
+					</div>
+
+					<div class="modal-footer">
+						<button id="btn_reply_modify" type="submit"
+							class="btn btn-sm btn-info">저장</button>
+						<button type="button" class="btn btn-default btn-sm"
+							onclick="closeModal()">닫기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div> <!-- END : 댓글 수정용 Modal -->
+			</td>
+		</tr>
+	</c:forEach>
 			</tbody>
 		</table>
 	</div>
@@ -119,7 +134,7 @@
 			<form name="commentList" action="commentinsert.do" method="post"
 				onsubmit="return check();">
 				<input type="hidden" name="board_no" value="${view.board_no }">
-				<input type="hidden" name="comment_id" value="mini14">
+				<input type="hidden" name="comment_id" value="${user_id }">
 
 				<div class="form-group">
 					<label class="col-sm-2  control-label"
@@ -131,12 +146,16 @@
 						<button id="comment_regist" type="submit"
 							class="btn btn-sm btn-list1"
 							style="font-size: 15px; background: #007dc6;">등록</button>
+						<input type="hidden" name="comment_secret" value="0"> <!-- 기본값을 0으로 설정 -->
+           				<input class="form-check-input" type="checkbox" name="comment_secret" 
+           				id="comment_secret_checkbox" value="1"> 
+						<label class="form-check-label">비밀글설정</label>
 					</div>
 				</div>
 			</form>
-		</div>
-	</div>
-</div>
+    	</div>
+     </div>
+    </div>
 
 
 
@@ -177,10 +196,25 @@
 		}
 
 		var content = document.getElementById("reContent");
-		commentmodify.reContent.value = content.value.replace(/(\n|\r\n)/g,
-				'<br>');
+		commentmodify.reContent.value = content.value.replace(/(\n|\r\n)/g,'<br>');
 		return true;
 	}
+</script>
+
+<script>
+function check() {
+    // 비밀글 체크박스의 값 설정
+    var checkbox = document.getElementById("comment_secret_checkbox");
+    if (checkbox.checked) {
+        checkbox.value = 1;
+    } else {
+        checkbox.value = 0;
+    }
+
+    // 폼이 제출될 때 호출되는 함수
+    // 여기서 필요한 추가적인 유효성 검사 등을 수행할 수 있습니다.
+    return true; // 무조건 true를 리턴하면 폼이 제출됩니다.
+}
 </script>
 
 <script>
@@ -195,7 +229,5 @@
 		document.getElementById(selectedOrderNo).style.display = "none";
 	}
 </script>
-
-
 
 <%@ include file="/footer.jsp"%>

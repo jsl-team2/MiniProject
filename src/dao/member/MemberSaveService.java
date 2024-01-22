@@ -3,8 +3,6 @@ package dao.member;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 import dao.Action;
 import utility.SecurityPassword;
 
