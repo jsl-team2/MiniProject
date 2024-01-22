@@ -15,7 +15,7 @@ public class SearchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from tbl_product where product_name like '%"+keyword+"%'";
+		String sql = "select * from tbl_product where LOWER(product_name) like LOWER('%"+keyword+"%')";
 		List<SearchVo> productList = new ArrayList<SearchVo>();
 		try {
 			conn = DBmanager.getInstance().getConnection();
