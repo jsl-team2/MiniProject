@@ -23,9 +23,6 @@
 					<div
 						style="background: #FAFAFA; border-radius: 15px; padding: 10px; margin-top: 35px;">
 						<p class="productname" style="margin-bottom: 80px;">${vo.product_name}</p>
-						<div class="specifications">
-							<p style="text-align: right;">容量: ${vo.product_capacity}</p>
-						</div>
 						<p id="price" data-price="${vo.product_price}"></p>
 						<div class="total"
 							style="font-size: 20px; font-weight: bold; text-align: center; color: #000;">価格:
