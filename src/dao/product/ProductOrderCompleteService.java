@@ -15,7 +15,6 @@ public class ProductOrderCompleteService implements Action {
 		request.setCharacterEncoding("utf-8");
 
 		String user_id = request.getParameter("user_id");
-
 		String order_name = request.getParameter("editableName");
 		String order_tel = request.getParameter("editableTel");
 		
