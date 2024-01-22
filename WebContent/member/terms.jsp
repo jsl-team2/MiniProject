@@ -11,7 +11,7 @@
 	<h1>弱冠</h1>
 </div>
 <body>
-	<div class="wrap">
+	<div class="terms__wrap">
 		<div class="contents">
 			<form action="/join.do" method="POST" id="form__wrap">
 				<div class="terms__check__all">
