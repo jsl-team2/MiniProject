@@ -71,12 +71,6 @@
 				<div class="col-lg-1"></div>
 			</div>
 		</div>
-		<c:choose>
-			<c:when test="${not empty user_id}">
-				<a href="productcart.do?user_id=${user_id}" class="btn btn-default"
-					style="margin-bottom: 30px;" role="button">カート</a>
-			</c:when>
-		</c:choose>
 	</div>
 	<div class="container" style="text-align: center;">
 		<div class="horizontal-line"
