@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<div class="paging" style="margin-bottom:50px;">
+			<div class="paging-admin" style="margin-bottom:50px;">
 				<c:if test="${page.prev }">
 					<a href="productlistmenu.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${keyword}">
 						<i class="fa  fa-angle-double-left"></i></a>

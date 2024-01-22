@@ -95,11 +95,11 @@
 	border-radius:40px;
 	cursor:pointer;
 }
-.caption{
+.login__caption{
 	margin-top: 20px;
 	text-align: center;
 }
-.caption a {
+.login__caption a {
 	font-size:15px; color:#fff;
 	text-decoration: none;
 	background-color: transparent;

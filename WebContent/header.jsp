@@ -46,13 +46,13 @@
 	<div style="padding: 0 100px">
 		<nav>
 			<div class="nav__left">
-				<a href="main.do"><img class="logo" alt=""
+				<a href="main.do"><img class="admin__logo" alt=""
 					src="images/team_logo2.jpg"></a>
 			</div>
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left:55px;"
+					<span style="position: relative; left:35px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>
