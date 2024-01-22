@@ -329,6 +329,14 @@ public class Controller extends HttpServlet {
             }
          }
 
+      //댓글 더보기 기능
+       else if(command.equals("/BoardLoadMoreComments.do")) {
+           try {
+              new BoardCommentModifyService().execute(request, response);
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
       
       if(command.equals("/search.do")) {
 
