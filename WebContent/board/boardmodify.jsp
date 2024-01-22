@@ -4,14 +4,13 @@
 <%@ include file = "/header.jsp"%>
 
 <div class="sub_title">
-		<h2>공지사항</h2>
 		<div class="container">
 		</div><!-- container end -->
 	</div>
 
 	<div class="container">
 	  <div class="write_wrap">
-	  <h2 class="sr-only">공지사항 글쓰기</h2>
+	  <h2 class="sr-only">お問い合わせ</h2>
 	  <form name="board" method="post" action="boardmodifypro.do" onsubmit="return check()">
 	  <input type="hidden" name="board_no" value="${view.board_no }">
 	  <!-- action을 처리하기전에 check()사용자 함수를 실행하고 되돌아 와라-->
@@ -23,23 +22,23 @@
 				</colgroup>
 				<tbody>
 					<tr class="first">
-						<th>글쓴이</th>
+						<th>投稿者</th>
 						<td><input type="text" name="writer" readonly value="${view.board_writer }"></td>
 					</tr>
 					<tr>
-						<th>제목</th>
+						<th>件名</th>
 						<td><input type="text" name="title" value="${view.board_title }"></td>
 					</tr>
 					<tr>
-						<th>내용</th>
+						<th>内容</th>
 						<td><textarea name="content">${view.board_content }</textarea></td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="btn_wrap">
-				<input type="submit" value="저장" class="btn_ok">
-				<input type="reset" value="다시쓰기" class="btn_reset">
-				<input type="button" value="목록" class="btn_list" onClick="location.href='board.do';">
+				<input type="submit" value="保存" class="btn_ok">
+				<input type="reset" value="リセット" class="btn_reset">
+				<input type="button" value="リスト" class="btn_list" onClick="location.href='board.do';">
 			</div>
 		</form>
 	  </div>
@@ -49,21 +48,21 @@
 	<script>
 		function check() {
 			if(board.writer.value=="") {
-				alert("글쓴이 입력");
+				alert("投稿者を入力してください。");
 				board.writer.focus();
 				return false;
 			}
 			if(board.title.value=="") {
-				alert("제목을 입력");
+				alert("タイトルを入力してください。");
 				board.title.focus();
 				return false;
 			}
 			if(board.content.value=="") {
-				alert("내용을 입력");
+				alert("内容を入力してください。");
 				board.content.focus();
 				return false;
 			}
-			alert("수정완료")
+			alert("修正を完了しました。")
 			return true;
 			
 		}
