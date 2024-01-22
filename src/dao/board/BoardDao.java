@@ -444,13 +444,14 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "update tbl_comment set comment_content = ?, "
-					+" comment_createdate = sysdate where comment_no =? ";
+					+" comment_createdate = sysdate , comment_secret = ? where comment_no =? ";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getComment_content());
-			pstmt.setInt(2, vo.getComment_no());
+			pstmt.setInt(2, vo.getComment_secret());
+			pstmt.setInt(3, vo.getComment_no());
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {

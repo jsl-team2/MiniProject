@@ -12,7 +12,7 @@ public class BoardCommentInsertService {
 		CommentVo vo = new CommentVo();
 		
 		String board_no = request.getParameter("board_no");
-		String content = request.getParameter("content");
+		String content = request.getParameter("board_content");
 		String id = request.getParameter("comment_id");
 		int secret = Integer.parseInt(request.getParameter("comment_secret"));
 		
