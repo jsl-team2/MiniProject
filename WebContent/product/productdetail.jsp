@@ -22,18 +22,11 @@
 				<div class="col-lg-5" style="margin-bottom: 20px;">
 					<div
 						style="background: #FAFAFA; border-radius: 15px; padding: 10px; margin-top: 35px;">
-						<p class="productname" style="">${vo.product_name}</p>
-						<div class="specifications">
-							<p>画面: ${vo.product_display}</p>
-							<p>容量: ${vo.product_capacity}</p>
-							<p>カメラ: ${vo.product_camera}</p>
-							<p>ラム: ${vo.product_ram}</p>
-							<p>重量: ${vo.product_weight}</p>
-							<p>バッテリー: ${vo.product_battery}</p>
-							<p>色: ${vo.product_color}</p>
-						</div>
-
+						<p class="productname" style="margin-bottom: 80px;">${vo.product_name}</p>
 						<p id="price" data-price="${vo.product_price}"></p>
+						<div class="total"
+							style="font-size: 20px; font-weight: bold; text-align: center; color: #000;">価格:
+							100,000￥ (数量: 1個)</div>
 						<div style="text-align: right;">
 							<button class="minus" type="button"
 								style="width: 25px; height: 25px;">-</button>
@@ -42,9 +35,6 @@
 							<button class="plus" type="button"
 								style="width: 25px; height: 25px; margin-right: 20px; margin-bottom: 5px;">+</button>
 						</div>
-						<div class="total"
-							style="font-size: 20px; font-weight: bold; text-align: center; color: #000;">価格:
-							100,000￥ (数量: 1個)</div>
 
 						<c:choose>
 							<c:when test="${not empty user_id}">
@@ -52,19 +42,19 @@
 								<div style="border-radius: 15px; padding: 10px;">
 									<div>
 										<div style="text-align: center;">
-											<button class="btn btn-default btn-lg"
+											<button class="btn btn-default btn-lg" style="background:#8a6d3b69; color:#fff;"
 												onclick="showConfirmation('${vo.product_no}')">カートに入れる</button>
 											<a
 												href="productorderone.do?product_no=${vo.product_no}&user_id=${user_id}&quantity="
-												id="purchaseLink" class="btn btn-default btn-lg"
+												id="purchaseLink" class="btn btn-default btn-lg" style="background:#8a6d3bcf; color:#fff;"
 												role="button">購入する</a>
 										</div>
-										<div id="confirmationModal" class="modal"
+										<div id="confirmationModal1" class="modal"
 											style="display: none;">
 											<div class="modal-content">
 												<p>カートに入れますか？</p>
-												<button onclick="addToCart('${vo.product_no}', true)">はい</button>
-												<button onclick="addToCart('${vo.product_no}', false)">いいえ</button>
+												<button onclick="addToCart('${vo.product_no}', true)" style="background:#8a6d3bcf; color:#fff;">はい</button>
+												<button onclick="addToCart('${vo.product_no}', false)" style="background:#8a6d3b69; color:#fff;">いいえ</button>
 											</div>
 										</div>
 									</div>
@@ -81,22 +71,63 @@
 				<div class="col-lg-1"></div>
 			</div>
 		</div>
-		<c:choose>
-			<c:when test="${not empty user_id}">
-				<a href="productcart.do?user_id=${user_id}" class="btn btn-default"
-					style="margin-bottom: 30px;" role="button">カート</a>
-			</c:when>
-		</c:choose>
+	</div>
+	<div class="container" style="text-align: center;">
+		<div class="horizontal-line"
+			style="border-top: 1px solid #000; margin-top: 10px; margin-bottom: 10px;">
+		</div>
+		<div class="productdetail_1"
+			style="font-weight: bold; font-size: 20px;">
+			<p>基本構成品</p>
+		</div>
+		<div>
+			<img src="images/product/${vo.product_detailpicture}" alt=""
+				style="width: 900px; height: auto;">
+		</div>
+		<div>
+			<div class="specifications">
+				<table style="font-size:20px; width:600px; margin-bottom: 40px;">
+					<tr>
+						<td>画面</td>
+						<td>${vo.product_display}</td>
+					</tr>
+					<tr>
+						<td>カメラ</td>
+						<td>${vo.product_camera}</td>
+					</tr>
+					<tr>
+						<td>容量</td>
+						<td>${vo.product_capacity}</td>
+					</tr>
+					<tr>
+						<td>ラム</td>
+						<td>${vo.product_ram}</td>
+					</tr>
+					<tr>
+						<td>重量</td>
+						<td>${vo.product_weight}</td>
+					</tr>
+					<tr>
+						<td>バッテリー</td>
+						<td>${vo.product_battery}</td>
+					</tr>
+					<tr>
+						<td>色</td>
+						<td>${vo.product_color}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 
 <script>
 	function showConfirmation(productNo) {
-		document.getElementById('confirmationModal').style.display = 'block';
+		document.getElementById('confirmationModal1').style.display = 'block';
 	}
 
 	function addToCart(productNo, confirmed) {
-		document.getElementById('confirmationModal').style.display = 'none';
+		document.getElementById('confirmationModal1').style.display = 'none';
 
 		if (confirmed) {
 			var form = document.createElement('form');

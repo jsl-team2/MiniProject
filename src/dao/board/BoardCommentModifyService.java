@@ -19,7 +19,8 @@ public class BoardCommentModifyService implements Action {
 		vo.setComment_no(Integer.parseInt(request.getParameter("comment_no")));
 		vo.setComment_content(request.getParameter("reContent"));
 		vo.setComment_createdate(request.getParameter("redate"));
-
+		vo.setComment_secret(Integer.parseInt(request.getParameter("comment_secret")));
+		System.out.println(vo.getComment_secret());
 		BoardDao dao = new BoardDao();
 
 		dao.setCommentUpdate(vo);

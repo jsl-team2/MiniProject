@@ -27,6 +27,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -66,6 +67,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -108,6 +110,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -965,23 +968,24 @@ public class ProductDao {
 		PreparedStatement pstmt = null;
 		
 		String sql ="insert into tbl_product (product_no,product_name,product_picture,"
-				+ "product_display,product_capacity,product_camera,product_color,product_ram,"
+				+ "product_detailpicture,product_display,product_capacity,product_camera,product_color,product_ram,"
 				+ "product_weight,product_battery,product_price,product_rdate) values(product_seq.nextval,"
-				+ "?,?,?,?,?,?,?,?,?,?,?)";
+				+ "?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = DBmanager.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getProduct_name());
 			pstmt.setString(2,vo.getProduct_picture());
-			pstmt.setString(3,vo.getProduct_display());
-			pstmt.setString(4, vo.getProduct_capacity());
-			pstmt.setString(5, vo.getProduct_camera());
-			pstmt.setString(6, vo.getProduct_color());
-			pstmt.setString(7, vo.getProduct_ram());
-			pstmt.setString(8, vo.getProduct_weight());
-			pstmt.setString(9, vo.getProduct_battery());
-			pstmt.setInt(10, vo.getProduct_price());
-			pstmt.setString(11, vo.getProduct_rdate());
+			pstmt.setString(3,vo.getProduct_detailpicture());
+			pstmt.setString(4,vo.getProduct_display());
+			pstmt.setString(5, vo.getProduct_capacity());
+			pstmt.setString(6, vo.getProduct_camera());
+			pstmt.setString(7, vo.getProduct_color());
+			pstmt.setString(8, vo.getProduct_ram());
+			pstmt.setString(9, vo.getProduct_weight());
+			pstmt.setString(10, vo.getProduct_battery());
+			pstmt.setInt(11, vo.getProduct_price());
+			pstmt.setString(12, vo.getProduct_rdate());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -995,7 +999,7 @@ public class ProductDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql ="update tbl_product set product_name=?,product_picture=?,product_display=?"
+		String sql ="update tbl_product set product_name=?,product_picture=?,product_detailpicture=?,product_display=?"
 				+ ",product_capacity=?,product_camera=?,product_color=?,product_ram=?"
 				+ ",product_weight=?,product_battery=?,product_price=?,product_rdate=? where product_no=?";
 		try {
@@ -1003,16 +1007,17 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getProduct_name());
 			pstmt.setString(2,vo.getProduct_picture());
-			pstmt.setString(3,vo.getProduct_display());
-			pstmt.setString(4, vo.getProduct_capacity());
-			pstmt.setString(5, vo.getProduct_camera());
-			pstmt.setString(6, vo.getProduct_color());
-			pstmt.setString(7, vo.getProduct_ram());
-			pstmt.setString(8, vo.getProduct_weight());
-			pstmt.setString(9, vo.getProduct_battery());
-			pstmt.setInt(10, vo.getProduct_price());
-			pstmt.setString(11, vo.getProduct_rdate());
-			pstmt.setInt(12, no);
+			pstmt.setString(3,vo.getProduct_detailpicture());
+			pstmt.setString(4,vo.getProduct_display());
+			pstmt.setString(5, vo.getProduct_capacity());
+			pstmt.setString(6, vo.getProduct_camera());
+			pstmt.setString(7, vo.getProduct_color());
+			pstmt.setString(8, vo.getProduct_ram());
+			pstmt.setString(9, vo.getProduct_weight());
+			pstmt.setString(10, vo.getProduct_battery());
+			pstmt.setInt(11, vo.getProduct_price());
+			pstmt.setString(12, vo.getProduct_rdate());
+			pstmt.setInt(13, no);
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

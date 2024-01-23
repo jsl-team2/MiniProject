@@ -24,19 +24,16 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/search.css">
- <link rel="stylesheet" href="css/terms.css">
+<link rel="stylesheet" href="css/terms.css">
 <link rel="stylesheet" href="css/mystyle.css">
-
 <link rel="stylesheet" href="css/admin.css">
-
 <link rel="stylesheet" href="css/login.css">
-
-
+<link rel="stylesheet" href="css/singup.css">
 <link rel="stylesheet" href="css/productadd.css">
-
-
-  <link rel ="stylesheet" href="css/board.css">
-
+<link rel ="stylesheet" href="css/board.css">
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -52,13 +49,13 @@
 	<div style="padding: 0 100px">
 		<nav>
 			<div class="nav__left">
-				<a href="main.do"><img class="logo" alt=""
+				<a href="main.do"><img class="admin__logo" alt=""
 					src="images/team_logo2.jpg"></a>
 			</div>
 			<div class="nav__middle">
 				<form class="searchForm" name="searchForm" method="get"
 					action="search.do">
-					<span style="position: relative; left:55px;"
+					<span style="position: relative; left:35px;"
 						class="glyphicon glyphicon-search"></span><input name="keyword"
 						class="search-input" type="text">
 				</form>

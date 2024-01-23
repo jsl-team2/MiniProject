@@ -5,6 +5,7 @@ public class ProductVo {
 	private int product_no;
 	private String product_name;
 	private String product_picture;
+	private String product_detailpicture;
 	private String product_display;
 	private String product_capacity;
 	private String product_camera;
@@ -40,6 +41,12 @@ public class ProductVo {
 	
 	
     
+	public String getProduct_detailpicture() {
+		return product_detailpicture;
+	}
+	public void setProduct_detailpicture(String product_detailpicture) {
+		this.product_detailpicture = product_detailpicture;
+	}
 	public int getOrderdetail_quantity() {
 		return orderdetail_quantity;
 	}

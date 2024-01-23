@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<div class="wrap">
+<div class="admin__wrap">
 
 	<div class="left-section">
 		<div><a href="admin.do">会員照会</a></div>
@@ -47,7 +47,7 @@
 		    		<td>${list.product_battery }</td>
 		   			<td>${list.product_price }</td>
 		    		<td>${list.product_rdate }</td>
-		    		<td><button class="update-btn btn btn-warning" onclick="updateCheck(${list.product_no})">修整</button>
+		    		<td><button class="admin__update-btn btn btn-warning" onclick="updateCheck(${list.product_no})">修整</button>
 		    		<button class="delete-btn btn btn-danger" onclick="deleteCheck(${list.product_no})">削除</button></td>
 				</tr>
 				<c:set var="bno" value="${bno-1}"/>
@@ -56,7 +56,7 @@
     	</table>
     	
     	<a href="productadd.do">
-    		<button class="product-add btn btn-primary">商品追加</button>
+    		<button class="admin__product-add btn btn-primary">商品追加</button>
     	</a>
     	<div class="paging-admin">
 		<c:if test="${page.prev }">

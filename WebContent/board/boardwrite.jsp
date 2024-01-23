@@ -3,14 +3,8 @@
 
     <%@ include file = "/header.jsp" %>
     
-			<div class="container-fluid">
-				<div class="container-fluid subvisual ">
-					<h2>자유게시판 글쓰기</h2>
-				</div>
-			</div>
 
-
-	<div class="container writeBox">
+	<div class="container board_writeBox">
 		<div class="write_wrap">
 			<form name="board" method="post" action="boardinsert.do" onsubmit="return check()">
 				<table class="bord_table">
@@ -19,24 +13,24 @@
 						<col width="*">
 					</colgroup>
 					<tbody>
-						<tr class="first">
-							<th style="color: #333;">글쓴이</th>
-							<td><input type="text" name="writer"></td>
+						<tr class="board_first">
+							<th style="color: #333;">投稿者</th>
+							<td><input type="text" name="writer" value = "${user_id}"></td>
 						</tr>
 						<tr>
-							<th style="color: #333;">제목</th>
+							<th style="color: #333;">タイトル</th>
 							<td><input type="text" name="title"></td>
 						</tr>
 						<tr>
-							<th style="color: #333;">내용</th>
-							<td><textarea name="content" id="content"></textarea></td>
+							<th style="color: #333;">内容</th>
+							<td><textarea name="content" id="summernote" class="summernote"></textarea></td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="btn_wrap">
-					<input type="submit" value="저장" class="btn_ok">
-					<input type="reset" value="다시쓰기" class="btn_reset">
-					<input type="button" value="목록" class="btn_list" onClick="location.href='board.do';">
+					<input type="reset" value="リセット" class="board_reset">
+					<input type="submit" value="保存" class="board_ok">
+					<input type="button" value="リスト" class="board_list" onClick="location.href='board.do';">
 				</div>
 			</form>
 		</div>
@@ -45,17 +39,17 @@
 	<script>
 		function check() {
 			if (board.writer.value == "") {
-				alert("글쓴이 입력");
+				alert("投稿者を入力してください。");
 				board.writer.focus();
 				return false;
 			}
 			if (board.title.value == "") {
-				alert("제목을 입력");
+				alert("タイトルを入力してください。");
 				board.title.focus();
 				return false;
 			}
 			if (board.content.value == "") {
-				alert("내용을 입력");
+				alert("内容を入力してください。");
 				board.content.focus();
 				return false;
 			}
@@ -77,5 +71,19 @@
 			});
 		});
 	</script>
+  
+  <script>
+  $('.summernote').summernote({
+      height: 300,
+      minHeight: null,
+      maxHeight: null,
+      lang : 'ko-KR',
+      onImageUpload: function(files, editor, welEditable) {
+              sendFile(files[0], editor, welEditable);
+          }
+  });
+</script>
+  
+  
     
     <%@ include file ="/footer.jsp" %>

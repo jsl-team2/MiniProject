@@ -53,6 +53,7 @@ import dao.user.UserSelectAll;
 @WebServlet("/")
 public class Controller extends HttpServlet {
 
+
 	private static final long serialVersionUID = 1L;
 
 	public Controller() {
@@ -331,6 +332,15 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+    
+    //댓글 더보기 기능
+       else if(command.equals("/BoardLoadMoreComments.do")) {
+           try {
+              new BoardCommentModifyService().execute(request, response);
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
 
 		if (command.equals("/search.do")) {
 
@@ -378,7 +388,7 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			;
+			
 		} else if (command.equals("/productdelete.do")) {
 			try {
 				new ProductDeleteService().execute(request, response);
@@ -466,7 +476,7 @@ public class Controller extends HttpServlet {
 		if (path != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(path);
 			rd.forward(request, response);
-
 		}
 	}
+
 }

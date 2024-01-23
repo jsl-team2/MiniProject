@@ -64,7 +64,7 @@
 				<input type="hidden" name="product_no" value="${vo.product_no}">
 				<input type="hidden" name="quantity" value="${vo.cart_quantity}">
 				<input type="hidden" id="user_id" name="user_id" value="${user_id}">
-				<table class="table_write02" summary="제품배송을 위한 이름, 휴대전화번호, 주소">
+				<table class="table_write02" summary="제품배송을 위한 이름, 휴대전화번호, 주소" style="width:800px;">
 					<caption style="font-weight: bold; font-size: 20px; color: #000;">注文者情報</caption>
 					<colgroup>
 						<col width="160px">
@@ -90,7 +90,7 @@
 				</table>
 
 				<table class="table_write02" summary="제품배송을 위한 이름, 휴대전화번호, 주소"
-					id="editableTable">
+					id="editableTable" style="width:800px;">
 					<caption style="font-weight: bold; font-size: 20px; color: #000;">配送情報</caption>
 					<colgroup>
 						<col width="160px">
