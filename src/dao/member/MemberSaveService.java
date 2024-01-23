@@ -28,6 +28,8 @@ public class MemberSaveService implements Action {
 		
 		
 		String email = request.getParameter("email");
+		System.out.println(email);
+		
 		
 		
 		

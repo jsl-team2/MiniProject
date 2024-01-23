@@ -4,7 +4,6 @@
 <div class="wrap">
 	<div class="right-section">
 		<h1 class="tabs-title">個人注文履歴</h1>
-		<%-- <div><p><span>${tot }</span> 個</p></div> --%>
 		<table class="admin-table product">
 			<thead>
 				<tr>
