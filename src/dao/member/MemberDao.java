@@ -74,9 +74,8 @@ public class MemberDao {
 	public String emailSend(String email, HttpServletRequest request, HttpServletResponse response) {
 		String host = "smtp.naver.com";
 
-		String user = utility.env.getEmail();
-		String password = utility.env.getPw();
-
+		String user = "wsw0671@naver.com";
+		String password = "ahVYk3PUTiEvkqS";
 		String to_email = email;
 
 		Properties props = new Properties();
