@@ -202,39 +202,39 @@ function sample6_execDaumPostcode() {
 
 <script>
 function check() { // 자바스크립트 문법
-    if(!join.name.value){ // member.name.value == ""
+    if(!join.user_name.value){ // member.name.value == ""
        alert("이름을 입력하세요");
-       join.name.focus();
+       join.user_name.focus();
        return false;
     }   
-  if(!join.id.value){ // member.name.value == ""
+  if(!join.user_id.value){ // member.name.value == ""
      alert("아이디 입력하세요");
-     join.id.focus();
+     join.user_id.focus();
      return false;
   }   
-  if(!join.pw.value){ // member.name.value == ""
+  if(!join.user_pw.value){ // member.name.value == ""
       alert("비밀번호 입력하세요");
-      join.pw.focus();
+      join.user_pw.focus();
       return false;
    }   
-  if(!join.pw2.value){ // member.name.value == ""
+  if(!join.user_pw2.value){ // member.name.value == ""
       alert("비밀번호 확인하세요");
-      join.pw2.focus();
+      join.user_pw2.focus();
       return false;
    }   
-  if(!join.phone.value){ // member.name.value == ""
+  if(!join.user_phone.value){ // member.name.value == ""
       alert("휴대폰 번호를 입력하세요");
-      join.phone.focus();
+      join.user_phone.focus();
       return false;
    }   
-  if(!join.address.value){ // member.name.value == ""
+  if(!join.user_address.value){ // member.name.value == ""
       alert("주소를 입력하세요");
-      join.addrss.focus();
+      join.user_addrss.focus();
       return false;
    }   
-  if(!join.email.value){ // member.name.value == ""
+  if(!join.user_email.value){ // member.name.value == ""
       alert("email 입력하세요");
-      join.email.focus();
+      join.user_email.focus();
       return false;
    }   
  }
@@ -254,7 +254,7 @@ $(function() { // jquery 문법
    });
     $("#id").blur(function() {
        if(!$("#id").val()) {
-         $("#idmsg").html("<span style='color:#f00;'>아이디는 필수 입력사항 입니다</span>");
+         $("#idmsg").html("<span style='color:#f00;'>IDは必須入力事項です</span>");
        }else {
          $("#idmsg").html("");
        }
@@ -266,11 +266,11 @@ $(function() { // jquery 문법
        success:function(data) {  // 비동기식 데이터 처리가 성공했을때
           if(data != 1){
              if($("#id").val() != "") {
-                $("#idmsg").html("<span style='color:#0f0;'>사용가능 합니다</span>");
+                $("#idmsg").html("<span style='color:#0033ff;'>使用可能です</span>");
              }
           }else{
              if($("#id").val() != ""){
-                $("#idmsg").html("<span style='color:#f00;'>사용할 수 없는 아이디 입니다.</span>");
+                $("#idmsg").html("<span style='color:#f00;'>使用できないIDです</span>");
                 $("#id").val("");
                 $("#id").focus();
              }
@@ -286,9 +286,9 @@ $(function() { // jquery 문법
        var pw1 = $("#pw").val();
        var pw2 = $("#pw2").val();
        if(pw1 != pw2) {
-          $("#pwmsg").html("<span style='color:#f00;'>비밀번호 확인 바랍니다</span>");
+          $("#pwmsg").html("<span style='color:#f00;'>パスワードをご確認ください</span>");
       }else {
-         $("#pwmsg").html("<span style='color:#0f0;'>비밀번호가 일치 합니다</span>");
+         $("#pwmsg").html("<span style='color:#009933;'>パスワードが一致します</span>");
       }
        
     })
