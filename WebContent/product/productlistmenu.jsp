@@ -13,13 +13,13 @@
 
 	<div class="col-lg-12">
 		<div style="text-align: center; margin-bottom: 30px;">
-			<a href="javascript:void(0);" id="btnS23"
-				class="btn btn-default btn-lg" role="button" style="width: 200px;"
-				onclick="selectButton('S23')">S23</a> <a href="javascript:void(0);"
-				id="btnFlip" class="btn btn-default btn-lg" role="button"
-				style="width: 200px;" onclick="selectButton('Flip')">Flip</a> <a
-				href="javascript:void(0);" id="btnFold"
-				class="btn btn-default btn-lg" role="button" style="width: 200px;"
+			<a href="javascript:void(0);" id="btnS24" class="btn btn-default btn-lg" role="button" style="width: 200px;"
+				onclick="selectButton('S24')">S24</a> 
+			<a href="javascript:void(0);" id="btnS23" class="btn btn-default btn-lg" role="button" style="width: 200px;"
+				onclick="selectButton('S23')">S23</a> 
+			<a href="javascript:void(0);" id="btnFlip" class="btn btn-default btn-lg" role="button" style="width: 200px;" 
+				onclick="selectButton('Flip')">Flip</a>
+			<a href="javascript:void(0);" id="btnFold" class="btn btn-default btn-lg" role="button" style="width: 200px;"
 				onclick="selectButton('Fold')">Fold</a>
 		</div>
 		<div><p><span>${tot }</span> 個</p></div>
@@ -45,16 +45,16 @@
 			</c:forEach>
 			<div class="paging" style="margin-bottom:50px;">
 				<c:if test="${page.prev }">
-					<a href="productlistmenu.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<a href="productlistmenu.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${keyword}">
 						<i class="fa  fa-angle-double-left"></i></a>
 				</c:if>
 				<c:forEach var="num" begin="${page.startPage }"
 					end="${page.endPage }">
-					<a href="productlistmenu.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}"
+					<a href="productlistmenu.do?pageNum=${num}&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${keyword}"
 						class="${page.cri.pageNum == num?'active' : ''}">${num }</a>
 				</c:forEach>
 				<c:if test="${page.next }">
-					<a href="productlistmenu.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}">
+					<a href="productlistmenu.do?pageNum=${page.endPage+1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${keyword}">
 						<i class="fa fa-angle-double-right"></i></a>
 				</c:if>
 			</div>
@@ -64,6 +64,7 @@
 <script>
 	function selectButton(selectedButton) {
 		// 모든 버튼의 스타일 초기화
+		document.getElementById('btnS24').classList.remove('active');
 		document.getElementById('btnS23').classList.remove('active');
 		document.getElementById('btnFlip').classList.remove('active');
 		document.getElementById('btnFold').classList.remove('active');

@@ -27,6 +27,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -66,6 +67,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -108,6 +110,7 @@ public class ProductDao {
 				vo.setProduct_no(rs.getInt("product_no"));
 				vo.setProduct_name(rs.getString("product_name"));
 				vo.setProduct_picture(rs.getString("product_picture"));
+				vo.setProduct_detailpicture(rs.getString("product_detailpicture"));
 				vo.setProduct_display(rs.getString("product_display"));
 				vo.setProduct_capacity(rs.getString("product_capacity"));
 				vo.setProduct_camera(rs.getString("product_camera"));
@@ -187,7 +190,7 @@ public class ProductDao {
 
 	public void cartInsert(ProductVo vo, int quantity, String user_id) {
 
-		String sql = "insert into tbl_cart \r\n" + "values (tbl_cart_seq.nextval, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into tbl_cart \r\n" + "values (cart_seq.nextval, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			conn = DBmanager.getInstance().getConnection();
@@ -284,7 +287,7 @@ public class ProductDao {
 	public void orderInsert(ProductVo vo, String user_id) {
 
 		String sql = "insert into tbl_order \r\n" + 
-				" values (tbl_order_seq.nextval, ?, ?, ?, ?, '注文完了', sysdate)";
+				" values (order_seq.nextval, ?, ?, ?, ?, '注文完了', sysdate)";
 
 		try {
 			conn = DBmanager.getInstance().getConnection();
@@ -338,7 +341,7 @@ public class ProductDao {
 
 	public void orderdetailInsert(List<ProductVo> list) {
 
-		String sql = "insert into tbl_orderdetail \r\n" + " values (tbl_orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
+		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			for (ProductVo vo : list) {
@@ -363,7 +366,7 @@ public class ProductDao {
 
 	public void orderdetailAllInsert(List<ProductVo> list) {
 
-		String sql = "insert into tbl_orderdetail \r\n" + " values (tbl_orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
+		String sql = "insert into tbl_orderdetail \r\n" + " values (orderdetail_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			for (ProductVo vo : list) {
@@ -843,6 +846,25 @@ public class ProductDao {
 		}
 
 		return list;
+
+	}
+	
+	public void setMYOrderCancel(int order_no) {
+
+		String sql = "update tbl_order set order_status = 'キャンセル要請中'  where order_no = ?";
+
+		try {
+			conn = DBmanager.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, order_no);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBmanager.getInstance().close(conn, pstmt, rs);
+		}
 
 	}
 	
