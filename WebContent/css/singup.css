@@ -8,7 +8,7 @@ body {
     padding: 0;
 }
 
-/* Container styles */
+
 .container__join {
    max-width: 800px;
     margin: 60px auto;
@@ -49,9 +49,9 @@ body {
 /* Button styles */
 
 .btn_round_s {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
+    display:inline-block;
+    padding:10px 20px;
+    margin-right:10px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -61,13 +61,13 @@ body {
 }
 
 .btn_large_s {
-    font-size: 16px;
-     text-align: center;
+    font-size:16px;
+     text-align:center;
 }
 
 
 .btn_pointColor_s {
-    background-color: #8a6d3bcf;
+    background-color:#8a6d3bcf;
     color: #fff;
 }
 .btnArea  {
@@ -76,7 +76,7 @@ body {
    padding-top: 20px;
 }
 .btnArea a {
-    background-color: #8a6d3b69;
+    background-color:#8a6d3b69;
     color: #fff;
     width: 100px;
 }

@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="css/mystyle.css">
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/singup.css">
 <link rel="stylesheet" href="css/productadd.css">
 <link rel ="stylesheet" href="css/board.css">
 <!-- include summernote css/js -->

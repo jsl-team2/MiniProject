@@ -131,6 +131,7 @@ galaxy加入後、追加加入して利用するサービスなど)の場合、�
 </html>
 <%@ include file="/footer.jsp"%>
 <script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
