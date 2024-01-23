@@ -13,8 +13,8 @@
 <%@ include file= "/header.jsp" %>
 
 	<div class="container-fluid">
-		<nav class="navbar navbar-default">
-				<div class="container-fluid board_subvisual ">
+		<nav class="container-fluid navbar navbar-default">
+				<div class="board_subvisual ">
 					<h2>お問い合わせ</h2>
 			</div>
 			<!-- /.container-fluid -->

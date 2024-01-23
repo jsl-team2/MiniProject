@@ -6494,13 +6494,13 @@ button.close {
 }
 
 .modal-backdrop {
-	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 1040;
-	background-color: #000
+	z-index: 1050;
+	background-color: #000;
+	margin: 200px auto; 
 }
 
 .modal-backdrop.fade {

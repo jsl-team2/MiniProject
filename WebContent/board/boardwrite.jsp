@@ -23,7 +23,7 @@
 						</tr>
 						<tr>
 							<th style="color: #333;">内容</th>
-							<td><textarea name="content" id="content"></textarea></td>
+							<td><textarea name="content" id="summernote" class="summernote"></textarea></td>
 						</tr>
 					</tbody>
 				</table>
@@ -71,5 +71,19 @@
 			});
 		});
 	</script>
+  
+  <script>
+  $('.summernote').summernote({
+      height: 300,
+      minHeight: null,
+      maxHeight: null,
+      lang : 'ko-KR',
+      onImageUpload: function(files, editor, welEditable) {
+              sendFile(files[0], editor, welEditable);
+          }
+  });
+</script>
+  
+  
     
     <%@ include file ="/footer.jsp" %>
