@@ -8,6 +8,13 @@ body {
     padding: 0;
 }
 
+.container__join {
+   max-width: 800px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Form styles */
@@ -18,6 +25,11 @@ body {
     border-collapse: collapse;
 }
 
+.table_write02 th{
+       background-color: rgb(0 0 0 / 24%);
+}
+
+
 .table_write02 th,
 .table_write02 td {
     padding: 10px;
@@ -27,40 +39,50 @@ body {
 /* Input styles */
 .w300 {
     width: 100%;
-    padding: 8px;
+    padding: 4px;
     box-sizing: border-box;
     margin-bottom: 10px;
+    margin:0 auto;
 }
 
 /* Button styles */
-.btn_round {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
+
+.btn_round_s {
+    display:inline-block;
+    padding:10px 20px;
+    margin-right:10px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
+    
 }
 
-.btn_large {
-    font-size: 16px;
+.btn_large_s {
+    font-size:16px;
+     text-align:center;
 }
 
-.btn_BlueGray {
-    background-color: #607d8b;
+
+.btn_pointColor_s {
+    background-color:#8a6d3bcf;
     color: #fff;
 }
-
-.btn_pointColor {
-    background-color: #ff9800;
-    color: #fff;
+.btnArea  {
+   margin : 0 auto;
+   text-align: center;
+   padding-top: 20px;
 }
-
+.btnArea a {
+    background-color:#8a6d3b69;
+    color: #fff;
+    width: 100px;
+}
 /* Error message styles */
 .must b {
     color: #f00;
+    font-size:12px;
 }
 
 /* Additional styles for responsive design */

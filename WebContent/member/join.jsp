@@ -5,58 +5,52 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- sub contents -->
 <div class="sub_title">
-	<h2>회원가입</h2>
 	<!-- container end -->
 </div>
 
-<div class="container">
+<div class="container__join">
 	<div class="con_title">
-		<h1>내정보(개인회원)</h1>
-		<p>HOME / 마이페이지 / 내정보(개인회원)</p>
+		<h1 style="text-align: center">会員加入</h1>
 	</div>
 	<div class="join_write col_989">
 		<div class="list_con">
 			<ul class="icon_type1">
-				<li>회원정보는 개인정보 취급방침에 따라 안전하게 보호되며 회원님의 명백한 동의 없이 공개 또는 제3자에게
-					제공되지 않습니다.</li>
+				<li style="text-align: center">会員になって様々な経験をしてみてください。</li>
 			</ul>
 		</div>
 		<form name="join" method="post" action="joinpro.do" id="join"
 			onsubmit="return check()">
 			<table class="table_write02"
 				summary="회원가입을 위한 이름, 아이디, 비밀번호, 비밀번호확인, 소속, 유선전화번호, 휴대전화번호, 이메일, 주소, 본인확인질문, 본인확인답, 주활용사이트, 알림여부 정보 입력">
-				<caption>회원가입을 위한 정보입력표</caption>
 				<colgroup>
 					<col width="160px">
 					<col width="auto">
 				</colgroup>
 				<tbody id="joinDataBody">
 					<tr>
-						<th><label for="name">이름</label></th>
-						<td><input type="text" name="name" id="name" class="w300">
+						<th><label for="name">NAME</label></th>
+						<td><input type="text" name="name" id="name" class="w300" placeholder="名前を入力してください">
 						</td>
 					</tr>
 					<tr>
-						<th><label for="id">아이디<span class="must"><b>필수입력</b></span></label></th>
-						<td><input type="text" name="id" id="id" class="w300">
+						<th><label for="id">ID<span class="must"><b> *</b></span></label></th>
+						<td><input type="text" name="id" id="id" class="w300" placeholder="IDを入力してください" >
 							<br>
 							<p id="idmsg"></p></td>
 					</tr>
 					<tr>
-						<th><label for="pw">비밀번호<!-- <span class="must"><b>필수입력</b></span> --></label></th>
-						<td><input type="password" name="pw" id="pw" class="w300">
+						<th><label for="pw">PW<!-- <span class="must"><b>필수입력</b></span> --></label></th>
+						<td><input type="password" name="pw" id="pw" class="w300"placeholder="パスワードを入力してください">
 							<p class="guideTxt">
-								<span class="tc_point">영문(대문자 구분), 숫자, 특수문자의 조합</span>으로 9~13자로
-								작성해 주십시오.
-							</p></td>
+								<span class="tc_point"></span>
 					</tr>
 					<tr>
-						<th><label for="pw2">비밀번호확인<!-- <span class="must"><b>필수입력</b></span> --></label></th>
-						<td><input type="password" name="pw2" id="pw2" class="w300">
+						<th><label for="pw2">PW<!-- <span class="must"><b>필수입력</b></span> --></label></th>
+						<td><input type="password" name="pw2" id="pw2" class="w300"placeholder="パスワードを確認してください">
 							<p id="pwmsg"></p></td>
 					</tr>
 					<tr>
-						<th><label for="tel">전화번호<span class="must"><b>필수입력</b></span></label></th>
+						<th><label for="tel">PHONE<span class="must"><b> *</b></span></label></th>
 						<td>
 						
 						<%-- <div class="form-group"> --%>
@@ -64,53 +58,48 @@
 								<label for="phone" class="col-sm-2 control-label"></label>
 								<div class="col-sm-10">
 								
-									<select class="form-control" name="phone1" required	id="selectPhone" style="width: 9%; display: inline-block;">
+									<select class="form-control" name="phone1" required	id="selectPhone" style="width: 25%; display: inline-block;">
 										<option value="010">010</option>
 									</select> 
 									
 									- 
-									<input type="text" name="phone2" class="form-control" id="phone1" style="width: 9%; display: inline-block;">
+									<input type="text" name="phone2" class="form-control" id="phone1" style="width: 25%; display: inline-block;">
 									- 
-									<input type="text" name="phone3" class="form-control" required id="phone2" style="width: 9%; display: inline-block;">
+									<input type="text" name="phone3" class="form-control" required id="phone2" style="width: 25%; display: inline-block;">
 									<!-- disabled:활성화안하겠다는 뜻 -->
 								</div>
 							<%-- </div>--%>
 							</td>
 					</tr>
 					<tr>
-						<th><label for="adress">주소<span class="must"><b>필수입력</b></span></label></th>
+						<th><label for="adress">ADDRESS<span class="must"><b> *</b></span></label></th>
 						<td>
-							<input type="text" id="sample6_postcode" 		name="sample6_postcode"	placeholder="우편번호"> 
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="sample6_address"		 	name="sample6_address" placeholder="주소" required><br>
-							<input type="text" id="sample6_detailAddress" 	name="sample6_detailAddress" 	placeholder="상세주소" required> 
-							<input type="text" id="sample6_extraAddress" 	name="sample6_extraAddress" placeholder="참고항목" required>
+							<input type="text" id="sample6_postcode" 		name="sample6_postcode"	placeholder="郵便番号" > 
+							<input type="button" onclick="sample6_execDaumPostcode()" value="郵便番号探し"><br>
+							<input type="text" id="sample6_address"		 	name="sample6_address" placeholder="住所" required><br>
+							<input type="text" id="sample6_detailAddress" 	name="sample6_detailAddress" 	placeholder="詳細住所" required> 
+							<input type="text" id="sample6_extraAddress" 	name="sample6_extraAddress" placeholder="参考項目" required>
 						</td>
 					</tr>
 					<tr>
-    <th><label for="email">이메일<span class="must"><b>필수입력</b></span></label></th>
+    <th><label for="email">E-MAIL<span class="must"><b> *</b></span></label></th>
     <td>
-        <input type="email" name="email" id="email" class="w300" placeholder="이메일 주소입력">@
-        <select class="form-control" name="emailDomain" required id="selectEmail" style="width: 9%; display: inline-block;">
-            <option value="naver.com">naver.com</option>
-            <option value="nate.com">nate.com</option>
-            <option value="google.com">google.com</option>
-        </select>
-        <input type="button" id="btn_email" class="btn_email" value="인증번호전송">
+        <input type="email" name="email" id="email" class="w300" placeholder="メールアドレス入力" style="width: 70%">
+        <input type="button" id="btn_email" class="btn_email" value="認証番号送信">
         <p id="emailmsg"></p>
-        <input type="password" name="certinumber" id="certinumber" class="w300" placeholder="인증번호">
-        <input type="button" id="email_ok" value="인증번호확인">
+        <input type="password" name="certinumber" id="certinumber" class="w300" style="width: 35%" placeholder="認証番号">
+        <input type="button" id="email_ok" value="認証番号確認">
     </td>
 </tr>
 			</table>
 			<div class="btnArea Acenter pt60 pb100">
 				<a href="javascript:history.go(-1);"
-					class="btn_round btn_large btn_BlueGray w180"><b>취소</b></a>
+					class="btn_round_s btn_large_s btn_BlueGray_s w180"><b>取消</b></a>
 				<!-- <a href="javascript:fn_save();"
 					class="btn_round btn_large btn_pointColor w180"><b>회원등록</b></a> -->
 				<!-- href 다음에 자바스크립트 함수 호출 javascript:fn_save()  -->
-				<input type="submit" value="회원등록"
-					class="btn_round btn_large btn_pointColor w180">
+				<input type="submit" value="会員登録" style="border: none"
+					class="btn_round_s btn_large_s btn_pointColor_s w180 ">
 			</div>
 		</form>
 	</div>
@@ -354,6 +343,4 @@ $("#btn_email").on("click", function(){
 <%@ include file="/footer.jsp" %>
 <script src="js/bootstrap.min.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-1.12.4.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-
