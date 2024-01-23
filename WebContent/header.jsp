@@ -29,8 +29,10 @@
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/productadd.css">
-<link rel="stylesheet" href="css/board.css">
-
+<link rel ="stylesheet" href="css/board.css">
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

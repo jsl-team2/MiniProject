@@ -18,13 +18,25 @@
 
 </div>
 
-<div class="container">
+<div class="container boardD">
+	<div class="board_title">
+	<h2>${view.board_title }</h2>
+	</div>
 	<div class="board_view">
-		<h2>${view.board_title }</h2>
-		<p class="info">
-			<span class="user">${view.board_writer}</span> |
-			${view.board_date.substring(0,10) }| <i class="glyphicon glyphicon-eye-open">${view.board_hits}</i>
-		</p>
+		<div class="board_view2">
+			<div class="detail-attr board_writer">
+				<div class="board_detail">投稿者</div>
+				<div class="board_value">${view.board_writer}</div>
+			</div>	
+			<div class="detail-attr board_date">
+				<div class="board_detail">作成日</div>
+				<div class="board_value">${view.board_date.substring(0,10) }</div>
+			</div>	
+			<div class="detail-attr board_hits">
+				<div class="board_detail">ヒット数</div>
+				<div class="board_value">👁‍🗨${view.board_hits}</div>
+			</div>	
+		</div>
 		<div class="board_body">
 			<p>${view.board_content }</p>
 		</div>
@@ -40,10 +52,12 @@
 			</a>
 
 			<div class="board_btn_3wrap">
-				<a href="board.do" style="background:#0B60B0;">リスト</a> 
+				<a href="board.do" style="background:#8a6d3bcf;">リスト</a> 
+				<c:if test="${view.board_writer eq user_id || user_id eq 'admin' }">
 				<a href="boardmodify.do?board_no=${view.board_no }" style="background:#BF3131;">修正</a> 
 				<a href="boarddelete.do?board_no=${view.board_no }" style="background:#BF3131;"
 					onClick="return confirm('삭제하시겠습니까?')">削除</a>
+				</c:if>
 			</div>
 			<a href="boardview.do?board_no=${next.getBoard_no() }"
 				class="btn_next"> <span class="next_wrap"> 
@@ -67,8 +81,8 @@
 	</thead>
 	<tbody>
 	
-	<c:forEach var="Clist" items="${Clist }" varStatus="loopStatus" >
-	<tr>
+	<c:forEach var="Clist" items="${Clist }">
+	<tr class="Clist" style="display:none;">
 		<td>${Clist.comment_id}</td>
 			<td>
 				<c:if test="${Clist.comment_secret eq 1}">
@@ -88,26 +102,25 @@
 				<div class="board_button" >
 				<c:if test="${Clist.comment_id eq user_id || user_id eq 'admin' }">
 					<div class="col-sm-6" >
-						<button class="btn btn-sm modifybtn"
+						<button class="btn btn-sm modifybtn" id="Omodal"
 							onclick="openModal('id_reply_edit_modal_${Clist.comment_no}')"
-							style="color: #fff; border-color: #0B60B0 ; background: #0B60B0 ; margin:0 -15px 0 0;">修正
+							style="color: #fff; background: #8a6d3bcf ; margin:0 -15px 0 0;">修正
 						</button>
 					</div>
 					<div class="col-sm-6" >
 						<a href="commentdelete.do?comment_no=${Clist.comment_no}&board_no=${Clist.board_no}">
 						<button type="submit" class="btn btn-sm btn-info" role="button"
-							style="background-color: #BF3131 ; color: #fff; border-color: #BF3131 ; margin:0 0 0 -15px;">削除
+							style="background-color: #8a6d3b69 ; color: #fff; margin:0 0 0 -15px;">削除
 						</button>
 						</a> 
 					</div>
 				</c:if>
 				</div>
-				
-	
-<!-- 댓글 기능 끝 -->
-			
-<!-- START : 댓글 수정용 Modal -->
-	<div class="modal" id="id_reply_edit_modal_${Clist.comment_no}">
+		<!-- 댓글 기능 끝 -->
+			</td>
+		</tr>
+		
+		<div class="modal" id="id_reply_edit_modal_${Clist.comment_no}">
 		<div class="modal-dialog" style="margin: 200px auto;">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -138,32 +151,30 @@
                     <input class="form-check-input" type="radio" name="comment_secret" id="comment_secret_checkbox" value="1"
                     <%= LoginID ? "" : "disabled" %> onchange="updateCommentSecretValue(this)"> 非公開
                     <br/>
-						<button id="btn_reply_modify" type="submit"
+						<button id="btn_reply_modify" type="submit" style="background: #8a6d3bcf;"
 							class="btn btn-sm btn-info">設定</button>
-						<button type="button" class="btn btn-default btn-sm"
+						<button type="button" class="btn btn-default btn-sm" style="background: #e6e6e6;"
 							onclick="closeModal()">閉じる</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-<!-- END : 댓글 수정용 Modal -->
-
-			</td>
-		</tr>
 	</c:forEach>
-	
+		
 			</tbody>
+			
 			<!-- 더보기 기능 시작 -->
 		<tr class="hidden-comment-row">
 			<td colspan="4">
-				<button class="btn btn-sm btn-secondary more-btn"
-					onclick="BoardloadMoreComments(${loopStatus.index})">더보기</button>
+				<button type="button" id="BoardMorebtn" class="btn btn-default board_btn-block" >&#9660;続きを読む</button>
 			</td>
 		</tr>
 	<!-- 더보기 기능 끝 -->
+	
 		</table>
 	</div>
+
 
 <div class="board_panel panel-default">
     <div class="board_panel-body form-horizontal">
@@ -175,13 +186,14 @@
                 <label class="col-sm-2 control-label" style="padding-top: 40px; text-align: center; padding-left: 45px;">コメント</label>
                 
                 <div class="col-sm-8">
-                    <textarea rows="3" name="board_content" class="board_content" <%= LoginID ? "" : "disabled" %>></textarea>
+                    <textarea rows="3" id="board_content" name="board_content" 
+                    class="board_content" <%= LoginID ? "" : "disabled" %>></textarea>
                 </div>
                 
                 <div class="col-sm-2" style="text-align: center;">
                     <div class="board_K">
                     <button id="comment_regist" type="submit" class="btn btn-sm btn-list1"
-                    style="font-size: 15px; background: #0B60B0; margin-top: 15px;" 
+                    style="font-size: 15px; background: #8a6d3bcf; margin-top: 15px;" 
                     <%= LoginID ? "" : "disabled" %>>登録</button>
                     </div>
                  <div>
@@ -189,19 +201,12 @@
 				    <input class="form-check-input" type="checkbox" name="comment_secret" id="comment_secret_value" value="1"
 			           <%= LoginID ? "" : "disabled" %> onchange="updateCommentSecretValue(this)">非公開
 				</div>
-
-
-
-               
                 </div>
-                
             </div>
         </form>
     </div>
 </div>
 </div>
-
-
 <script>
 	$(function() {
 		$(".location  .dropdown > a").on("click", function(e) {
@@ -231,18 +236,21 @@
 </script>
 
 <script>
-	function check2() {
-		if (commentmodify.reContent.value == "") {
-			alert("修正内容を入力してください。");
-			commentmodify.reContent.focus();
-			return false;
-		}
-
-		var content = document.getElementById("reContent");
-		commentmodify.reContent.value = content.value.replace(/(\n|\r\n)/g,'<br>');
-		return true;
+function check2() {
+	if (commentmodify.reContent.value.trim() == "") {
+		alert("修正内容を入力してください。");
+		commentmodify.reContent.focus();
+		return false;
 	}
+
+	var content = commentmodify.reContent;
+	content.value = content.value.replace(/\n|\r\n/g, "<br>");
+	commentmodify.reContent.value = content.value;
+	return true;
+}
 </script>
+
+
 
 <!-- <script>
 document.getElementById('comment_regist').addEventListener('click', function() {
@@ -277,8 +285,6 @@ function validateForm() {
         return false; // 폼 제출을 막음
     }
 
-    // 그 외의 검증 로직을 추가할 수 있습니다.
-
     return true; // 폼 제출을 허용
 }
 </script>
@@ -296,40 +302,28 @@ function updateCommentSecretValue(checkbox) {
 </script>
 
 <script>
-function BoardloadMoreComments(startIndex) {
-  // AJAX 요청을 보냅니다.
-  $.ajax({
-    url: "/BoardLoadMoreComments.do",
-    type: "GET",
-    data: {
-      startIndex: startIndex
-    },
-    dataType: "json"
-  })
-  .done(function(response) {
-    // 응답 데이터를 JSON으로 파싱합니다.
-    var comments = JSON.parse(response);
+$(function () {
+	var loadNum = 5;
+	var currentShown = loadNum; 
+	
+	$(".Clist").slice(0,5).show();
+	
+	$("#BoardMorebtn").click(function(e){
+		e.preventDefault();
+		var hidden = $(".Clist:hidden");
+		var nextThing = hidden.slice(0,loadNum);
+		
+		nextThing.show();
+		currentShown += loadNum;
+			
+		if(currentShown >= $(".Clist").length){
+			alert('더이상 존재하지 않습니다.');
+			$("#BoardMorebtn").hide();
+		}
+	});
+	
+});
 
-    // 새로운 댓글 행을 생성합니다.
-    for (var comment of comments) {
-      var tr = document.createElement("tr");
-      for (var key in comment) {
-        var td = document.createElement("td");
-        td.textContent = comment[key];
-        tr.appendChild(td);
-      }
-      $("#commentList").append(tr);
-    }
-
-    // 더 이상 댓글이 없으면 "더보기" 버튼을 "완료" 버튼으로 바꿉니다.
-    if (comments.length < 5) {
-      $("#moreBtn").text("완료");
-    }
-  })
-  .fail(function(error) {
-    // 오류 처리
-  });
-}
 </script>
 
 
