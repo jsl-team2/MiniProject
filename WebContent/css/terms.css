@@ -3,16 +3,16 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+   
 }
 
-.wrap {
+.terms__wrap {
     max-width: 800px;
     margin: 60px auto;
     background-color: #fff;
     padding: 20px 10px;
     border-radius: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     text-align: center; /* 중앙 정렬을 위한 스타일 */
 }
 

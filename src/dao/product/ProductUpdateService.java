@@ -44,6 +44,7 @@ public class ProductUpdateService implements Action {
 			System.out.println(product_no);
 	     String name = multi.getParameter("product_name");
 			String picture = multi.getFilesystemName("product_picture");
+			String picture2 = multi.getFilesystemName("product_picture2");
 			String display = multi.getParameter("product_display");
 			String capacity = multi.getParameter("product_capacity");
 			String camera = multi.getParameter("product_camera");
@@ -57,6 +58,7 @@ public class ProductUpdateService implements Action {
 		ProductVo vo = new ProductVo();
 		vo.setProduct_name(name);
 		vo.setProduct_picture(picture);
+		vo.setProduct_detailpicture(picture2);
 		vo.setProduct_display(display);
 		vo.setProduct_capacity(capacity);
 		vo.setProduct_camera(camera);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<div class="wrap">
+<div class="admin__wrap">
 
 	<div class="left-section">
 		<div><a href="admin.do">会員照会</a></div>

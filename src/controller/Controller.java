@@ -388,7 +388,7 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			;
+			
 		} else if (command.equals("/productdelete.do")) {
 			try {
 				new ProductDeleteService().execute(request, response);

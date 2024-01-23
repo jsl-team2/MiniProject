@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.wrap{
+.admin__wrap{
 	min-height: 100%;
 	display: flex;
 	padding: 0 100px;
@@ -69,21 +69,21 @@
 	color:lightgray;
 }
 
-.logo{
+.admin__logo{
 	width:50px;
 }
 
-.product-add {
+.admin__product-add {
 	position: absolute;
 	right: 0;
 	top: 100px;
 	background-color: black;
 }
-.product-add:hover{
+.admin__product-add:hover{
 	background-color: white;
 	color: black;
 }
-.update-btn{
+.admin__update-btn{
 	margin-right:10px;
 }
 .paging-admin {clear:both; text-align:center;}
