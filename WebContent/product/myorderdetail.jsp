@@ -1,29 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<div class="wrap">
+<div class="admin__wrap">
 	<div class="right-section">
 		<h1 class="tabs-title">個人注文詳細</h1>
 		<table class="admin-table">
 			<thead>
 				<tr>
 					<th>
-						<p class="columns">番号</p>
+						番号
 					</th>
 					<th>
-						<p class="columns">注文者</p>
+						注文者
 					</th>
 					<th>
-						<p class="columns">電話番号</p>
+						電話番号
 					</th>
 					<th>
-						<p class="columns">住所</p>
+						住所
 					</th>
 					<th>
-						<p class="columns">注文日</p>
+						注文日
 					</th>
 					<th>
-						<p class="columns">状態</p>
+						状態
 					</th>
 				</tr>
 			</thead>

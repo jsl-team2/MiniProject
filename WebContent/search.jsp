@@ -10,7 +10,7 @@
 	</c:when> 
  	<c:otherwise>
  	<div class="product-container container-fluid">
-		<div class="main__title">上品</div>
+		<div class="main__title">商品</div>
 		<div class="row">
 	<c:forEach var="productList" items="${productList }">
 	<a href="productdetail.do?product_no=${productList.product_no}"
