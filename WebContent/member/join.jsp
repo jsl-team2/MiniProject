@@ -44,7 +44,7 @@
 								<span class="tc_point"></span>
 					</tr>
 					<tr>
-						<th><label for="pw2">PW<!-- <span class="must"><b>필수입력</b></span> --></label></th>
+						<th><label for="pw2">PW CHECK<!-- <span class="must"><b>필수입력</b></span> --></label></th>
 						<td><input type="password" name="pw2" id="pw2" class="w300"placeholder="パスワードを確認してください">
 							<p id="pwmsg"></p></td>
 					</tr>
