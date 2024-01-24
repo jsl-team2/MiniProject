@@ -107,138 +107,135 @@
 
 
 <script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function sample6_execDaumPostcode() {
-	new daum.Postcode(
-			{
-				oncomplete : function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+   new daum.Postcode(
+         {
+            oncomplete : function(data) {
+               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var addr = ''; // 주소 변수
-					var extraAddr = ''; // 참고항목 변수
+               // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+               var addr = ''; // 주소 변수
+               var extraAddr = ''; // 참고항목 변수
 
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-					}
+               //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+               if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                  addr = data.roadAddress;
+               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                  addr = data.jibunAddress;
+               }
 
-					// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-					if (data.userSelectedType === 'R') {
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== ''
-								&& /[동|로|가]$/g.test(data.bname)) {
-							extraAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== ''
-								&& data.apartment === 'Y') {
-							extraAddr += (extraAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraAddr !== '') {
-							extraAddr = ' (' + extraAddr + ')';
-						}
-						// 조합된 참고항목을 해당 필드에 넣는다.
-						document.getElementById("sample6_extraAddress").value = extraAddr;
+               // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+               if (data.userSelectedType === 'R') {
+                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                  // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                  if (data.bname !== ''
+                        && /[동|로|가]$/g.test(data.bname)) {
+                     extraAddr += data.bname;
+                  }
+                  // 건물명이 있고, 공동주택일 경우 추가한다.
+                  if (data.buildingName !== ''
+                        && data.apartment === 'Y') {
+                     extraAddr += (extraAddr !== '' ? ', '
+                           + data.buildingName : data.buildingName);
+                  }
+                  // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                  if (extraAddr !== '') {
+                     extraAddr = ' (' + extraAddr + ')';
+                  }
+                  // 조합된 참고항목을 해당 필드에 넣는다.
+                  document.getElementById("sample6_extraAddress").value = extraAddr;
 
-					} else {
-						document.getElementById("sample6_extraAddress").value = '';
-					}
+               } else {
+                  document.getElementById("sample6_extraAddress").value = '';
+               }
 
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					document.getElementById('sample6_postcode').value = data.zonecode;
-					document.getElementById("sample6_address").value = addr;
-					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById("sample6_detailAddress")
-							.focus();
-				}
-			}).open();
+               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+               document.getElementById('sample6_postcode').value = data.zonecode;
+               document.getElementById("sample6_address").value = addr;
+               // 커서를 상세주소 필드로 이동한다.
+               document.getElementById("sample6_detailAddress")
+                     .focus();
+            }
+         }).open();
 }
 </script>
 <script>
 
-	$("#btn_joi").on(
-			"click",function(){
-				
-			}
-			/* function() {
-				var data = {
-					name : $("#name").val(),
-					id : $("#id").val(),
-					pw : $("#pw").val(),
-					pw2 : $("#pw2").val(),
-					phone : $("#selectPhone").val()+$("#phone1").val()+$("#phone2").val(),
-					address : $("#sample6_postcode").val() + $("#sample6_address").val() + $("#sample6_detailAddress").val()
-							+ $("#sample6_extraAddress").val(),
-					email : $("#email").val(),
-					certinumber : $("#certinumber").val()
-				};
+   $("#btn_join").on(
+         "click",
+         function() {
+            var data = {
+               name : $("#name").val(),
+               id : $("#id").val(),
+               pw : $("#pw").val(),
+               pw2 : $("#pw2").val(),
+               
+               phone : $("#selectPhone").val()+$("#phone1").val()+$("#phone2").val(),
+               address : $("#sample6_postcode").val() + $("#sample6_address").val() + $("#sample6_detailAddress").val()
+                     + $("#sample6_extraAddress").val(),
+                     
+               email : $("#email").val(),
+               certinumber : $("#certinumber").val()
+            };
 
-				$.ajax({
-					type : "post",
-					url : "joinpro.do",
-					data : JSON.stringify(data),
-					success : function(data) {
-						console.log(data)
-						if (data.check == "ok") {
-							alert("회원가입이 완료되었습니다.");
-							history.go(-1);
-						} else {
-							alert(data.msg);
-						}
-					},
-					error : function() {
-						alert("통신에러!");
-					}
-				});
-			}  */
-			
-	);
+            $.ajax({
+               type : "post",
+               url : "joinpro.do",
+               data : data,
+               success : function(data) {
+                  if (data.check == "ok") {
+                     alert("회원가입이 완료되었습니다.");
+                     history.go(-1);
+                  } else {
+                     alert(data.msg);
+                  }
+               },
+               error : function() {
+                  alert("통신에러!");
+               }
+            });
+         });
 </script>
 
 <script>
 function check() { // 자바스크립트 문법
 	
-    if(!join.name.value){ // member.name.value == ""
+    if(!join.user_name.value){ // member.name.value == ""
        alert("이름을 입력하세요");
-       join.name.focus();
+       join.user_name.focus();
        return false;
     }   
-  if(!join.id.value){ // member.name.value == ""
+  if(!join.user_id.value){ // member.name.value == ""
      alert("아이디 입력하세요");
-     join.id.focus();
+     join.user_id.focus();
      return false;
   }   
-  if(!join.pw.value){ // member.name.value == ""
+  if(!join.user_pw.value){ // member.name.value == ""
       alert("비밀번호 입력하세요");
-      join.pw.focus();
+      join.user_pw.focus();
       return false;
    }   
-  if(!join.pw2.value){ // member.name.value == ""
+  if(!join.user_pw2.value){ // member.name.value == ""
       alert("비밀번호 확인하세요");
-      join.pw2.focus();
+      join.user_pw2.focus();
       return false;
    }   
-  if(!join.phone.value){ // member.name.value == ""
+  if(!join.user_phone.value){ // member.name.value == ""
       alert("휴대폰 번호를 입력하세요");
-      join.phone.focus();
+      join.user_phone.focus();
       return false;
    }   
-  if(!join.address.value){ // member.name.value == ""
+  if(!join.user_address.value){ // member.name.value == ""
       alert("주소를 입력하세요");
-      join.addrss.focus();
+      join.user_addrss.focus();
       return false;
    }   
-  if(!join.email.value){ // member.name.value == ""
+  if(!join.user_email.value){ // member.name.value == ""
       alert("email 입력하세요");
-      join.email.focus();
+      join.user_email.focus();
       return false;
    }   
   
@@ -260,7 +257,7 @@ $(function() { // jquery 문법
    });
     $("#id").blur(function() {
        if(!$("#id").val()) {
-         $("#idmsg").html("<span style='color:#f00;'>아이디는 필수 입력사항 입니다</span>");
+         $("#idmsg").html("<span style='color:#f00;'>IDは必須入力事項です</span>");
        }else {
          $("#idmsg").html("");
        }
@@ -272,11 +269,11 @@ $(function() { // jquery 문법
        success:function(data) {  // 비동기식 데이터 처리가 성공했을때
           if(data != 1){
              if($("#id").val() != "") {
-                $("#idmsg").html("<span style='color:#0f0;'>사용가능 합니다</span>");
+                $("#idmsg").html("<span style='color:#0033ff;'>使用可能です</span>");
              }
           }else{
              if($("#id").val() != ""){
-                $("#idmsg").html("<span style='color:#f00;'>사용할 수 없는 아이디 입니다.</span>");
+                $("#idmsg").html("<span style='color:#f00;'>使用できないIDです</span>");
                 $("#id").val("");
                 $("#id").focus();
              }
@@ -292,9 +289,9 @@ $(function() { // jquery 문법
        var pw1 = $("#pw").val();
        var pw2 = $("#pw2").val();
        if(pw1 != pw2) {
-          $("#pwmsg").html("<span style='color:#f00;'>비밀번호 확인 바랍니다</span>");
+          $("#pwmsg").html("<span style='color:#f00;'>パスワードをご確認ください</span>");
       }else {
-         $("#pwmsg").html("<span style='color:#0f0;'>비밀번호가 일치 합니다</span>");
+         $("#pwmsg").html("<span style='color:#009933;'>パスワードが一致します</span>");
       }
        
     })
@@ -321,29 +318,29 @@ $("#btn_email").on("click", function(){
   
   //인증확인
   $("#email_ok").on("click", function() {
-  	var certinumber = $("#certinumber").val();
-  	if(certinumber == "") {
-  		alert("인증번호 입력");
-  		$("#certinumber").focus();
-  	}else{
-  		$.ajax({
-  		type:"post",
-  		data:{"certinumber":certinumber},
-  		url:"certinumber.do",
-  		dataType:"json",
-  		success:function(data){
-  			if(data.check == "nok") {
-  				alert(data.mag);
-  				}else{
-  					
-  					alert(data.msg);
-  				}
-  			},error:function() {
-  				alert("통신에러!");
-  			}
-  		})
-		 }
- 	 })
+     var certinumber = $("#certinumber").val();
+     if(certinumber == "") {
+        alert("인증번호 입력");
+        $("#certinumber").focus();
+     }else{
+        $.ajax({
+        type:"post",
+        data:{"certinumber":certinumber},
+        url:"certinumber.do",
+        dataType:"json",
+        success:function(data){
+           if(data.check == "nok") {
+              alert(data.mag);
+              }else{
+                 
+                 alert(data.msg);
+              }
+           },error:function() {
+              alert("통신에러!");
+           }
+        })
+       }
+     })
 });
 </script>
 <%@ include file="/footer.jsp" %>
