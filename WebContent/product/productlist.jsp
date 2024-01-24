@@ -45,7 +45,7 @@
 			</c:forEach>
 
 			<a href="productcart.do?user_id=${user_id}" class="btn btn-default btn-lg" role="button">カート</a>
-			<div class="paging-admin" style="margin-bottom:50px;">
+			<div class="paging" style="margin-bottom:50px;">
 
 				<c:if test="${page.prev }">
 					<a href="productlist.do?pageNum=${page.startPage-1 }&amount=${page.cri.amount}&type=${page.cri.type}">

@@ -58,7 +58,7 @@
     	<a href="productadd.do">
     		<button class="admin__product-add btn btn-primary">商品追加</button>
     	</a>
-    	<div class="paging-admin">
+    	<div class="paging">
 		<c:if test="${page.prev }">
 			<a href="$productmanagement.do?pageNum=${page.startPage -1 }&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		</c:if>	
