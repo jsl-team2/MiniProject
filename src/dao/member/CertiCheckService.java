@@ -25,10 +25,10 @@ public class CertiCheckService implements Action {
 		Gson gson = new Gson();
 		
 		if(certinumber.equals(authkey)) {
-			map.put("msg", "인증번호 일치 합니다");
+			map.put("msg", "認証番号が一致します");
 			map.put("check", "ok");
 		}else {
-			map.put("msg", "인증번호가 불 일치 합니다");
+			map.put("msg", "認証番号が一致しません");
 			map.put("check", "nok");
 		}
 		

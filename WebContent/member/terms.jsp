@@ -8,7 +8,6 @@
 <meta charset="UTF-8" />
 </head>
 <div class="logoterms">
-	<h1>弱冠</h1>
 </div>
 <body>
 	<div class="terms__wrap">

@@ -187,7 +187,7 @@ function sample6_execDaumPostcode() {
                data : data,
                success : function(data) {
                   if (data.check == "ok") {
-                     alert("회원가입이 완료되었습니다.");
+                     alert("会員登録が完了しました");
                      history.go(-1);
                   } else {
                      alert(data.msg);
@@ -203,43 +203,27 @@ function sample6_execDaumPostcode() {
 <script>
 function check() { // 자바스크립트 문법
 	
-    if(!join.user_name.value){ // member.name.value == ""
-       alert("이름을 입력하세요");
-       join.user_name.focus();
+    if(!join.name.value){ // member.name.value == ""
+       alert("名前を入力してください");
+       join.name.focus();
        return false;
     }   
-  if(!join.user_id.value){ // member.name.value == ""
+  if(!join.id.value){ // member.name.value == ""
      alert("아이디 입력하세요");
-     join.user_id.focus();
+     join.id.focus();
      return false;
   }   
-  if(!join.user_pw.value){ // member.name.value == ""
+  if(!join.pw.value){ // member.name.value == ""
       alert("비밀번호 입력하세요");
-      join.user_pw.focus();
+      join.pw.focus();
       return false;
    }   
-  if(!join.user_pw2.value){ // member.name.value == ""
+  if(!join.pw2.value){ // member.name.value == ""
       alert("비밀번호 확인하세요");
-      join.user_pw2.focus();
+      join.pw2.focus();
       return false;
    }   
-  if(!join.user_phone.value){ // member.name.value == ""
-      alert("휴대폰 번호를 입력하세요");
-      join.user_phone.focus();
-      return false;
-   }   
-  if(!join.user_address.value){ // member.name.value == ""
-      alert("주소를 입력하세요");
-      join.user_addrss.focus();
-      return false;
-   }   
-  if(!join.user_email.value){ // member.name.value == ""
-      alert("email 입력하세요");
-      join.user_email.focus();
-      return false;
-   }   
-  
-  alert("회원가입이 완료되었습니다.")
+  alert("会員登録が完了しました")
  }
 
 </script>
@@ -269,7 +253,7 @@ $(function() { // jquery 문법
        success:function(data) {  // 비동기식 데이터 처리가 성공했을때
           if(data != 1){
              if($("#id").val() != "") {
-                $("#idmsg").html("<span style='color:#0033ff;'>使用可能です</span>");
+                $("#idmsg").html("<span style='color:#009933;'>使用可能です</span>");
              }
           }else{
              if($("#id").val() != ""){
@@ -299,7 +283,7 @@ $(function() { // jquery 문법
 $("#btn_email").on("click", function(){
      var email = $("#email").val();
      if(email == ""){
-        alert("이메일 주소를 입력하세요.");
+        alert("メールアドレスを入力してください");
         $("#email").focus();
      } else {
         $.ajax({
@@ -320,7 +304,7 @@ $("#btn_email").on("click", function(){
   $("#email_ok").on("click", function() {
      var certinumber = $("#certinumber").val();
      if(certinumber == "") {
-        alert("인증번호 입력");
+        alert("認証番号入力");
         $("#certinumber").focus();
      }else{
         $.ajax({

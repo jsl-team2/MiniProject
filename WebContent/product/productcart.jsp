@@ -5,7 +5,6 @@
 
 <!-- sub visual -->
 <div class="container-fluid subvisual">
-	<h2>カート</h2>
 </div>
 
 <!-- sub contents -->

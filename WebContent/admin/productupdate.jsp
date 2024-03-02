@@ -62,66 +62,66 @@ imageInput.addEventListener("change", () => {
     reader.readAsDataURL(file);
   }
 });
-	function check(){
-		if(!updateForm.product_name.value){
-			alert("상품 이름을 입력하세요")
-			updateForm.product_name.focus()
-			return false
-		}
-		if(!updateForm.product_display.value){
-			alert("디스플레이를 입력하세요")
-			updateForm.product_display.focus()
-			return false
-		}
-		if(!updateForm.product_camera.value){
-			alert("카메라를 입력하세요")
-			updateForm.product_camera.focus
-			return false
-		}
-		if(!updateForm.product_capacity.value){
-			alert("용량을 입력하세요")
-			updateForm.product_capacity.focus
-			return false
-		}
-		if(!updateForm.product_color.value){
-			alert("색상을 입력하세요")
-			updateForm.product_color.focus
-			return false
-		}
-		if(!updateForm.product_ram.value){
-			alert("램을 입력하세요")
-			updateForm.product_ram.focus
-			return false
-		}
-		if(!updateForm.product_weight.value){
-			alert("무게를 입력하세요")
-			updateForm.product_weight.focus
-			return false
-		}
-		if(!updateForm.product_battery.value){
-			alert("배터리를 입력하세요")
-			updateForm.product_battery.focus
-			return false
-		}
-		if(!updateForm.product_price.value){
-			alert("가격을 입력하세요")
-			updateForm.product_price.focus
-			return false
-		}
-		if(!updateForm.product_rdate.value){
-			alert("출시일을 입력하세요")
-			updateForm.product_rdate.focus
-			return false
-		}
-		if(!updateForm.product_picture.value){
-			alert("사진을 선택하세요")
-			updateForm.product_picture.focus
-			return false
-		}
-		
-		alert("상품이 수정되었습니다")
-		return true;
-		
+function check(){
+	if(!updateForm.product_name.value){
+		alert("商品名を入力してください")
+		updateForm.product_name.focus()
+		return false
 	}
+	if(!updateForm.product_display.value){
+		alert("ディスプレイを入力してください")
+		updateForm.product_display.focus()
+		return false
+	}
+	if(!updateForm.product_camera.value){
+		alert("カメラを入力してください")
+		updateForm.product_camera.focus
+		return false
+	}
+	if(!updateForm.product_capacity.value){
+		alert("容量を入力してください")
+		updateForm.product_capacity.focus
+		return false
+	}
+	if(!updateForm.product_color.value){
+		alert("色を入力してください")
+		updateForm.product_color.focus
+		return false
+	}
+	if(!updateForm.product_ram.value){
+		alert("メモリを入力してください")
+		updateForm.product_ram.focus
+		return false
+	}
+	if(!updateForm.product_weight.value){
+		alert("重さを入力してください")
+		updateForm.product_weight.focus
+		return false
+	}
+	if(!updateForm.product_battery.value){
+		alert("バッテリーを入力してください")
+		updateForm.product_battery.focus
+		return false
+	}
+	if(!updateForm.product_price.value){
+		alert("価格を入力してください")
+		updateForm.product_price.focus
+		return false
+	}
+	if(!updateForm.product_rdate.value){
+		alert("発売日を入力してください")
+		updateForm.product_rdate.focus
+		return false
+	}
+	if(!updateForm.product_picture.value){
+		alert("写真を選択してください")
+		updateForm.product_picture.focus
+		return false
+	}
+	
+	alert("商品が修正されました")
+	return true;
+	
+}
 </script>
 <%@ include file="../footer.jsp" %>

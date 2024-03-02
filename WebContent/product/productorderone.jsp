@@ -5,7 +5,6 @@
 
 <!-- sub visual -->
 <div class="container-fluid subvisual">
-	<h2>[単一]注文</h2>
 </div>
 
 <!-- sub contents -->
@@ -129,7 +128,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="checkbox" id="modifyCheckbox"> 注文者情報と同じ
+				<input type="checkbox" id="modifyCheckbox" style="margin-left: 155px"> 注文者情報と同じ
 			</form>
 		</div>
 		<div style="margin: 20px; text-align: center;">
